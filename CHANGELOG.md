@@ -10,6 +10,16 @@ The release procedure synchronizes `.codex-plugin/plugin.json`, this changelog, 
 ### Added
 - Queue unreleased changes here.
 
+## [0.1.1] — 2026-07-26
+
+### Changed
+- **Router: a direct route for agent-authored work.** A smoke test of the installed pack found that
+  "an agent wrote the code *and* its tests — how do I know it works?" required triangulating across
+  `oracles-and-evidence.md`, `suite-and-signal-health.md` and `ai-behavior-verification.md`, with no
+  single job row making that path obvious. Since this is the skill's signature case, it now has its
+  own row naming the composite path in reading order. The AI-behaviour row was narrowed to
+  model-behaviour verification so the two no longer overlap.
+
 ## [0.1.0] — 2026-07-26
 
 ### Added
