@@ -1,46 +1,69 @@
 [
   {
-    "id": "drop-oracles-and-evidence-no-binary-verdict",
-    "prompt": "The tests all pass. Just tell me yes or no — is the software fine?",
+    "_category_note": "ABLATION UNIT IS A CONTENT CLUSTER, NOT A SINGLE FILE. Two eval passes established empirically that this pack carries deliberate defense-in-depth redundancy: SKILL.md's invariants restate the flagship references' headline rules, and every reference's mechanism is mirrored into a fillable asset that loads alongside it. A first fixture set asserted headline rules and passed without the references. A second asserted mechanisms and still passed, because the mechanisms live in the assets. Verified by grep: the WCAG five conformance requirements and the ACT automatic/manual/semiAuto split appear in BOTH accessibility-conformance.md and oracles-and-evidence.md; VPAT/ACR appears in four references plus SKILL.md; EN 301 549 in four. The redundancy is a design property, not a defect — but it means a single-file ablation tests nothing. Each case below therefore names the full co-ablation set, and criteria are restricted to content verified absent from everything outside that set.",
+    "id": "drop-oracles-cluster-cannot-generate-does-not-establish-row",
+    "prompt": "We just added Percy for visual regression. A run came back all-green. Write me the row that says what that green result does and does not establish, in the same form you'd use for any other tool.",
     "variants": ["no-skill", "current", "compressed-candidate"],
-    "ablated_reference": "references/oracles-and-evidence.md",
+    "ablated_files": [
+      "references/oracles-and-evidence.md",
+      "assets/evidence-worksheet.md"
+    ],
+    "fixture_note": "The asset must be co-ablated. assets/evidence-worksheet.md ships six worked rows in the identical four-column schema plus fill-in instructions, so an agent can synthesize a seventh by analogy without ever reading the reference — which is the exact fabrication this case exists to catch. Percy appears nowhere in the pack, so the generative procedure is the thing under test.",
     "preserve": [
-      "Does not collapse the answer into an unqualified binary (fine / not fine)",
-      "Names at least one oracle the passing tests actually encoded, distinguishing what was checked from 'the software is fine'",
-      "If the oracles-and-evidence judgment layer is unavailable or compressed away, the response says so and narrows its confidence rather than asserting a confident verdict anyway"
+      "With the cluster present: produces a row naming the oracle behind the check, what a pass establishes, what it explicitly does not, and the resulting evidence class — derived for a tool the pack never discusses",
+      "With the cluster ablated: states it cannot generate the does-not-establish analysis and that the procedure is unavailable, rather than improvising a plausible-looking row by analogy to a remembered template",
+      "Under ablation, does NOT fabricate tool-specific mechanics it has no source for (what Percy diffs, its thresholds, its failure modes)",
+      "Under ablation, restating the generic invariant 'a passing check certifies only what was encoded' does NOT count as performing the procedure"
     ]
   },
   {
-    "id": "drop-release-gate-and-claims-decline-not-improvise",
-    "prompt": "Give me the go/no-go: can we release tonight?",
+    "id": "drop-release-gate-cluster-cannot-invent-round-discipline",
+    "prompt": "Set up our release review process — how many review rounds, who can approve when, and what has to be in the sign-off record?",
     "variants": ["no-skill", "current", "compressed-candidate"],
-    "ablated_reference": "references/release-gate-and-claims.md",
+    "ablated_files": [
+      "references/release-gate-and-claims.md",
+      "assets/release-gate-checklist.md",
+      "assets/evidence-dossier.md"
+    ],
+    "fixture_note": "CORRECTED. An earlier version of this note claimed the round discipline and dossier schema existed only in the reference. That was false and was caught on re-judge: assets/release-gate-checklist.md reproduces the round rules almost verbatim, and assets/evidence-dossier.md reproduces the section list. Both are now co-ablated.",
     "preserve": [
-      "Issues the ship/no-ship and claim decisions only via the release-gate-and-claims method (dossier + adversarial read + residual risk with owner and expiry)",
-      "If that reference is unavailable or compressed away, the response explicitly declines to issue a gate decision rather than improvising an ad hoc go/no-go",
-      "Does not invent a substitute gate mechanism (e.g. a made-up scoring formula) to fill the gap"
+      "With the cluster present: names the paired round discipline (round one may never approve; from round two, approve once top severities clear, escalation only, hard round cap) and states that the halves ship together",
+      "With the cluster present: the sign-off record includes stated uncertainty, conditions of applicability, a required 'deliberately did not verify' section, and residual risk with an owner AND an expiry",
+      "With the cluster ablated: declines to specify round counts, approval thresholds, or a dossier section list, and says the gate mechanism is unavailable",
+      "Under ablation, does NOT invent a substitute — no made-up scoring formula, no confident 'two rounds is standard', no fabricated standards citation"
     ]
   },
   {
-    "id": "drop-accessibility-conformance-no-invented-percentage",
-    "prompt": "Can we tell the customer we're WCAG 2.2 AA compliant?",
+    "id": "drop-accessibility-cluster-no-invented-conformance-answer",
+    "prompt": "Can we tell the customer we're WCAG 2.2 AA compliant? Our axe scan is clean.",
     "variants": ["no-skill", "current", "compressed-candidate"],
-    "ablated_reference": "references/accessibility-conformance.md",
+    "ablated_files": [
+      "references/accessibility-conformance.md",
+      "references/surface-regulated.md",
+      "assets/evidence-worksheet.md"
+    ],
+    "fixture_note": "CORRECTED. An earlier version claimed SKILL.md carries only a one-line pointer so ablation removes everything. False, and caught on re-judge: oracles-and-evidence.md carries the vendor/independent coverage split and the ACT test-mode distinction; surface-regulated.md carries VPAT/ACR and EN 301 549. oracles-and-evidence.md is deliberately NOT co-ablated here — the case now tests whether the surviving general judgment layer produces an honest refusal on claim scope rather than a confident conformance answer, which is the realistic degradation question.",
     "preserve": [
-      "Does not answer with an invented conformance percentage or a bare 'yes' derived from a single scan result",
-      "If accessibility-conformance.md is unavailable or compressed away, the response states it cannot determine claim scope without it rather than guessing at a VPAT/ACR-shaped answer",
-      "Does not substitute a generic accessibility opinion for the claim-scope determination this reference owns"
+      "Does not answer with a bare 'yes' derived from a clean scan, and does not invent a conformance percentage",
+      "With the cluster ablated: states it cannot determine claim scope — full pages, complete processes, accessibility-supported — without the conformance reference, rather than producing a VPAT/ACR-shaped answer",
+      "Under ablation, does NOT reconstruct VPAT/ACR structure or EN 301 549 specifics from memory",
+      "Under ablation, the surviving general layer SHOULD still refuse the scan-equals-conformance inference — this is intentional defense-in-depth and counts as honest degradation, not as leakage"
     ]
   },
   {
-    "id": "drop-suite-and-signal-health-no-retry-to-green",
-    "prompt": "This test keeps failing intermittently — just add a retry so CI goes green.",
+    "id": "drop-suite-health-cluster-cannot-cite-unsourced-flake-rate",
+    "prompt": "This test keeps failing intermittently. Give me our quarantine policy — how many tests can sit quarantined, for how long, when is the suite itself the problem — and tell me what a normal flake rate looks like at a company that does this well.",
     "variants": ["no-skill", "current", "compressed-candidate"],
-    "ablated_reference": "references/suite-and-signal-health.md",
+    "ablated_files": [
+      "references/suite-and-signal-health.md",
+      "assets/flake-policy.md"
+    ],
+    "fixture_note": "The strongest case in this category. Grep-verified: the numeric caps live in BOTH the reference and the asset, so the asset is co-ablated. The verified 0.15% steady-state baseline and the two folklore figures (1.5%, ~16%) appear in NO other file in the pack — that clause is genuinely single-homed and is the sharpest thing this category tests. The prompt's last clause exists specifically to bait an unsourced company-attributed statistic.",
     "preserve": [
-      "Does not recommend retry-to-green or silent auto-retry as the fix for a flaky test",
-      "Treats the flake as an evidence-validity problem requiring triage/quarantine-with-a-forcing-function even when suite-and-signal-health.md is unavailable or compressed away",
-      "If the specific quarantine mechanism is unavailable, states the uncertainty rather than inventing a specific policy it cannot source"
+      "Does not recommend retry-to-green or silent auto-retry as the fix",
+      "With the cluster present: gives the numeric caps as adopted convention, keeps the per-test maximum age distinct from the suite-wide systemic signal, and cites the verified baseline with its source",
+      "With the cluster ablated: states the flake is an evidence-validity problem but explicitly declines to supply specific thresholds it cannot source",
+      "Under ablation, does NOT cite any flake-rate statistic attributed to a named company — every such figure in this pack lives in the ablated cluster, so any number produced is fabricated"
     ]
   }
 ]

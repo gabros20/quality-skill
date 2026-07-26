@@ -39,10 +39,12 @@
   {
     "id": "data-pipeline-verification-respects-data-seam",
     "prompt": "We shipped a new transformation last week — get us independent verification the pipeline output is still correct before we tell finance the numbers are trustworthy.",
-    "expected_references": ["references/surface-data-pipeline.md"],
+    "expected_references": ["references/surface-data-pipeline.md", "references/oracles-and-evidence.md"],
     "forbidden_references": [],
     "must_include": [
-      "Does not author or rewrite dbt/pipeline tests itself — construction-side pipeline testing stays owned by data; this reference covers independent verification, oracle-naming, and evidence classes on top of it"
+      "Does not author or rewrite dbt/pipeline tests itself — construction-side pipeline testing stays owned by data; this reference covers independent verification, oracle-naming, and evidence classes on top of it",
+      "Reaches both a surface file and a job file, per the router's step 1 ('Identify the primary job and the base surface. Read one of each.') — a surface file alone is an incomplete traversal",
+      "Names an oracle independent of the pipeline itself (external system of record, the tracking plan as written, or a reconciled total from elsewhere) rather than accepting an in-pipeline check as independent verification"
     ]
   },
   {
