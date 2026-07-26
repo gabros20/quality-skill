@@ -32,6 +32,9 @@ sessions · 1 = requires an unlikely combination of conditions.
 | 6-11 | Medium | ~10% | Smoke-level automated check |
 | 1-5 | Low | ~5% | Exploratory pass or explicitly waived |
 
+*Adapted from `proffesor-for-testing/agentic-qe` (MIT). Adopted convention, not a derived result —
+no published study fixes these percentages.*
+
 ## Which rank each verification effort served
 
 Every effort spent must trace back to the row that justified it. An effort with no risk item behind

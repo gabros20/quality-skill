@@ -85,5 +85,6 @@ against a different oracle (an external system of record, the tracking plan as w
 total from elsewhere), after construction is complete. The two are not redundant — an in-pipeline check
 can be satisfied by an assertion that encodes the same misunderstanding as the pipeline logic it
 checks; independent verification is specifically the technique that does not share that blind spot.
+This is the **shared-source-of-truth failure** — see `oracles-and-evidence.md` §5, which owns it.
 Route pipeline-construction requests ("write a dbt test", "add a Great Expectations suite") to `data`
 without absorbing them.

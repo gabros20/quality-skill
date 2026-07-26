@@ -46,6 +46,10 @@ spend second. Impact × probability, 1–5 each, banded:
 | 6–11 | Medium | ~10% | Smoke-level automated check |
 | 1–5 | Low | ~5% | Exploratory pass or explicitly waived |
 
+*Bands adapted from `proffesor-for-testing/agentic-qe` (MIT). These are an adopted convention, not a
+derived result — no published study fixes these percentages. Per I12, they are cited because they
+came from somewhere, and they remain yours to justify or change.*
+
 Calibrate impact with concrete anchors, not adjectives — e.g. 5 = revenue loss, data breach, legal
 exposure, user-safety harm; 1 = negligible, cosmetic, no stakeholder ever notices. Anchors make the
 score reproducible across two different people scoring the same risk.
@@ -80,7 +84,9 @@ unit-heavy, integration-heavy, or integration-heavy-for-microservices-specifical
 this debate by picking a shape and presenting it as settled.** Two facts should stop you:
 
 1. **Neither Cohn's pyramid nor Dodds's trophy states a numeric ratio.** Cohn's original 2009
-   treatment names layers, not percentages; Dodds's trophy is glossed by "mostly integration" as a
+   treatment names layers, not percentages `[UNVERIFIED — absence-of-evidence claim; the primary
+   book was not read, only secondary treatments]`; the Dodds half **is** verified — the trophy is
+   glossed by "mostly integration" as a
    personal diminishing-returns heuristic (~70% coverage), not measured data. The 80/15/5 and
    70/20/10 splits in circulation are later accretions by *other* authors, not the originators.
 2. **The one institution that does publish a ratio contradicts itself.** *Software Engineering at

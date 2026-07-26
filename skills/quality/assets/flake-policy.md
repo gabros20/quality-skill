@@ -24,10 +24,13 @@ A quarantine with no limit is where tests go to be forgotten. Pick **one** forci
 record it:
 
 - [ ] Numeric cap: max **___** tests in quarantine at once (suggested default: 8)
-- [ ] Time cap: no longer than **___** in quarantine (suggested default: 1 week; upper bound before
-  it becomes a systemic-problem signal: 14 days)
+- [ ] Time cap: no longer than **___** in quarantine (suggested default: 1 week; **maximum
+  quarantine age: 14 days**, after which the test is fixed or deleted with triage recorded)
 - [ ] Suite-share cap: **>5% of the suite quarantined = systemic-problem signal**, triggers a
   dedicated investigation, not more quarantine slots
+
+These are two separate rules: 14 days bounds how long *one* test may sit quarantined; >5% of the
+suite is the signal that the *suite* has a systemic problem. Neither substitutes for the other.
 
 Every quarantined test needs: a ticket/issue link, an owner, and an entry date. No exceptions —
 an un-ticketed quarantine entry is indistinguishable from a deleted test.
@@ -38,9 +41,10 @@ an un-ticketed quarantine entry is indistinguishable from a deleted test.
 
 ## 3. Never retry-to-green
 
-Retrying until a test passes discards the exact signal quarantine exists to protect: **~1 in 6
-flaky-to-fixed transitions traced to a real production bug, and 24% of flaky-test fixes changed the
-code under test, not the test.** A green build that retried to get there is not evidence the code is
+Retrying until a test passes discards the exact signal quarantine exists to protect: **24% of
+flaky-test fixes changed the code under test, not the test** (Luo et al., FSE 2014 — verified), and
+roughly 1 in 6 flaky-to-fixed transitions has been reported to trace to a real production bug
+(Listfield 2017 — **low-confidence extraction, from an author reply rather than the article body**). A green build that retried to get there is not evidence the code is
 correct — it's evidence the test ran enough times to get lucky once.
 
 - [ ] CI config confirmed: no blanket retry-until-pass step exists in this suite's pipeline

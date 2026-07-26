@@ -24,7 +24,7 @@ query re-resolves on every check.
 | **caniuse (Fyrd/caniuse)** | "Can I use this feature, in which browser versions" | **CC-BY-4.0** | Yes — *"mention somewhere that the source is caniuse.com."* Attribution obligation travels transitively through `caniuse-lite`/browserslist consumers. |
 | **MDN Browser Compat Data (mdn/browser-compat-data)** | Per-feature `version_added`, `partial_implementation`, notes | **CC0-1.0** | No — strictly more permissive than caniuse, no attribution required |
 | **browserslist** | Resolves a *query* (`defaults`, `> 0.5%`, `not dead`, custom stats, `baseline widely available`, `maintained node versions`) against caniuse-lite data | MIT (tool licence; data licence is caniuse's, see above) | Attribute the underlying caniuse data if you cite specific numbers |
-| **Baseline (web-platform-dx)** | `limited` / `newly available` / `widely available` status per feature, computed against *today's* date | See project repo | Baseline is a rolling definition — a feature's status changes over time without the feature changing; date every reference to it |
+| **Baseline (web-platform-dx)** | `limited` / `newly available` / `widely available` status per feature, computed against *today's* date | **Apache-2.0** (`web-platform-dx/web-features` v3.34.2, verified 2026-07-26) | Baseline is a rolling definition — a feature's status changes over time without the feature changing; date every reference to it |
 
 **Never confuse caniuse's `statuses` (spec maturity: WD/CR/REC/etc.) with its per-browser support
 data — they answer different questions.**

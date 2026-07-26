@@ -6,10 +6,9 @@ description: >-
   conformance, performance and load, security and privacy, compatibility matrices, AI behaviour
   verification, suite and signal health, defect triage, and the release gate with its evidence
   dossier. Use to plan verification, audit a build, judge whether a test suite can be believed, or
-  issue a go/no-go. Not for writing unit, component, service, pipeline or eval tests
-  (→ frontend, backend, data, ai), TDD or diff review (→ the building skill), NFR budgets or threat
-  models (→ architecture), CI/CD, deploy, monitoring, SLOs or incidents (→ operate), acceptance
-  criteria (→ product), or experiment design (→ growth).
+  issue a go/no-go. Not for writing tests (→ frontend, backend, data, ai), TDD or diff review
+  (→ the building skill), NFR budgets or threat models (→ architecture), CI/CD, deploy or incidents
+  (→ operate), acceptance criteria (→ product), or experiment design (→ growth).
 ---
 
 # Quality Engineering
@@ -87,32 +86,36 @@ Emitting for downstream work → [handoff](references/handoff.md).
 
 ## Universal invariants
 
-- **Name the oracle.** Every verdict rests on one. If you cannot name it, you are guessing.
-- **A passing check certifies only the propositions someone encoded.** Never report "all checks
+References cite these by number. The numbering is canonical here.
+
+- **I1 — Name the oracle.** Every verdict rests on one. If you cannot name it, you are guessing.
+- **I2 — A passing check certifies only the propositions someone encoded.** Never report "all checks
   passed" as "the software is fine."
-- **State the evidence class** — `observed` / `inferred` / `not_tested` / `blocked` — and never
+- **I3 — State the evidence class** — `observed` / `inferred` / `not_tested` / `blocked` — and never
   report a weaker class in the vocabulary of a stronger one.
-- **Evidence may not be extended past the conditions it covers.** A component pass is not a
+- **I4 — Evidence may not be extended past the conditions it covers.** A component pass is not a
   product-workflow pass; never infer an untested surface from a tested one.
-- **Omission is permitted; silent omission is not.** A stated, justified gap conforms. Silence does
-  not.
-- **Whatever is unrefuted is residual risk** — surfaced to the decision-maker with an owner and an
-  expiry.
-- **Decide release and claim independently.** A product may ship with a recorded exception without
-  earning an unqualified conformance claim.
-- **Verification is refutation.** Attempt to show harm is possible; grade the refutation method,
-  because method strength *is* assurance level.
-- **No test counts as evidence until it has been observed failing**, and **the verifier must not
-  share a source of truth with the thing it verifies**. Audit the verifier for shortcuts — a
-  verification layer that *can* pass without exercising the real path eventually will.
-- **Runner output is untrusted and not commensurable across tools.** Take verdicts from typed
+- **I5 — Omission is permitted; silent omission is not.** A stated, justified gap conforms. Silence
+  does not.
+- **I6 — Whatever is unrefuted is residual risk** — surfaced to the decision-maker with an owner and
+  an expiry.
+- **I7 — Decide release and claim independently.** A product may ship with a recorded exception
+  without earning an unqualified conformance claim.
+- **I8 — Verification is refutation.** Attempt to show harm is possible; grade the refutation
+  method, because method strength *is* assurance level.
+- **I9 — Runner output is untrusted and not commensurable across tools.** Take verdicts from typed
   channels — exit codes, JUnit XML, JSON reporters — never scraped prose. Strip ANSI before parsing
   or logging.
-- **Coverage finds untested code; it does not measure test quality**, and no metric detects a fault
-  of omission.
-- **A flaky suite is an evidence-validity problem, not hygiene.** Never retry-to-green; never delete
-  a flake without triage.
-- **Subtract the folk number.** Cite provenance or do not cite.
+- **I10 — Coverage finds untested code; it does not measure test quality**, and no metric detects a
+  fault of omission.
+- **I11 — A flaky suite is an evidence-validity problem, not hygiene.** Never retry-to-green; never
+  delete a flake without triage.
+- **I12 — Subtract the folk number.** Cite provenance or do not cite.
+- **I13 — No test counts as evidence until it has been observed failing**, and **the verifier must
+  not share a source of truth with the thing it verifies**. Audit the verifier for shortcuts — a
+  verification layer that *can* pass without exercising the real path eventually will.
+- **I14 — Allocate the verification budget by ranked risk**, and record which rank each effort
+  served. Say which stopping heuristic you stopped on.
 
 ## Core workflow
 

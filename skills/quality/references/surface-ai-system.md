@@ -75,8 +75,9 @@ An LLM-as-judge is itself an oracle that can be wrong, and using one to grade an
 does not escape the oracle problem — it relocates it. Before trusting a judge's verdict, establish the
 judge's own correlation with human judgment on a held-out sample, and treat an unvalidated judge's
 output as `inferred` at best, never `observed`. A judge trained or prompted on the same assumptions as
-the system it grades can share its blind spot, the same compositional-fallacy risk named elsewhere in
-this skill. Full technique in `ai-behavior-verification.md`.
+the system it grades can share its blind spot — this is the **shared-source-of-truth failure**
+(`oracles-and-evidence.md` §5: *an author's verification shares the author's blind spot*), which is a
+different failure from the compositional fallacy. Full technique in `ai-behavior-verification.md`.
 
 ## Red-teaming
 

@@ -17,7 +17,7 @@ adversarial read, residual risks with owners and expiries, and the recorded stop
 - You need to name an oracle or state an evidence class for one check → `oracles-and-evidence.md`
   (this file consumes that vocabulary; it does not define it).
 - You need to rank risk or allocate verification budget before the gate is reached →
-  `verification-strategy-and-risk.md` (this file also owns the full eleven stopping heuristics;
+  `verification-strategy-and-risk.md` (that file also owns the full eleven stopping heuristics;
   restated here only as a gate-record requirement).
 - You need coverage, mutation, or flake findings themselves → `suite-and-signal-health.md`; this file
   consumes their output as dossier evidence, it does not re-derive them.
@@ -102,12 +102,6 @@ dissolves the exact binary that makes gates get overridden in practice: a review
 ship/claim decision, under deadline pressure, will round an exception up to "fine" because the
 alternative reads as "don't ship." Splitting the decision removes that pressure — **shipping with a
 recorded exception is always available and never requires pretending the exception doesn't exist.**
-
-The best one-line model of what a release claim *is*, from UK Defence Standard 00-56 (via ISO/IEC
-15026-2's own lineage) — note both qualifiers: a structured argument, supported by evidence, that a
-system is **"acceptably safe for a specific application in a specific operating environment."** Not
-"safe." Not "safe everywhere." Every claim this file ships should read the same way: bounded by
-application and by environment, never unconditional.
 
 ## Residual risk: owner and expiry
 
@@ -207,29 +201,12 @@ as a pair or do not ship either.
 
 ## Gate the change; ship the gate warn-first
 
-Two independent decisions about *how a gate behaves*, each backed by a real convergence across vendors
-with no shared lineage (facts below are tool-version-dependent; re-verify against current docs — as of
-2026-07-26):
-
-**Gate the diff, not the whole codebase.** SonarQube's Clean-as-You-Code model puts all four default
-gate conditions on *new* code only (`new_violations > 0` fails, `new_coverage < 80` fails,
-`new_duplicated_lines_density > 3` fails, `new_security_hotspots_reviewed < 100` fails —
-`SonarWayQualityGate.java`, release 26.7.0.124771). Codecov independently arrived at the same
-principle: a `patch` coverage threshold of 0% held to a stricter practical bar than the `project`
-threshold of 5%. **Two vendors, different products, no shared lineage, same principle** — it is
-actionable by the person who can act on it, it does not punish a change for sins it did not commit, and
-it is the *only* gating model that reaches full compliance on a legacy codebase without a multi-quarter
-remediation project first. Prefer diff-scoped gates over whole-codebase targets for exactly that
-reason — most real products are legacy the day the gate is introduced.
-
-**Ship the gate's default as off, not on.** Stryker mutation testing ships `break: null` — mutation
-score never fails a build unless a team explicitly turns it on. PIT ships `mutationThreshold = 0` and
-`coverageThreshold = 0` (source-verified, `PitMojo.java`) — both gates off by default. The
-regenerability check above ships the identical posture, stated as intent: *"warn-by-default so adoption
-never breaks pipelines."* **Three independently-authored tools converge on the same adoption strategy:
-a gate that breaks the pipeline on day one gets deleted on day two.** Recommend the same posture for
-any new gate this skill's user introduces — warn first, prove the signal is trustworthy against real
-history, then flip to blocking once it has earned that trust.
+Two principles, converged on independently by vendors with no shared lineage: **gate the change, not
+the whole codebase** — actionable by the person who can act on it, and the only model reaching full
+compliance on a legacy codebase without a remediation project first (SonarQube and Codecov both
+arrived here separately); and **ship the gate's default as warn, not block** — mutation-testing tools
+ship new gates off so adoption never breaks a pipeline, flipping to blocking once trust is earned. See
+`suite-and-signal-health.md` for the specifics.
 
 ## Say which stopping heuristic you stopped on
 

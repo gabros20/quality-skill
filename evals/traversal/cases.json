@@ -49,7 +49,10 @@
     "id": "mobile-release-reaches-surface-mobile-and-gate",
     "prompt": "We're about to submit the iOS app update to the App Store — is it verified enough to ship?",
     "expected_references": ["references/surface-mobile.md", "references/release-gate-and-claims.md"],
-    "forbidden_references": []
+    "forbidden_references": [],
+    "must_include": [
+      "Treats App Store review as a second, external 'may we ship' decision distinct from the internal release gate, recorded as its own entry rather than folded into the internal gate's verdict"
+    ]
   },
   {
     "id": "clean-pentest-reaches-security-verification",
@@ -82,6 +85,33 @@
     "id": "prompt-version-regression-reaches-ai-behavior-verification",
     "prompt": "We shipped a new prompt version for the support bot — how do we know it didn't regress before we enable it for everyone?",
     "expected_references": ["references/ai-behavior-verification.md", "references/surface-ai-system.md"],
-    "forbidden_references": []
+    "forbidden_references": [],
+    "must_include": [
+      "States that a single passing eval run does not establish the new prompt version is reliable across repeated executions, and names an epoch count and reducer (e.g. pass_at_k vs mean) before trusting a stated pass rate"
+    ]
+  },
+  {
+    "id": "launch-deadline-scoping-reaches-verification-strategy",
+    "prompt": "We have two weeks before launch. What do we test, and what do we skip?",
+    "expected_references": ["references/verification-strategy-and-risk.md"],
+    "forbidden_references": [],
+    "must_include": [
+      "Produces an explicit 'deliberately not verified' list as a required output alongside the ranked test plan, not a test plan alone",
+      "Names which stopping heuristic applies to a fixed two-week deadline (e.g. Time's Up!) and distinguishes it from a rank-exhaustion heuristic like No More Interesting Questions"
+    ]
+  },
+  {
+    "id": "contract-pass-not-sufficient-reaches-service-api-and-functional",
+    "prompt": "Our OpenAPI contract tests are green for the payments API, and we have a dozen live consumer versions in production. Is it safe to ship?",
+    "expected_references": [
+      "references/surface-service-api.md",
+      "references/functional-verification.md",
+      "references/compatibility-and-support-matrix.md"
+    ],
+    "forbidden_references": [],
+    "must_include": [
+      "Names at least one specific thing the passing contract test does not establish (e.g. semantic correctness of the response body, authorization enforcement per role/resource, behavior under real concurrent load, or backward compatibility across every live consumer version)",
+      "Distinguishes 'the boundary is compatible' from 'the system works for every live consumer' rather than treating the green contract test alone as sufficient evidence to ship"
+    ]
   }
 ]

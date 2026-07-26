@@ -100,9 +100,10 @@ is a sample of the terms, not the whole of them.
 ## Independence-of-verifier requirements
 
 The person or team that built the feature being claimed conformant should not be the sole verifier
-signing that claim — regulated conformance work generally expects an independent check, mirroring the
-same reasoning behind the compositional-fallacy and shared-blind-spot warnings elsewhere in this skill:
-an author's verification shares the author's assumptions. Where a fully independent external audit is
+signing that claim — regulated conformance work generally expects an independent check. This is the
+**shared-source-of-truth failure**, owned by `oracles-and-evidence.md` §5: *an author's verification
+shares the author's blind spot.* (Distinct from the compositional fallacy, which is about scope
+rather than independence.) Where a fully independent external audit is
 not in scope, at minimum route sign-off through someone who did not implement the feature, and record
 who verified each row of the traceability matrix — an ACR with no recorded verifier identity is not
 independently checkable later.

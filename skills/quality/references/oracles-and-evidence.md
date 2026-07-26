@@ -12,8 +12,9 @@ Read when:
 Skip when:
 - Allocating verification effort by risk, defining entry/exit criteria, or naming a stopping
   heuristic — → `verification-strategy-and-risk.md`.
-- The check is domain-specific and its evidence boundary is already worked out: `accessibility-
-  conformance.md`, `performance-and-load-verification.md`, `security-and-privacy-verification.md`,
+- The check is domain-specific and its evidence boundary is already worked out:
+  `accessibility-conformance.md`, `performance-and-load-verification.md`,
+  `security-and-privacy-verification.md`,
   `ai-behavior-verification.md`, `suite-and-signal-health.md` — each applies this file's method.
 - Assembling the dossier, running its adversarial read, or deciding release/claim — →
   `release-gate-and-claims.md`, which owns that pairing and must not be separated from it.
@@ -157,7 +158,9 @@ question than the one asked, and its green result revealed nothing.
 
 **The clearest instance is dated and first-hand.** Robert C. Martin set a QA agent to verify
 features, but it tested through APIs, so "QA never proved that features got fully connected to the
-UI" — mouse and keyboard events were never exercised (@unclebobmartin, 254k verified, 2026-07-10).
+UI" — mouse and keyboard events were never exercised (@unclebobmartin, 2026-07-10). *Cited by handle
+and date deliberately: a platform "verified" badge is a purchased subscription, not an identity
+check, and this file does not treat one as a credibility signal.*
 His fix was not a better verifier but **a checker that audits the verifier**: "wrote a checker that
 inspected the QA script for API calls. This prevented the QA from cheating."
 
@@ -169,6 +172,14 @@ Three questions to ask about the check itself, before its result is trusted:
    produced both the implementation and its check, they cannot check each other. Keep one
    independent oracle: a pre-existing spec, real recorded traffic, a different model, or a
    human-reviewed acceptance criterion.
+
+   > **Canonical statement — the shared-source-of-truth failure:** *an author's verification shares
+   > the author's blind spot.* This file owns that rule; other references point here rather than
+   > restate it. **It is a different failure from the compositional fallacy** (§3 rule 3, where a
+   > component pass is wrongly extended to a composition). Compositional fallacy is about *scope*;
+   > this is about *independence*. A judge sharing the graded system's assumptions, an in-pipeline
+   > check encoding the pipeline's own misunderstanding, and an author signing off their own
+   > conformance claim are all instances of this rule, not of that one.
 3. **Can this verification layer pass without exercising the real path?** If it can, it eventually
    will. Audit the verifier itself, the way Martin's checker audits the QA script, rather than
    trusting its verdict.

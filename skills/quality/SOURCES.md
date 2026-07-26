@@ -41,8 +41,10 @@ And Semgrep's rule registry was relicensed 2024-12-13: the engine remains LGPL-2
   claim"*). Repository authorship is `[UNVERIFIED]`; the mechanisms stand on their own merits.
 - **`proffesor-for-testing/agentic-qe`** (MIT) — https://github.com/proffesor-for-testing/agentic-qe.
   **Ideas adapted, machinery not used** (it requires its own CLI and agent fleet): the adversarial
-  review court with **blind charging** and **asymmetric overturn**, and the **regenerability /
-  Deletion Test** gate with warn-by-default adoption.
+  review court with **blind charging** and **asymmetric overturn**; the **regenerability /
+  Deletion Test** gate with warn-by-default adoption; the **risk-score → verification-effort
+  allocation bands**; and the **suite-health trending metric set** (pass rate, flakiness, MTTR on a
+  flaky fix, coverage delta).
 
 ## Ideas used, text re-expressed
 
@@ -90,7 +92,8 @@ And Semgrep's rule registry was relicensed 2024-12-13: the engine remains LGPL-2
 ## Literature
 
 - **Cem Kaner** — the test oracle (*"helps you decide"*, not *"tells you"*) — https://kaner.com/?p=190
-- **James Bach & Michael Bolton** — testing vs checking (2013, refined 2025); Rapid Software Testing;
+- **James Bach & Michael Bolton** — testing vs checking (2013; the page's 2024-08-10 timestamp is a
+  re-save, not a revision); Rapid Software Testing;
   HTSM v6.0 (2024); **Bolton's stopping heuristics**; Bach's *Good Enough Software* (IEEE Computer,
   Aug 1997) — https://www.satisfice.com/ · https://www.developsense.com/
   **Caution: a 2023-04-01 post announcing RST's retirement "because of AI" is an April Fools joke.**
@@ -118,14 +121,16 @@ And Semgrep's rule registry was relicensed 2024-12-13: the engine remains LGPL-2
   accretions; the one institution publishing numbers contradicts itself (80/15/5 in
   *SWE at Google* vs Bland's 70/20/10, self-disclaimed as arbitrary).
 - **Automated accessibility detection is a contested range, split by source type:** vendor
-  self-report **57%** (Deque 2021 — the figure whose methodology was captured and verified) vs
-  independent measurement clustering **~20–33%** (WebAIM ~30%, W3C/WAI ~20–30% of Success Criteria
-  fully automatable, GSA "1 in 3", Accessible.org 13% fully / 45% partial / 42% not at all).
+  self-report **57%** (Deque 2021 study — 2,000+ audits, 13,000+ pages, ~300,000 issues; the figure
+  whose methodology was captured and verified) vs independent measurement clustering **~20–33%**
+  (WebAIM ~30%, W3C/WAI ~20–30% of Success Criteria fully automatable, GSA "1 in 3",
+  Accessible.org 13% fully / 45% partial / 42% not at all).
   **Never ship a single number; cite the range with the vendor/independent split on its face.**
-  Two newer Deque claims — **57.38%** automated and **80.39%** combined, from a 300,000-issue sample
-  — are **`[UNVERIFIED]`**: the underlying methodology was not retrievable, and 57% and ~20–30% are
-  not measuring the same quantity in the first place. **Cite 57% (2021); do not ship 57.38% or
-  80.39% without fresh verification.**
+  Two newer Deque claims — **57.38%** automated and **80.39%** combined — are **`[UNVERIFIED]`**:
+  the underlying methodology was not retrievable, and one corpus channel places the 300,000-issue
+  sample with these newer figures rather than the 2021 study, a conflict this skill does not
+  resolve. Note also that 57% and ~20–30% are not measuring the same quantity in the first place.
+  **Cite 57% (2021); do not ship 57.38% or 80.39% without fresh verification.**
 - **"LLM-written tests assert existing bugs" is reasoning, not measurement.** No quantified study was
   found. The mechanism ships; no number does.
 

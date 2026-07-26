@@ -194,8 +194,9 @@ implies (runner stdout is untrusted; take verdicts from exit codes, JUnit XML, o
 
 Track suite health as trending metrics, not a one-time check: pass rate (target >95%, alert <90%),
 flakiness (<5%, alert >10%), MTTR on a flaky fix (<4h, alert >24h), and coverage delta run-to-run
-(alert on a drop >2%) are a defensible starting set (`petrkindlmann/qa-skills`, MIT) — with the same
-caveat as any threshold in this file: state it as adopted convention, not derived fact.
+(alert on a drop >2%) are a defensible starting set (adapted from
+`proffesor-for-testing/agentic-qe`, MIT) — with the same caveat as any threshold in this file: state
+it as adopted convention, not derived fact.
 
 ## The compounding math
 
@@ -208,11 +209,17 @@ A per-test flake rate that sounds negligible compounds across a suite. Documente
 > useless."
 
 **0.5% per test → 40% suite-level failure rate with no bug present.** Report flake at the suite level,
-never only per-test — a "0.5%, basically nothing" framing is the exact place this metric hides. Google
-reports its own steady-state test-run flake rate around 1.5% (2016, read via mirror — treat as
-directional, nine-plus years old) with roughly 16% of tests showing *some* flakiness, and states
-separately (*Software Engineering at Google*, ch. 11) that *"as you approach 1% flakiness, the tests
-begin to lose value"* — consistent with the compounding math above, not a coincidence.
+never only per-test — a "0.5%, basically nothing" framing is the exact place this metric hides.
+
+The verified anchor is Google's own: a steady-state flake rate of **0.15%** of test runs, with the
+statement that *"as you approach 1% flakiness, the tests begin to lose value"* (*Software Engineering
+at Google*, ch. 11 — verified verbatim). That pairs exactly with the compounding math above: 1% is
+not a tolerance, it is the point at which the suite stops being evidence.
+
+Two widely repeated figures are **not** usable. A 1.5% flake rate `[UNVERIFIED]` — the 2016 source
+body text was not retrievable and it may measure a different quantity than the 0.15% above; and
+"~16% of tests are flaky", which traces only to a comment on a blog post and **must not be presented
+as a Google figure**. Cite 0.15%; treat the others as folklore (I12).
 
 ## Suite runtime as a first-class budget
 

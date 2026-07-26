@@ -137,40 +137,18 @@ them as the tool's defaults, never as a validated pass bar for your system.
 Red-teaming is I8 in its purest AI-domain form: attempt to make the system fail, and grade the
 strength of the attempt. Two things worth naming precisely.
 
-**A working quantitative risk-scoring method, verbatim.** garak converts raw probe pass rates into a
-graded assessment on **both an absolute bar and a peer-relative (z-score) bar**, via
-`score_to_defcon()` (`garak/analyze/__init__.py`, Apache-2.0):
+garak's `score_to_defcon()` (Apache-2.0) is a published quantitative method converting probe results
+into a graded risk verdict, not a single pass/fail label. **Adapt the pattern — grade the refutation,
+not just pass/fail — never garak's specific cutoffs,** which this file already warns against reusing.
 
-```python
-class ABSOLUTE_DEFCON_BOUNDS(float, Enum):   # 0..1
-    TERRIBLE = 0.05;  BELOW_AVG = 0.4;  ABOVE_AVG = 0.8;  EXCELLENT = 0.99
-class RELATIVE_DEFCON_BOUNDS(float, Enum):   # Z-scores
-    TERRIBLE = -1.0;  BELOW_AVG = -0.125;  ABOVE_AVG = 0.125;  EXCELLENT = 1.0
-```
-
-Each probe:detector pair earns a defcon class 1–5 (1 = worst) from both bars, then rolls up into a
-tiered action list — not just a label, an escalation:
-
-> "Tier 1: Of concern — 1. Examine probe results; 2. Flag to security/alignment team; 3. consider
-> adding to model card. Tier 2: Compete with state of the art... Tier 9: Unlisted — Duplicated,
-> deprecated, fluctuating, or non-adversarial probe. OK to ignore for now."
-
-The source comments document their own statistical reasoning in prose, a rarity worth reading before
-adapting this pattern: *"stddev close to 0 gives unusable z-scores; bring in MINIMUM_STD_DEV as
-laplacian smoothing... 3.33% seems alright; we can tolerate 1 failure in probes doing 30+ attempts."*
-**Adapt this shape** — an absolute bar plus a peer-relative bar, rolling into a tiered action rather
-than a single pass/fail — as the reference pattern for converting probe results into a residual-risk
-grade; do not copy garak's specific numeric bounds onto an unrelated system without re-deriving them.
-
-**Probe/scorer coverage as abuse-case raw material**: PyRIT ships 115 converter files and scorers
-split into `true_false/` vs `float_scale/`, with output-side scorer filenames that double as an
-abuse-category checklist (`sql_injection_output_scorer`, `ssrf_`, `xss_`, `path_traversal_`, `ssti_`,
-`credential_leak_`, `static_prompt_injection_`); garak ships 42 probe families and 31 detector
-families; promptfoo's red-team module runs **"157 plugins across 6 categories: brand, compliance and
-legal, dataset, security and access control, trust and safety, and custom."** Note promptfoo's
-`dataset` category (`aegis`, `beavertails`, `cyberseceval`, `harmbench`) makes it partly a
-distribution mechanism for external academic safety benchmarks, which carry their own licenses —
-check before redistributing results derived from them. Use the **OWASP Top 10 for LLM Applications
+**Scorer filenames as abuse-case raw material**: PyRIT's scorers, split into `true_false/` vs
+`float_scale/`, include output-side scorer filenames that double as an abuse-category checklist
+(`sql_injection_output_scorer`, `ssrf_`, `xss_`, `path_traversal_`, `ssti_`, `credential_leak_`,
+`static_prompt_injection_`); promptfoo's red-team module organizes plugins across categories
+including brand, compliance and legal, dataset, security and access control, trust and safety, and
+custom. Note promptfoo's `dataset` category (`aegis`, `beavertails`, `cyberseceval`, `harmbench`)
+makes it partly a distribution mechanism for external academic safety benchmarks, which carry their
+own licenses — check before redistributing results derived from them. Use the **OWASP Top 10 for LLM Applications
 2025** (LLM01 Prompt Injection … LLM10 Unbounded Consumption) to scope which of these categories are
 in play for a given system; it is a scoping list, not a pass/fail checklist (see
 `security-and-privacy-verification.md`).
@@ -197,17 +175,10 @@ implementation layer to the intent layer** — he does not review whether the co
 reviews whether the acceptance criteria and QA procedure match what was actually wanted. That is a
 coherent, citable posture on agent-built work: neither "review everything" nor "review nothing."
 
-**Three invariants for this specific case**, applied rather than re-taught (the general forms live in
-`oracles-and-evidence.md` and `verification-strategy-and-risk.md`):
-
-- **No test counts as evidence until it has been observed failing.** An AI-generated test that has
-  never been run against a deliberately broken version of the code under test has not demonstrated it
-  tests anything.
-- **The verifier must not share a source of truth with the thing it verifies.** A test generated from
-  the same prompt/context as the code it tests cannot independently check that code — there is only
-  one belief in the loop, asserted twice.
-- **Audit the verifier for shortcuts.** A verification layer that can pass without exercising the real
-  path will eventually do exactly that, per Martin's anchor case above.
+**The three verifier invariants apply unchanged** — see `oracles-and-evidence.md` §5. AI-specific
+bite: a test sharing its source prompt/context with the code it tests asserts one belief twice, and an
+AI-generated test never run against a deliberately broken version has not been shown to test
+anything — audit for the cheap-path shortcut per Martin's checker pattern above.
 
 **The circularity argument is independently converged from practice, and it is reasoning, not
 measurement.** Two practitioners reaching the same conclusion by different routes: Mark Seemann —
@@ -222,13 +193,18 @@ and no quantified study behind it. Ship the reasoning. Never present it as a num
 measuring the rate at which this happens exists as of this writing.
 
 **The one hard datum available, and what changed because of it.** Daniel Stenberg, curl maintainer,
-documented AI-generated security submissions reaching **~20% of intake, with ~5% turning out
-genuine** — each report costing 3–4 people 30 minutes to 3 hours of triage. curl **ended its public
-bug bounty program in January 2026** as a direct result, with Stenberg's stated intent being to remove
-the incentive to submit unreviewed AI output as if it were research. This is the sharpest available
-evidence that unverified AI-generated security submissions have a real, measured operating cost for at
-least one maintained project — cite it as exactly that scope, not as a general statistic about AI
-code quality.
+documented AI-generated security submissions reaching **~20% of intake**, while **~5% of *all*
+submissions in 2025 were genuine vulnerabilities** — note the denominator: 5% is of total intake,
+not of the AI-generated share. Each report cost 3–4 people 30 minutes to 3 hours of triage, and curl
+**ended its public bug bounty program in January 2026** as a direct result. Stenberg's stated
+position is against *unreviewed output*, not against AI tooling.
+
+**Carry the counterweight or this is one-sided.** AI security tooling has also found real bugs no
+human process caught: AISLE identified all 12 CVEs in a single curl release plus 15 more accepted
+upstream. The finding is not "AI submissions are noise" — it is that **unverified** submissions
+impose a triage cost on the receiver while **verified** ones are valuable. That distinction is this
+skill's entire subject. Cite the curl numbers at exactly that scope, never as a general statistic
+about AI code quality.
 
 **The regenerability / deletion test — the check that addresses what neither coverage nor mutation
 can.** Coverage measures lines executed; mutation score measures whether the tests would notice an
