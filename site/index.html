@@ -1,5 +1,11 @@
 <!doctype html>
-<!-- skill-site scaffold: shared family chrome; identity = the accent triple PLUS sections, components, and a hero designed for THIS skill. Read site/README.md (the design brief) before editing — filling the TODOs is not a site. Keep the hero-terminal and Start-here shapes. -->
+<!-- quality skill · visual guide. Shared family chrome (tokens, type, hero-terminal, footer);
+     identity = rose accent + sections/diagrams/hero designed for THIS skill's faceted router
+     (11 jobs × 5 base surfaces + 1 additive regulated overlay + handoff = 18 references) — the
+     independent verification and release-gate layer, peer of frontend/backend/data/ai. It writes
+     no tests; it names the oracle, grades the evidence, and issues two separate decisions: may we
+     ship, and what may we claim. The regulated overlay carries a distinct violet token so it reads
+     apart from the rose spine, mirroring how data used teal and ai used teal for their overlays. -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -7,14 +13,14 @@
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f7fa">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#12151d">
 <title>quality — Independent verification — evidence, not assertion, before you ship</title>
-<meta name="description" content="TODO — one to two sentence description of the skill for search engines.">
+<meta name="description" content="A faceted agent skill that provides independent evidence a built product meets its expectations and converts it into two separate decisions: may we ship, and what may we claim. Names the oracle behind every check, grades evidence as observed / inferred / not_tested / blocked, and ships every dossier with its adversarial read — 11 jobs across 5 surfaces plus an additive regulated overlay. Writes no tests; frontend, backend, data and ai already own construction-side testing.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://quality-skill.vercel.app/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="quality — Independent verification — evidence, not assertion, before you ship">
-<meta property="og:description" content="TODO — one to two sentence description for social previews.">
+<meta property="og:description" content="Name the oracle, grade the evidence (observed / inferred / not_tested / blocked), ship the dossier with its adversarial read, decide ship and claim separately. Writes no tests — that's frontend/backend/data/ai's job.">
 <meta property="og:url" content="https://quality-skill.vercel.app/">
 <meta property="og:image" content="https://quality-skill.vercel.app/og.png">
 <meta property="og:image:width" content="1200">
@@ -23,7 +29,7 @@
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="quality — Independent verification — evidence, not assertion, before you ship">
-<meta name="twitter:description" content="TODO — one to two sentence description for social previews.">
+<meta name="twitter:description" content="Name the oracle, grade the evidence (observed / inferred / not_tested / blocked), ship the dossier with its adversarial read, decide ship and claim separately. Writes no tests.">
 <meta name="twitter:image" content="https://quality-skill.vercel.app/og.png">
 
 <script type="application/ld+json">
@@ -31,9 +37,9 @@
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "quality",
-  "applicationCategory": "DesignApplication",
+  "applicationCategory": "DeveloperApplication",
   "operatingSystem": "Claude Code / agent CLIs",
-  "description": "TODO — one to two sentence description of the skill.",
+  "description": "A faceted agent skill providing independent evidence that an assembled product meets its functional and non-functional expectations, converted into two separate decisions: may we ship, and what may we claim. Names the oracle behind every check, states the evidence class (observed/inferred/not_tested/blocked), requires a stated 'what we deliberately did not verify' section, and ships the evidence dossier together with its adversarial read. Covers verification strategy and risk, oracles and evidence, functional verification, accessibility conformance, performance and load, security and privacy, compatibility matrices, AI behaviour verification, suite and signal health, defect triage, and the release gate — across web-app, service/API, mobile, data-pipeline and AI-system surfaces plus an additive regulated overlay. Writes no tests: frontend, backend, data and ai own construction-side testing.",
   "url": "https://quality-skill.vercel.app/",
   "offers": {
     "@type": "Offer",
@@ -50,27 +56,36 @@
     --bg:#f6f7fa; --panel:#ffffff; --ink:#1c2333; --muted:#5a6478; --line:#d8dde8;
     --accent:#e11d48; --accent-ink:#ffffff; --amber:#a97a10; --amber-bg:#fdf6e3;
     --good:#1e7f4f; --bad:#b3403a; --code-bg:#eef1f7; --glyph:#8391ad;
-    --tok-strat:#e11d48; --tok-dim:#8146c9; --tok-val:#1e7f4f; --tok-file:#a97a10;
+    --tok-job:#e11d48; --tok-reg:#8146c9; --tok-val:#1e7f4f; --tok-file:#a97a10;
+    --reg-bg:rgba(129,70,201,.08);
   }
   @media (prefers-color-scheme: dark){ :root{
     --bg:#12151d; --panel:#1a1f2b; --ink:#e6eaf3; --muted:#93a0b8; --line:#2b3245;
     --accent:#fb7185; --accent-ink:#0d1220; --amber:#d9a72e; --amber-bg:#26200f;
     --good:#4cc38a; --bad:#e5726c; --code-bg:#141824; --glyph:#5d6a85;
-    --tok-strat:#fb7185; --tok-dim:#b98aef; --tok-val:#4cc38a; --tok-file:#d9a72e;
+    --tok-job:#fb7185; --tok-reg:#b98aef; --tok-val:#4cc38a; --tok-file:#d9a72e;
+    --reg-bg:rgba(185,138,239,.14);
   }}
   :root[data-theme="dark"]{
     --bg:#12151d; --panel:#1a1f2b; --ink:#e6eaf3; --muted:#93a0b8; --line:#2b3245;
     --accent:#fb7185; --accent-ink:#0d1220; --amber:#d9a72e; --amber-bg:#26200f;
     --good:#4cc38a; --bad:#e5726c; --code-bg:#141824; --glyph:#5d6a85;
-    --tok-strat:#fb7185; --tok-dim:#b98aef; --tok-val:#4cc38a; --tok-file:#d9a72e;
+    --tok-job:#fb7185; --tok-reg:#b98aef; --tok-val:#4cc38a; --tok-file:#d9a72e;
+    --reg-bg:rgba(185,138,239,.14);
   }
   :root[data-theme="light"]{
     --bg:#f6f7fa; --panel:#ffffff; --ink:#1c2333; --muted:#5a6478; --line:#d8dde8;
     --accent:#e11d48; --accent-ink:#ffffff; --amber:#a97a10; --amber-bg:#fdf6e3;
     --good:#1e7f4f; --bad:#b3403a; --code-bg:#eef1f7; --glyph:#8391ad;
-    --tok-strat:#e11d48; --tok-dim:#8146c9; --tok-val:#1e7f4f; --tok-file:#a97a10;
+    --tok-job:#e11d48; --tok-reg:#8146c9; --tok-val:#1e7f4f; --tok-file:#a97a10;
+    --reg-bg:rgba(129,70,201,.08);
   }
   *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%; text-size-adjust:100%}
+  html,body{overflow-x:hidden; max-width:100%}
+  /* grid/flex children holding white-space:pre blocks must be allowed to shrink so the block's
+     own overflow-x:auto engages instead of forcing page-level horizontal scroll */
+  .wedgegrid>*,.seam>*,.downstream>*,.seambox,.harnessblock,.artgrid>*,.bandgrid>*,.boundary>*{min-width:0}
   body{background:var(--bg); color:var(--ink); font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif; margin:0; -webkit-font-smoothing:antialiased}
   .wrap{max-width:1060px; margin:0 auto; padding:0 24px 96px}
   code,.mono{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
@@ -81,7 +96,7 @@
   h2::after{content:""; flex:1; height:1px; background:var(--line)}
   h2 .lu{color:var(--accent); width:20px; height:20px}
   section{margin-top:64px}
-  .lede{font-size:19px; color:var(--muted); max-width:60ch; margin:0}
+  .lede{font-size:19px; color:var(--muted); max-width:64ch; margin:0}
   .hosts{display:flex; flex-wrap:wrap; align-items:center; gap:7px; margin:16px 0 0}
   .hosts .hl{font-family:"Avenir Next Condensed","Arial Narrow",system-ui,sans-serif; text-transform:uppercase; letter-spacing:.14em; font-weight:600; font-size:11px; color:var(--muted); margin-right:2px}
   .hosts span:not(.hl){font-family:ui-monospace,Menlo,monospace; font-size:11.5px; color:var(--muted); background:var(--code-bg); border-radius:5px; padding:3px 8px; white-space:nowrap}
@@ -93,10 +108,13 @@
   /* lucide icons */
   .lu{width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; flex:none; vertical-align:-3px}
 
-  /* top nav */
-  nav{display:flex; flex-wrap:wrap; gap:8px; margin-top:26px}
-  nav a{font-family:ui-monospace,Menlo,monospace; font-size:12.5px; text-decoration:none; color:var(--muted); border:1px solid var(--line); border-radius:999px; padding:4px 12px; background:var(--panel)}
-  nav a:hover,nav a:focus-visible{color:var(--accent); border-color:var(--accent); outline:none}
+  /* top nav + section nav */
+  nav.toplinks{display:flex; flex-wrap:wrap; gap:8px; margin-top:26px}
+  nav.toplinks a{font-family:ui-monospace,Menlo,monospace; font-size:12.5px; text-decoration:none; color:var(--muted); border:1px solid var(--line); border-radius:999px; padding:4px 12px; background:var(--panel)}
+  nav.toplinks a:hover,nav.toplinks a:focus-visible{color:var(--accent); border-color:var(--accent); outline:none}
+  .secnav{display:flex; flex-wrap:wrap; gap:8px; margin-top:26px}
+  .secnav a{font-family:ui-monospace,Menlo,monospace; font-size:12.5px; text-decoration:none; color:var(--muted); border:1px solid var(--line); border-radius:999px; padding:4px 12px; background:var(--panel)}
+  .secnav a:hover,.secnav a:focus-visible{color:var(--accent); border-color:var(--accent); outline:none}
   .secnav a::before{content:"#"; color:var(--glyph); margin-right:5px}
   .secnav a:hover::before,.secnav a:focus-visible::before{color:var(--accent)}
 
@@ -105,80 +123,180 @@
   .term .c{color:var(--muted)}
   .term .p{color:var(--accent); font-weight:600}
 
-  /* the arc — animated explainer: a Remotion video, light/dark, swapped in
-     as progressive enhancement over the static one-line arc fallback below */
-  .vidwrap{display:none; margin-top:20px}
+  /* the hero — Remotion video (light/dark) over the static router fallback */
+  .vidwrap{display:none; margin-top:22px}
   .vidwrap video{display:block; width:100%; aspect-ratio:16/9; border:1px solid var(--line); border-radius:10px; background:var(--bg); box-shadow:0 30px 70px -40px rgba(0,0,0,.45)}
   body.has-vid .vidwrap{display:block}
-  body.has-vid .poster{display:none}
-  .poster{background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:20px; margin-top:20px}
-  .arcline{font-family:ui-monospace,Menlo,monospace; font-size:14.5px; line-height:2; color:var(--muted); margin:0}
-  .arcline b{color:var(--ink); font-weight:600}
-  .arcline .ar{color:var(--glyph); margin:0 2px}
+  body.has-vid .herofallback{display:none}
+
+  /* router fallback / centerpiece — facet composition */
+  .router{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:22px 24px; margin-top:22px}
+  .gate{display:flex; align-items:center; gap:10px; font-family:ui-monospace,Menlo,monospace; font-size:12.5px; color:var(--muted); padding:0 0 16px; margin-bottom:16px; border-bottom:1px dashed var(--line)}
+  .gate .lu{width:16px; height:16px; color:var(--accent); flex:none}
+  .gate b{color:var(--ink)}
+  .rlane{display:grid; grid-template-columns:150px 1fr; gap:14px 16px; align-items:center}
+  .rlane + .rlane{margin-top:12px}
+  .rlabel{font-family:"Avenir Next Condensed","Arial Narrow",system-ui,sans-serif; text-transform:uppercase; letter-spacing:.1em; font-weight:600; font-size:12px; color:var(--muted); text-align:right; line-height:1.25}
+  .rlabel small{display:block; font-family:ui-monospace,Menlo,monospace; text-transform:none; letter-spacing:0; font-weight:400; font-size:10.5px; color:var(--glyph)}
+  .chips{display:flex; flex-wrap:wrap; gap:7px}
+  .chip{font-family:ui-monospace,Menlo,monospace; font-size:12.5px; padding:5px 11px; border-radius:8px; white-space:nowrap; color:var(--muted); background:var(--bg); border:1px solid var(--line)}
+  .chip.on{color:var(--accent-ink); background:var(--accent); border-color:var(--accent); font-weight:600}
+  .chip.star{color:var(--accent-ink); background:var(--accent); border-color:var(--accent); font-weight:600}
+  .chip.regon{color:var(--tok-reg); background:var(--reg-bg); border-color:var(--tok-reg); font-weight:600}
+  .chip .st{color:var(--amber); font-weight:700; margin-left:4px}
+  .rdown{display:flex; align-items:center; gap:10px; margin:16px 0 14px; color:var(--glyph)}
+  .rdown::before,.rdown::after{content:""; flex:1; height:1px; background:var(--line)}
+  .rdown span{font-family:ui-monospace,Menlo,monospace; font-size:12px; color:var(--muted)}
+  .readset{display:flex; flex-wrap:wrap; gap:9px; align-items:center}
+  .readset code{font-family:ui-monospace,Menlo,monospace; font-size:12.5px; padding:6px 12px; border-radius:8px; color:var(--accent); background:var(--code-bg); border:1px solid var(--accent)}
+  .readset code.reg{color:var(--tok-reg); border-color:var(--tok-reg)}
+  .readset .cnt{font-family:ui-monospace,Menlo,monospace; font-size:12px; color:var(--muted); margin-left:4px}
+  .readset .cnt b{color:var(--ink)}
+  .rrule{margin:16px 0 0; font-size:13.5px; color:var(--muted); display:flex; gap:9px; line-height:1.55}
+  .rrule .lu{color:var(--accent); flex:none; margin-top:1px; width:17px; height:17px}
+  .rrule b{color:var(--ink)}
   .pcap{font-size:13.5px; color:var(--muted); margin:14px 0 0; max-width:68ch}
   .pcap b{color:var(--ink)}
+  @media (max-width:560px){ .rlane{grid-template-columns:1fr; gap:6px} .rlabel{text-align:left} }
 
-  /* numbered stage timeline */
-  .steps{margin-top:20px; counter-reset:step}
-  .steps>div{position:relative; padding:0 0 22px 46px; --sc:var(--accent)}
-  .steps>div::before{counter-increment:step; content:counter(step); position:absolute; left:0; top:-3px; width:28px; height:28px; border-radius:50%; background:var(--panel); border:2px solid var(--sc); color:var(--sc); font-family:ui-monospace,Menlo,monospace; font-size:13px; font-weight:600; display:flex; align-items:center; justify-content:center}
-  .steps>div::after{content:""; position:absolute; left:13px; top:31px; bottom:-6px; width:2px; background:var(--line)}
-  .steps>div:last-child{padding-bottom:0}
-  .steps>div:last-child::after{display:none}
-  .steps b{display:flex; align-items:center; gap:8px; font-family:ui-monospace,Menlo,monospace; font-size:14px; margin:2px 0 4px}
-  .steps b .lu{width:15px; height:15px; color:var(--sc)}
-  .steps span{font-size:13.5px; color:var(--muted); display:block; line-height:1.55; max-width:66ch}
-  .steps span b{display:inline; font-family:inherit; font-size:inherit; color:var(--ink); margin:0; font-weight:600}
-  .steps span code{font-size:12px; background:var(--code-bg); padding:1px 4px; border-radius:4px; overflow-wrap:anywhere}
-
-  /* reference cards, grouped by stage */
-  /* reference map — stage → chips definition list (voids impossible by construction; lighter
-     than the card-heavy neighbouring sections, so it varies the page rhythm) */
-  .refmap{margin-top:20px}
-  .refrow{display:grid; grid-template-columns:200px 1fr; gap:8px 18px; padding:14px 0; align-items:start}
-  .refrow + .refrow{border-top:1px solid var(--line)}
-  .refrow dt, .refrow dd{margin:0}
-  .reflabel{display:flex; align-items:center; gap:8px; font-family:ui-monospace,Menlo,monospace; font-size:14px; letter-spacing:-.01em; color:var(--ink)}
-  .reflabel .lu{color:var(--accent); width:16px; height:16px; flex:none}
-  .reflabel .ct{margin-left:auto; font-size:11px; color:var(--accent); border:1px solid var(--accent); border-radius:999px; padding:1px 8px; font-family:system-ui; flex:none}
-  .refchips{display:flex; flex-wrap:wrap; gap:7px 8px; align-items:baseline}
-  .refchips .ref{display:inline-flex; align-items:baseline; gap:6px}
-  .refchips code{background:var(--code-bg); padding:2px 8px; border-radius:5px; font-size:12px; white-space:nowrap}
-  .refchips .d{font-size:11.5px; color:var(--muted)}
-  @media (max-width:640px){
-    .refrow{grid-template-columns:1fr; gap:9px 0}
-    .reflabel .ct{margin-left:8px}
-  }
+  /* boundary — owns vs hands off */
+  .boundary{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:20px}
+  .bcol{border:1px solid var(--line); border-radius:10px; padding:16px 18px; background:var(--panel)}
+  .bcol.own{border-left:3px solid var(--accent)}
+  .bcol.off{border-left:3px solid var(--glyph)}
+  .bcol h3{font-family:ui-monospace,Menlo,monospace; font-size:13.5px; margin:0 0 4px; display:flex; align-items:center; gap:8px}
+  .bcol.own h3{color:var(--accent)} .bcol.own h3 .lu{color:var(--accent)}
+  .bcol.off h3{color:var(--muted)} .bcol.off h3 .lu{color:var(--glyph)}
+  .bcol .sub{font-size:12.5px; color:var(--muted); margin:0 0 12px}
+  .bitems{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px}
+  .bitems li{font-size:13.5px; line-height:1.4}
+  .bitems li b{font-family:ui-monospace,Menlo,monospace; font-weight:600; font-size:12.5px; color:var(--ink)}
+  .bitems.hand li b{color:var(--tok-reg)}
+  .bitems li .d{color:var(--muted)}
+  .bnote{margin-top:14px; font-size:13.5px; color:var(--muted); display:flex; gap:9px; line-height:1.55}
+  .bnote .lu{color:var(--accent); flex:none; margin-top:1px; width:17px; height:17px}
+  .bnote b{color:var(--ink)}
+  @media (max-width:640px){ .boundary{grid-template-columns:1fr} }
 
   /* tables */
   .tblwrap{overflow-x:auto; border:1px solid var(--line); border-radius:8px; margin-top:20px}
   table{border-collapse:collapse; width:100%; font-size:14px; background:var(--panel)}
   th{font-family:"Avenir Next Condensed","Arial Narrow",system-ui,sans-serif; text-transform:uppercase; letter-spacing:.08em; font-size:12.5px; font-weight:600; text-align:left; color:var(--muted); padding:10px 16px; border-bottom:1px solid var(--line)}
-  td{padding:10px 16px; border-bottom:1px solid var(--line); vertical-align:top}
+  td{padding:11px 16px; border-bottom:1px solid var(--line); vertical-align:top}
   tr:last-child td{border-bottom:none}
   td code{background:var(--code-bg); padding:1px 6px; border-radius:4px; font-size:12.5px; white-space:nowrap}
   td code a{color:inherit; text-decoration:none}
   td code a:hover{text-decoration:underline}
-  td.dim{font-weight:600; font-family:ui-monospace,Menlo,monospace; font-size:13px; color:var(--tok-dim); white-space:nowrap}
-  td .d{color:var(--muted)}
+  td.job{font-weight:600; color:var(--ink); line-height:1.4}
+  td .canon{color:var(--muted); font-size:12.5px; line-height:1.5}
+  td .canon b{color:var(--ink); font-weight:600}
+  td .prod{color:var(--muted); font-size:12.5px; line-height:1.45}
+  td.dim{font-weight:600; font-family:ui-monospace,Menlo,monospace; font-size:12.5px; color:var(--tok-reg); white-space:nowrap}
 
   .note{background:var(--amber-bg); border:1px solid var(--amber); border-radius:8px; padding:12px 16px; font-size:14px; margin-top:16px; max-width:none}
   .note b{color:var(--amber)}
 
-  /* rails — the laws */
+  /* surface overlays */
+  .overlays{display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:12px; margin-top:20px}
+  .ov{border:1px solid var(--line); border-radius:10px; padding:15px 17px; background:var(--panel)}
+  .ov.wedge{border-color:var(--tok-reg); box-shadow:0 0 0 1px var(--tok-reg) inset; background:linear-gradient(180deg,color-mix(in srgb,var(--tok-reg) 7%,var(--panel)),var(--panel))}
+  .ov h3{font-family:ui-monospace,Menlo,monospace; font-size:14px; margin:0 0 3px; display:flex; align-items:center; gap:8px; color:var(--ink)}
+  .ov h3 .lu{color:var(--accent); width:16px; height:16px}
+  .ov.wedge h3 .lu{color:var(--tok-reg)}
+  .ov .file{font-family:ui-monospace,Menlo,monospace; font-size:11px; color:var(--muted); margin-left:auto; font-weight:400}
+  .ov .reshape{font-size:13px; color:var(--muted); margin:6px 0 10px; line-height:1.5}
+  .ov .reshape b{color:var(--ink); font-weight:600}
+  .ov .lens{font-size:12px; color:var(--muted); border-top:1px solid var(--line); padding-top:9px; display:flex; gap:7px}
+  .ov .lens .k{font-family:"Avenir Next Condensed","Arial Narrow",system-ui,sans-serif; text-transform:uppercase; letter-spacing:.08em; font-weight:600; color:var(--accent); flex:none}
+  .ov.wedge .lens .k{color:var(--tok-reg)}
+  .ov .badge{display:inline-block; font-family:"Avenir Next Condensed","Arial Narrow",system-ui,sans-serif; text-transform:uppercase; letter-spacing:.08em; font-weight:600; font-size:10.5px; color:var(--accent-ink); background:var(--tok-reg); border-radius:999px; padding:1px 9px; margin-left:auto}
+
+  /* flagship deep block (oracles & evidence) */
+  .wedgehead{background:var(--accent); color:var(--accent-ink); border-radius:10px 10px 0 0; padding:14px 20px; font-family:ui-monospace,Menlo,monospace; font-size:15px; font-weight:600; display:flex; align-items:center; gap:10px; margin-top:20px}
+  .wedgehead .lu{width:19px; height:19px}
+  .wedgebody{border:1px solid var(--accent); border-top:none; border-radius:0 0 10px 10px; padding:20px; background:var(--panel)}
+  .wedgegrid{display:grid; grid-template-columns:1.05fr 1fr; gap:18px}
+  @media (max-width:720px){ .wedgegrid{grid-template-columns:1fr} }
+  .harnessblock{background:var(--code-bg); border:1px solid var(--line); border-radius:8px; padding:14px 16px; font-family:ui-monospace,Menlo,monospace; font-size:12.5px; line-height:1.75; overflow-x:auto; white-space:pre; margin:0; min-width:0; max-width:100%}
+  .harnessblock .k{color:var(--accent)}
+  .harnessblock .s{color:var(--ink)}
+  .harnessblock .c{color:var(--muted)}
+  .wcol h3{font-family:ui-monospace,Menlo,monospace; font-size:13px; margin:0 0 8px; color:var(--ink)}
+  .ladder{list-style:none; padding:0; margin:0 0 16px; display:flex; flex-direction:column; gap:6px}
+  .ladder li{font-size:12.5px; line-height:1.4; display:flex; gap:9px; align-items:baseline}
+  .ladder li .t{font-family:ui-monospace,Menlo,monospace; font-weight:600; font-size:12px; flex:none; width:96px; color:var(--ink)}
+  .ladder li .d{color:var(--muted)}
+  .ladder li.good .t{color:var(--good)} .ladder li.warn .t{color:var(--amber)} .ladder li.bad .t{color:var(--bad)}
+  .sharprule{margin-top:18px; background:var(--amber-bg); border:1px solid var(--amber); border-radius:8px; padding:13px 16px; font-size:13.5px; line-height:1.5}
+  .sharprule b{color:var(--amber)}
+  .sharprule .cc{display:flex; flex-wrap:wrap; gap:6px; margin-top:9px}
+  .sharprule .cc span{font-family:ui-monospace,Menlo,monospace; font-size:11.5px; color:var(--muted); background:var(--panel); border:1px solid var(--line); border-radius:5px; padding:2px 8px}
+
+  /* distinctives band — subtract-the-folk-number + abuse-cases/volatile-fact discipline */
+  .bandgrid{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:20px}
+  @media (max-width:720px){ .bandgrid{grid-template-columns:1fr} }
+  .band{border:1px solid var(--line); border-radius:10px; padding:17px 19px; background:var(--panel)}
+  .band.sub{border-top:3px solid var(--accent)}
+  .band.stale{border-top:3px solid var(--amber)}
+  .band h3{font-family:ui-monospace,Menlo,monospace; font-size:14px; margin:0 0 4px; display:flex; align-items:center; gap:9px; color:var(--ink)}
+  .band.sub h3 .lu{color:var(--accent)} .band.stale h3 .lu{color:var(--amber)}
+  .band .sub2{font-size:12.5px; color:var(--muted); margin:0 0 12px; line-height:1.5}
+  .band .sub2 b{color:var(--ink)}
+  .subrules{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:9px}
+  .subrules li{font-size:13px; line-height:1.45; display:flex; gap:9px}
+  .subrules li .lu{flex:none; margin-top:1px; width:15px; height:15px}
+  .band.sub .subrules li .lu{color:var(--accent)} .band.stale .subrules li .lu{color:var(--amber)}
+  .subrules li b{color:var(--ink); font-family:ui-monospace,Menlo,monospace; font-size:12px; font-weight:600}
+  .subrules li .d{color:var(--muted)}
+
+  /* invariants — the spine */
   .rules{list-style:none; padding:0; margin:20px 0 0; display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:12px}
-  .rules li{background:var(--panel); border:1px solid var(--line); border-left:3px solid var(--amber); border-radius:6px; padding:12px 16px; font-size:14px; line-height:1.5}
-  .rules li b{display:flex; align-items:center; gap:7px; font-family:ui-monospace,Menlo,monospace; font-size:13px; margin-bottom:3px}
+  .rules li{background:var(--panel); border:1px solid var(--line); border-left:3px solid var(--amber); border-radius:6px; padding:12px 16px; font-size:13.5px; line-height:1.5}
+  .rules li b{display:flex; align-items:center; gap:7px; font-family:ui-monospace,Menlo,monospace; font-size:13px; margin-bottom:3px; color:var(--ink)}
   .rules li b .lu{width:15px; height:15px; color:var(--amber)}
-  /* if the laws list ends on an orphan cell, make the last item a full-width capstone
-     (title | text) so the wide card reads as a deliberate closing emphasis, not a gap */
   .rules li:last-child{grid-column:1 / -1; display:flex; align-items:baseline; gap:22px}
-  .rules li:last-child b{margin-bottom:0; flex:none; width:230px}
+  .rules li:last-child b{margin-bottom:0; flex:none; width:250px}
   @media (max-width:620px){ .rules li:last-child{flex-direction:column; gap:3px} .rules li:last-child b{width:auto} }
-  .loopback{display:flex; gap:10px; margin-top:12px; font-size:13.5px; color:var(--muted); line-height:1.55; max-width:none}
-  .loopback .ic{color:var(--accent); flex:none; margin-top:1px}
-  .loopback .ic .lu{width:17px; height:17px}
-  .loopback b{color:var(--ink)}
+
+  /* workflow loop strip */
+  .vloop{display:flex; flex-wrap:wrap; align-items:stretch; gap:0; margin-top:20px; border:1px solid var(--line); border-radius:10px; overflow:hidden; background:var(--panel)}
+  .vstep{flex:1 1 0; min-width:120px; padding:14px 16px; border-right:1px solid var(--line); display:flex; flex-direction:column; gap:5px}
+  .vstep:last-child{border-right:none}
+  .vstep .n{font-family:ui-monospace,Menlo,monospace; font-size:11px; color:var(--glyph)}
+  .vstep .t{font-family:ui-monospace,Menlo,monospace; font-size:13.5px; color:var(--ink); font-weight:600; display:flex; align-items:center; gap:6px}
+  .vstep .t .ok{color:var(--good)}
+  .vstep .d{font-size:11.5px; color:var(--muted); line-height:1.4}
+  @media (max-width:640px){ .vstep{flex-basis:45%; border-right:1px solid var(--line)} }
+
+  /* artifacts grid */
+  .artgrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:12px; margin-top:20px}
+  .art{border:1px solid var(--line); border-radius:10px; padding:15px 17px; background:var(--panel)}
+  .art h3{font-family:ui-monospace,Menlo,monospace; font-size:13.5px; margin:0 0 4px; display:flex; align-items:center; gap:8px; color:var(--ink)}
+  .art h3 .lu{color:var(--accent); width:16px; height:16px; flex:none}
+  .art .file{display:block; font-family:ui-monospace,Menlo,monospace; font-size:11px; color:var(--muted); margin:0 0 8px}
+  .art p{font-size:12.5px; color:var(--muted); margin:0; line-height:1.5; max-width:none}
+  .art p b{color:var(--ink); font-weight:600}
+
+  /* handoff seam */
+  .seam{display:grid; grid-template-columns:1fr auto 1fr; gap:0 18px; align-items:stretch; margin-top:20px}
+  .seambox{border:1px solid var(--line); border-radius:10px; padding:16px 18px; background:var(--panel)}
+  .seambox.mid{border-color:var(--accent); background:var(--code-bg)}
+  .seambox h3{font-family:ui-monospace,Menlo,monospace; font-size:13.5px; margin:0 0 8px; display:flex; align-items:center; gap:8px; color:var(--ink)}
+  .seambox h3 .lu{width:16px; height:16px; color:var(--accent)}
+  .seambox p{font-size:12.5px; color:var(--muted); margin:0; line-height:1.5; max-width:none}
+  .seamyaml{font-family:ui-monospace,Menlo,monospace; font-size:11.5px; line-height:1.7; color:var(--muted); margin:0; white-space:pre; overflow-x:auto; min-width:0; max-width:100%}
+  .seamyaml .k{color:var(--accent)} .seamyaml .v{color:var(--ink)} .seamyaml .req{color:var(--tok-val)}
+  .seamarrows{display:flex; flex-direction:column; justify-content:center; gap:16px; color:var(--accent); font-family:ui-monospace,Menlo,monospace; font-size:22px}
+  .downstream{display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px}
+  @media (max-width:900px){ .downstream{grid-template-columns:1fr} }
+  @media (max-width:760px){
+    .seam{grid-template-columns:1fr; gap:14px}
+    .seamarrows{flex-direction:row; justify-content:center; gap:40px}
+    .seamarrows span{transform:rotate(90deg)}
+  }
+  .seamnote{margin-top:14px; font-size:13.5px; color:var(--muted); display:flex; gap:9px; line-height:1.55}
+  .seamnote .lu{color:var(--accent); flex:none; margin-top:1px; width:17px; height:17px}
+  .seamnote b{color:var(--ink)}
 
   /* details / appendix */
   details.disc{background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:0; margin-top:14px}
@@ -196,150 +314,544 @@
   .files .hl{color:var(--accent); font-weight:600}
 
   footer{margin-top:72px; padding-top:20px; border-top:1px solid var(--line); font-size:13px; color:var(--muted); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px}
-  /* iOS 26 chrome tint: Safari samples fixed edge elements; theme-color alone is ignored */
   .edge{position:fixed; left:0; right:0; height:8px; background:var(--bg); z-index:0; pointer-events:none}
   .edge.top{top:0} .edge.bottom{bottom:0}
-  @media (max-width:720px){
-    .prow{flex-direction:column; align-items:flex-start}
-    .prow .arr{transform:rotate(90deg); margin-left:18px}
-  }
 </style>
 </head>
 <body>
 <div class="edge top" aria-hidden="true"></div>
 <div class="edge bottom" aria-hidden="true"></div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="lu-file-input" viewBox="0 0 24 24"><path d="M4 11V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.706.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-1"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M2 15h10"/><path d="m9 18 3-3-3-3"/></symbol>
+  <symbol id="lu-route" viewBox="0 0 24 24"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></symbol>
+  <symbol id="lu-git-fork" viewBox="0 0 24 24"><circle cx="12" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><path d="M18 9v2c0 .6-.4 1-1 1H7c-.6 0-1-.4-1-1V9"/><path d="M12 12v3"/></symbol>
+  <symbol id="lu-refresh-cw" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></symbol>
+  <symbol id="lu-shield-alert" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 8v4"/><path d="M12 16h.01"/></symbol>
   <symbol id="lu-shield-check" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
-  <symbol id="lu-scroll-text" viewBox="0 0 24 24"><path d="M15 12h-5"/><path d="M15 8h-5"/><path d="M19 17V5a2 2 0 0 0-2-2H4"/><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"/></symbol>
-  <symbol id="lu-clipboard-list" viewBox="0 0 24 24"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></symbol>
-  <symbol id="lu-clipboard-check" viewBox="0 0 24 24"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></symbol>
-  <symbol id="lu-search-check" viewBox="0 0 24 24"><path d="m8 11 2 2 4-4"/><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
-  <symbol id="lu-file-output" viewBox="0 0 24 24"><path d="M4.226 20.925A2 2 0 0 0 6 22h12a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v3.127"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="m5 11-3 3"/><path d="m5 17-3-3h10"/></symbol>
+  <symbol id="lu-lock" viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+  <symbol id="lu-bot" viewBox="0 0 24 24"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></symbol>
+  <symbol id="lu-scale" viewBox="0 0 24 24"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></symbol>
+  <symbol id="lu-scissors" viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><path d="M8.12 8.12 12 12"/><path d="M20 4 8.12 15.88"/><circle cx="6" cy="18" r="3"/><path d="M14.8 14.8 20 20"/></symbol>
+  <symbol id="lu-arrow-left-right" viewBox="0 0 24 24"><path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/></symbol>
+  <symbol id="lu-file-check" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="m9 15 2 2 4-4"/></symbol>
+  <symbol id="lu-list-checks" viewBox="0 0 24 24"><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8"/><path d="M13 12h8"/><path d="M13 18h8"/></symbol>
+  <symbol id="lu-file-input" viewBox="0 0 24 24"><path d="M4 11V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.706.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-1"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M2 15h10"/><path d="m9 18 3-3-3-3"/></symbol>
   <symbol id="lu-files" viewBox="0 0 24 24"><path d="M15 2h-4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V8"/><path d="M16.706 2.706A2.4 2.4 0 0 0 15 2v5a1 1 0 0 0 1 1h5a2.4 2.4 0 0 0-.706-1.706z"/><path d="M5 7a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h8a2 2 0 0 0 1.732-1"/></symbol>
-  <symbol id="lu-sliders-horizontal" viewBox="0 0 24 24"><path d="M10 5H3"/><path d="M12 19H3"/><path d="M14 3v4"/><path d="M16 17v4"/><path d="M21 12h-9"/><path d="M21 19h-5"/><path d="M21 5h-7"/><path d="M8 10v4"/><path d="M8 12H3"/></symbol>
-  <symbol id="lu-gauge" viewBox="0 0 24 24"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></symbol>
-  <symbol id="lu-coins" viewBox="0 0 24 24"><path d="M13.744 17.736a6 6 0 1 1-7.48-7.48"/><path d="M15 6h1v4"/><path d="m6.134 14.768.866-.5 2 3.464"/><circle cx="16" cy="8" r="6"/></symbol>
-  <symbol id="lu-split" viewBox="0 0 24 24"><path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M12 22v-8.3a4 4 0 0 0-1.172-2.872L3 3"/><path d="m15 9 6-6"/></symbol>
-  <symbol id="lu-copy-x" viewBox="0 0 24 24"><line x1="12" x2="18" y1="12" y2="18"/><line x1="12" x2="18" y1="18" y2="12"/><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></symbol>
-  <symbol id="lu-workflow" viewBox="0 0 24 24"><rect width="8" height="8" x="3" y="3" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect width="8" height="8" x="13" y="13" rx="2"/></symbol>
   <symbol id="lu-layers" viewBox="0 0 24 24"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="m6.08 9.5-3.5 1.6a1 1 0 0 0 0 1.81l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9a1 1 0 0 0 0-1.83l-3.5-1.59"/><path d="m6.08 14.5-3.5 1.6a1 1 0 0 0 0 1.81l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9a1 1 0 0 0 0-1.83l-3.5-1.59"/></symbol>
-  <symbol id="lu-eye" viewBox="0 0 24 24"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="lu-search-check" viewBox="0 0 24 24"><path d="m8 11 2 2 4-4"/><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+  <symbol id="lu-gauge" viewBox="0 0 24 24"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></symbol>
+  <symbol id="lu-git-branch" viewBox="0 0 24 24"><line x1="6" x2="6" y1="3" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></symbol>
 </svg>
 <div class="wrap">
 <header>
-  <div class="eyebrow">TODO: an agent skill · one short descriptor chip</div>
+  <div class="eyebrow">an agent skill · independent verification &amp; the release gate</div>
   <nav class="toplinks" aria-label="external links">
     <a href="https://github.com/gabros20/quality-skill" target="_blank" rel="noopener">GitHub</a>
     <a href="https://github.com/gabros20/quality-skill#install" target="_blank" rel="noopener">Install</a>
     <a href="/llms.txt">llms.txt</a>
   </nav>
   <h1><span class="sl">/</span>quality</h1>
-  <p class="lede">TODO sentence 1 — the generic, forgettable result an agent produces without this
-  skill. TODO sentence 2 — what quality replaces that with, ending on Independent verification — evidence, not assertion, before you ship.</p>
-  <div class="term" style="margin-top:22px"><span class="c"># that's the whole start</span>
-<span class="p">/quality</span> TODO — the shortest real ask that would trigger this skill</div>
+  <p class="lede">Ask an agent whether a release is ready and it says yes — a green CI run, a
+  coverage number, a scan with no findings. No named oracle, no stated evidence class, no
+  adversarial read. <b>quality</b> provides <i>independent evidence</i> that an assembled product
+  meets its functional and non-functional expectations, and converts that evidence into two
+  separate decisions: <b>may we ship, and what may we claim.</b> It writes no tests — <b>frontend</b>,
+  <b>backend</b>, <b>data</b>, and <b>ai</b> already own construction-side testing. It answers
+  <i>how do I know, and how would I know I was wrong?</i></p>
+  <div class="term" style="margin-top:22px"><span class="c"># natural language — no flags, no fixed pipeline</span>
+<span class="p">/quality</span> did the checkout release actually work, and what can we tell customers about it?</div>
   <p class="hosts"><span class="hl">runs on</span><span class="ref">Claude Code</span><span>Codex</span><span>Cursor</span><span>Antigravity</span><span>opencode</span><span>Grok Build</span><span>Hermes</span></p>
   <nav class="secnav" aria-label="page sections">
-    <a href="#arc">the arc</a><a href="#laws">the laws</a><a href="#pick">pick by job</a>
-    <a href="#refs">reference map</a><a href="#start">start here</a>
+    <a href="#mission">mission</a><a href="#router">the router</a><a href="#jobs">by job</a>
+    <a href="#surfaces">surfaces</a><a href="#oracles">oracles &amp; evidence ⭐</a><a href="#distinct">what's distinct</a>
+    <a href="#laws">invariants</a><a href="#artifacts">artifacts</a><a href="#handoff">handoff</a><a href="#start">start here</a>
   </nav>
-</header>
 
-<section id="arc">
-  <h2><svg class="lu" aria-hidden="true"><use href="#lu-workflow"/></svg>The workflow arc</h2>
-  <p>TODO: state the arc here — how many stages/strategies, and whether the agent can enter at
-  any point or must run it start to finish.</p>
   <div class="vidwrap" id="vidwrap"></div>
   <!-- render from remotion/, see remotion/README -->
-  <div class="poster" role="img" aria-label="TODO: describe the diagram this poster stands in for.">
-    <p class="arcline"><b>TODO stage 1</b> <span class="ar">→</span> <b>TODO stage 2</b> <span class="ar">→</span> <b>TODO stage 3</b></p>
+  <div class="herofallback router" role="img" aria-label="A green check does not resolve until it is graded: a claim of 'all tests passed' fractures into the four honest evidence states — observed, inferred, not_tested, blocked — the vocabulary four independent bodies of work (testing theory, W3C ACT, axe-core, ISO/IEC 15026-2) converge on. Then one primary job (oracles and evidence) composes with at most one base surface (web app and site) plus the additive regulated overlay to resolve to the smallest sufficient reference set — three files, read fully, out of eighteen.">
+    <div class="gate"><svg class="lu" aria-hidden="true"><use href="#lu-shield-alert"/></svg><span><b>A verdict cannot be binary.</b> An oracle helps you decide whether a check passed — it does not tell you the software is fine. Every result gets graded into one of four evidence states before it is trusted, let alone shipped.</span></div>
+    <div class="rlane">
+      <div class="rlabel">the four states<small>graded, never asserted</small></div>
+      <div class="chips">
+        <span class="chip" style="color:var(--good); border-color:var(--good)">observed</span>
+        <span class="chip" style="color:var(--amber); border-color:var(--amber)">inferred</span>
+        <span class="chip" style="color:var(--glyph)">not_tested</span>
+        <span class="chip" style="color:var(--bad); border-color:var(--bad)">blocked</span>
+      </div>
+    </div>
+    <div class="rlane">
+      <div class="rlabel">① primary job<small>exactly one, of 11</small></div>
+      <div class="chips">
+        <span class="chip">strategy/risk</span><span class="chip star">oracles/evidence ⭐</span><span class="chip">functional</span>
+        <span class="chip">a11y</span><span class="chip">perf/load</span><span class="chip">security/privacy</span>
+        <span class="chip">compat matrix</span><span class="chip">ai behavior</span><span class="chip">suite health</span>
+        <span class="chip">defect lifecycle</span><span class="chip">release gate</span>
+      </div>
+    </div>
+    <div class="rlane">
+      <div class="rlabel">② base surface<small>at most one, of 5</small></div>
+      <div class="chips">
+        <span class="chip on">web-app &amp; site</span><span class="chip">service/API</span>
+        <span class="chip">mobile</span><span class="chip">data pipeline</span><span class="chip">AI system</span>
+      </div>
+    </div>
+    <div class="rlane">
+      <div class="rlabel">③ regulated overlay<small>additive ⭐</small></div>
+      <div class="chips">
+        <span class="chip regon">surface-regulated</span><span class="chip" style="border-style:dashed">stacks on top — never replaces</span>
+      </div>
+    </div>
+    <div class="rdown"><span>compose →</span></div>
+    <div class="readset">
+      <code>oracles-and-evidence.md</code><code>surface-web-app-and-site.md</code><code class="reg">surface-regulated.md</code>
+      <span class="cnt"><b>3 of 18</b> loaded · read fully</span>
+    </div>
+    <p class="rrule"><svg class="lu" aria-hidden="true"><use href="#lu-route"/></svg><span><b>Route before acting.</b> Pick one job and at most one base surface, read only those references — never the whole library. When a conformance claim, audit trail, or verifier-independence requirement applies, <code>surface-regulated</code> stacks additively on top; it does not replace the base surface.</span></p>
   </div>
-  <p class="pcap">TODO: note which stages (if any) also stand alone, entered without the rest of the arc.</p>
+  <p class="pcap"><b>The router is the skill.</b> There is no fixed pipeline to run start-to-finish —
+  each job stands alone and enters where your request is. The animation traces one path; the sections
+  below map the whole surface it routes across.</p>
+</header>
 
-  <div class="steps">
-    <div><b><svg class="lu" aria-hidden="true"><use href="#lu-sliders-horizontal"/></svg>TODO stage 1</b><span>TODO one-line job for this stage. → <code>references/example.md</code></span></div>
-    <div><b><svg class="lu" aria-hidden="true"><use href="#lu-files"/></svg>TODO stage 2</b><span>TODO one-line job for this stage.</span></div>
-    <div><b><svg class="lu" aria-hidden="true"><use href="#lu-file-output"/></svg>TODO stage 3</b><span>TODO one-line job for this stage.</span></div>
+<section id="mission">
+  <h2><svg class="lu" aria-hidden="true"><use href="#lu-git-fork"/></svg>Provide evidence for what's already built — never the construction itself</h2>
+  <p>quality is the layer above the technique: deciding what verification is warranted, at what
+  altitude, and what will <i>deliberately</i> go unverified; producing evidence with its class named
+  rather than a green tick; and turning that into a release decision with the residual risk written
+  down, owned, and given an expiry. It reports; it does not remediate — findings route back to the
+  skill that owns the code, unless remediation is explicitly in scope.</p>
+  <div class="boundary">
+    <div class="bcol own">
+      <h3><svg class="lu" aria-hidden="true"><use href="#lu-shield-check"/></svg>quality owns</h3>
+      <p class="sub">the judgment layer above every technique, and the decision record behind it</p>
+      <ul class="bitems">
+        <li><b>independent verification &amp; the release gate</b> <span class="d">— evidence for what's already assembled, never the tests themselves</span></li>
+        <li><b>naming the oracle + grading evidence ⭐</b> <span class="d">— observed / inferred / not_tested / blocked, the vocabulary every job and both decisions rest on</span></li>
+        <li><b>risk-ranked verification budget</b> <span class="d">— impact×probability allocation, entry/exit criteria, the stopping heuristic named out loud</span></li>
+        <li><b>"what we deliberately did not verify"</b> <span class="d">— required output, not a courtesy; silent omission is the failure, not omission itself</span></li>
+        <li><b>defect classification &amp; routing</b> <span class="d">— ODC type/qualifier/trigger/impact, harm stated in user terms, routed to the owning skill</span></li>
+        <li><b>the evidence dossier + its adversarial read</b> <span class="d">— one feature, never shipped as two; the release/claim split with residual risk owned and expired</span></li>
+      </ul>
+    </div>
+    <div class="bcol off">
+      <h3><svg class="lu" aria-hidden="true"><use href="#lu-git-fork"/></svg>hands off to</h3>
+      <p class="sub">the "Not this skill" table — nine asks this skill declines by design</p>
+      <ul class="bitems hand">
+        <li><b>frontend · backend · data · ai</b> <span class="d">— write the unit, component, service, pipeline, or eval tests</span></li>
+        <li><b>the building skill</b> <span class="d">— TDD, red-green-refactor</span></li>
+        <li><b>the skill that owns the code</b> <span class="d">— lint, complexity, review of a diff; and fixing what verification found</span></li>
+        <li><b>architecture</b> <span class="d">— NFR budgets, threat model, system decomposition</span></li>
+        <li><b>product</b> <span class="d">— acceptance criteria, what "good" means for users</span></li>
+        <li><b>operate</b> <span class="d">— CI/CD, deploy, monitor, incidents, SLOs</span></li>
+        <li><b>growth</b> <span class="d">— design or read out an experiment</span></li>
+        <li><b>design</b> <span class="d">— design intent, usability critique against that intent</span></li>
+      </ul>
+    </div>
   </div>
-  <div class="loopback"><span class="ic"><svg class="lu" aria-hidden="true"><use href="#lu-shield-check"/></svg></span><span>TODO: state the loop-back rule, if this skill has a review/QA gate that can send work back through an earlier stage.</span></div>
+  <p class="bnote"><svg class="lu" aria-hidden="true"><use href="#lu-shield-alert"/></svg><span><b>Implement inside the decision, not around it.</b> When compatible upstream artifacts exist — an NFR budget, a threat model, acceptance criteria, a construction skill's own test results — quality verifies against them without silently overriding what they decided. When they don't exist (a standalone run), it says so explicitly rather than inventing a budget or acceptance criterion to fill the gap.</span></p>
+</section>
+
+<section id="router">
+  <h2><svg class="lu" aria-hidden="true"><use href="#lu-route"/></svg>The faceted router</h2>
+  <p>SKILL.md is a router, not a script. Every request selects the smallest sufficient route:
+  <b>one primary job</b> — the eleven below — combined with <b>at most one base surface</b> that
+  reshapes how the job applies to what's under verification, plus the <b>additive regulated
+  overlay</b> when a conformance obligation applies. Read the selected references completely; load
+  two or three at most, never the whole pack.</p>
+  <div class="tblwrap"><table>
+    <tr><th>facet</th><th>options</th><th>rule</th></tr>
+    <tr>
+      <td class="job">① Primary job</td>
+      <td class="prod">verification-strategy-and-risk · <b>oracles-and-evidence ⭐</b> · functional-verification · accessibility-conformance · performance-and-load · security-and-privacy · compatibility-and-support-matrix · ai-behavior-verification · suite-and-signal-health · defect-lifecycle · release-gate-and-claims</td>
+      <td class="canon"><b>Exactly one.</b> Pick the single job the request needs; the flagship — naming the oracle and grading evidence — is the judgment layer every other job is built on top of.</td>
+    </tr>
+    <tr>
+      <td class="job">② Base surface</td>
+      <td class="prod">web-app-and-site <span style="color:var(--muted)">(default)</span> · service-api · mobile · data-pipeline · ai-system</td>
+      <td class="canon"><b>At most one.</b> The surface reshapes what a passing check means — it points to the job references, it doesn't redefine them.</td>
+    </tr>
+    <tr>
+      <td class="job">③ Regulated overlay <span style="color:var(--tok-reg)">⭐</span></td>
+      <td class="dim">surface-regulated — conformance claims, VPAT/ACR, EN 301 549, verifier independence, on top of any base surface</td>
+      <td class="canon"><b>Additive.</b> Stacks <i>on top of</i> the base surface, never replaces it. A regulated mobile app is mobile <b>+</b> regulated.</td>
+    </tr>
+  </table></div>
+  <div class="note"><b>Ship no unverified claim.</b> Everything on this page traces to
+  <code>SKILL.md</code> or <code>research/synthesis.md</code> — no invented statistics, benchmarks,
+  adoption numbers, or testimonials. Where a number is cited (the a11y coverage split, the 80%
+  threshold, the license-mismatch rate) it carries its source; where the skill has no number, it
+  says so rather than inventing one.</div>
+</section>
+
+<section id="jobs">
+  <h2><svg class="lu" aria-hidden="true"><use href="#lu-files"/></svg>The eleven primary jobs</h2>
+  <p>Each job is one reference, read fully only when its route is selected — grounded in named canon,
+  producing evidence with its class stated rather than a verdict alone. This is the whole surface,
+  not a headline slice.</p>
+  <div class="tblwrap"><table>
+    <tr><th>I need to…</th><th>Read</th><th>Contribution</th></tr>
+    <tr>
+      <td class="job"><svg class="lu" aria-hidden="true" style="color:var(--accent)"><use href="#lu-scale"/></svg> Decide how much verification this warrants, and what we skip</td>
+      <td><code><a href="https://github.com/gabros20/quality-skill/blob/main/skills/quality/references/verification-strategy-and-risk.md">verification-strategy-and-risk.md</a></code></td>
+      <td class="prod">Risk-ranked altitude allocation, the shape debate handled as contested, stopping heuristics, "what we deliberately do not verify" as a required output</td>
+    </tr>
+    <tr>
+      <td class="job"><svg class="lu" aria-hidden="true" style="color:var(--accent)"><use href="#lu-search-check"/></svg> Know how do I know this result means what it appears to mean <span style="color:var(--tok-reg)">⭐</span></td>
+      <td><code><a href="https://github.com/gabros20/quality-skill/blob/main/skills/quality/references/oracles-and-evidence.md">oracles-and-evidence.md</a></code></td>
+      <td class="prod"><b>Flagship.</b> Naming the oracle; the four evidence states; the "what this evidence does not establish" table, generatable for any tool</td>
+    </tr>
+    <tr>
+      <td class="job"><svg class="lu" aria-hidden="true" style="color:var(--accent)"><use href="#lu-route"/></svg> Verify the assembled system actually works end to end</td>
+      <td><code><a href="https://github.com/gabros20/quality-skill/blob/main/skills/quality/references/functional-verification.md">functional-verification.md</a></code></td>
+      <td class="prod">Journeys, cross-service verification, contract testing's limits, evidence capture on failure, untrusted runner output</td>
+    </tr>
+    <tr>
+      <td class="job"><svg class="lu" aria-hidden="true" style="color:var(--accent)"><use href="#lu-shield-check"/></svg> Claim this is accessible</td>
+      <td><code><a href="https://github.com/gabros20/quality-skill/blob/main/skills/quality/references/accessibility-conformance.md">accessibility-conformance.md</a></code></td>
+      <td class="prod">Conformance vs scan, the machine-testable boundary, claim scope, VPAT/ACR</td>
+    </tr>
+    <tr>
+      <td class="job"><svg class="lu" aria-hidden="true" style="color:var(--accent)"><use href="#lu-gauge"/></svg> Know it's fast enough, and whether the measurement supports that</td>
+      <td><code><a href="https://github.com/gabros20/quality-skill/blob/main/skills/quality/references/performance-and-load-verification.md">performance-and-load-verification.md</a></code></td>
+      <td class="prod">Field vs lab, percentiles and populations, coordinated omission, scores as compressed judgments</td>
+    </tr>
+    <tr>
+      <td class="job"><svg class="lu" aria-hidden="true" style="color:var(--accent)"><use href="#lu-lock"/></svg> Verify it's secure and privacy-correct, independently of the controls we built</td>
+      <td><code><a href="https://github.com/gabros20/quality-skill/blob/main/skills/quality/references/security-and-privacy-verification.md">security-and-privacy-verification.md</a></code></td>
+      <td class="prod">Assurance grades, what a clean scan cannot decide, severity precedence conflicts, residual risk in machine-readable form</td>
+    </tr>
+    <tr>
+      <td class="job"><svg class="lu" aria-hidden="true" style="color:var(--accent)"><use href="#lu-layers"/></svg> Decide which browsers, devices and platforms are in scope</td>
+      <td><code><a href="https://github.com/gabros20/quality-skill/blob/main/skills/quality/references/compatibility-and-support-matrix.md">compatibility-and-support-matrix.md</a></code></td>
+      <td class="prod">Building the matrix, where its numbers may legitimately come from, and the licence terms on that data</td>
+    </tr>
+    <tr>
+      <td class="job"><svg class="lu" aria-hidden="true" style="color:var(--accent)"><use href="#lu-bot"/></svg> Verify the model's behaviour, not just its builder's evals</td>
+      <td><code><a href="https://github.com/gabros20/quality-skill/blob/main/skills/quality/references/ai-behavior-verification.md">ai-behavior-verification.md</a></code></td>
+      <td class="prod">Evals as a gate, judge validity, non-determinism, red-teaming, verifying agent-built work</td>
+    </tr>
+    <tr>
+      <td class="job"><svg class="lu" aria-hidden="true" style="color:var(--accent)"><use href="#lu-list-checks"/></svg> Decide whether this test suite can be believed at all</td>
+      <td><code><a href="https://github.com/gabros20/quality-skill/blob/main/skills/quality/references/suite-and-signal-health.md">suite-and-signal-health.md</a></code></td>
+      <td class="prod">Coverage semantics, mutation, flake as an evidence-validity problem, suite runtime budget</td>
+    </tr>
+    <tr>
+      <td class="job"><svg class="lu" aria-hidden="true" style="color:var(--accent)"><use href="#lu-file-check"/></svg> Classify a finding, grade its severity, and route it</td>
+      <td><code><a href="https://github.com/gabros20/quality-skill/blob/main/skills/quality/references/defect-lifecycle.md">defect-lifecycle.md</a></code></td>
+      <td class="prod">ODC classification spine, reproducibility, harm stated in user terms, triage routing</td>
+    </tr>
+    <tr>
+      <td class="job"><svg class="lu" aria-hidden="true" style="color:var(--accent)"><use href="#lu-arrow-left-right"/></svg> Decide may we ship, and what may we claim</td>
+      <td><code><a href="https://github.com/gabros20/quality-skill/blob/main/skills/quality/references/release-gate-and-claims.md">release-gate-and-claims.md</a></code></td>
+      <td class="prod">The evidence dossier with its adversarial read, the release/claim split, residual risk with owner and expiry</td>
+    </tr>
+  </table></div>
+  <p style="margin-top:12px">Full router table &amp; invariants: <a href="https://github.com/gabros20/quality-skill/blob/main/skills/quality/SKILL.md#route-before-acting">SKILL.md</a>.</p>
+</section>
+
+<section id="surfaces">
+  <h2><svg class="lu" aria-hidden="true"><use href="#lu-layers"/></svg>Five surfaces + one additive overlay</h2>
+  <p>One base surface, at most, reshapes every job for what's actually under verification — the same
+  oracle-naming job is bounded differently on a rendered web page than on a batch pipeline with no
+  UI at all. The <b>regulated</b> overlay is <b>additive</b> — it stacks on top of whichever base you
+  picked, never replaces it — and carries a distinct violet identity throughout this page. Surface
+  coverage here is a measured differentiator: across the 50-skill incumbent QA ecosystem, data
+  pipeline scores one incidental hit, "data engineer" zero, landing page zero — four of these five
+  surfaces are effectively unserved elsewhere.</p>
+  <div class="overlays">
+    <div class="ov">
+      <h3><svg class="lu" aria-hidden="true"><use href="#lu-route"/></svg>Web app &amp; site <span class="file">surface-web-app-and-site.md</span></h3>
+      <p class="reshape">The <b>default</b>: a browser-rendered web app, SaaS product, marketing
+      site, or landing page — first-class here, not an afterthought (the incumbent ecosystem returns
+      zero hits for "landing page"). Job order tuned for this surface's oracles and its
+      characteristic overclaims.</p>
+      <p class="lens"><span class="k">reshapes</span>marketing-site-first-class · surface job order · claim scope for rendered UI</p>
+    </div>
+    <div class="ov">
+      <h3><svg class="lu" aria-hidden="true"><use href="#lu-arrow-left-right"/></svg>Service / API <span class="file">surface-service-api.md</span></h3>
+      <p class="reshape">A service boundary with no rendered UI of its own: contract verification as
+      the cheap alternative, an explicit list of what a passing contract does <i>not</i> establish,
+      and authorization-matrix verification as its own job.</p>
+      <p class="lens"><span class="k">reshapes</span>contract-as-cheap-oracle · auth-matrix verification · load-model choice</p>
+    </div>
+    <div class="ov">
+      <h3><svg class="lu" aria-hidden="true"><use href="#lu-bot"/></svg>Mobile (iOS / Android) <span class="file">surface-mobile.md</span></h3>
+      <p class="reshape">Device-matrix economics come earlier here than anywhere else, because the
+      matrix gates almost everything downstream; store review is an external gate outside your
+      control; platform accessibility APIs replace web ARIA.</p>
+      <p class="lens"><span class="k">reshapes</span>device-matrix budget · store review as a gate · cloud device ≠ shipping device</p>
+    </div>
+    <div class="ov">
+      <h3><svg class="lu" aria-hidden="true"><use href="#lu-layers"/></svg>Data pipeline <span class="file">surface-data-pipeline.md</span></h3>
+      <p class="reshape">Independently verifies that a pipeline's declared contracts actually hold in
+      production, and that a tracking implementation matches its plan — the weakest surface in the
+      incumbent ecosystem (one incidental hit across 50 skills), where naming the oracle does the
+      most work of any surface.</p>
+      <p class="lens"><span class="k">reshapes</span>contract-vs-production check · tracking-plan drift · the seam with data's construction-side gates</p>
+    </div>
+    <div class="ov">
+      <h3><svg class="lu" aria-hidden="true"><use href="#lu-bot"/></svg>AI system <span class="file">surface-ai-system.md</span></h3>
+      <p class="reshape">Model-driven behaviour is the thing under verification: evaluation as a
+      release <i>gate</i>, distinct from <b>ai</b>'s development-instrument evals; judge validity;
+      a red-team scope with its declared limits.</p>
+      <p class="lens"><span class="k">reshapes</span>eval-as-gate vs eval-as-instrument · judge validity · red-team scope</p>
+    </div>
+    <div class="ov wedge">
+      <h3><svg class="lu" aria-hidden="true"><use href="#lu-lock"/></svg>Regulated <span class="badge">additive ⭐</span></h3>
+      <p class="reshape">A conformance obligation carries legal or contractual weight. <b>Stacks on,
+      does not replace.</b> A scoped conformance claim, VPAT/ACR, EN 301 549, a requirement-to-evidence
+      traceability matrix, evidence retention, and a verifier-independence statement — on top of any
+      base surface.</p>
+      <p class="lens"><span class="k">reshapes</span>traceability matrix · evidence retention · verifier independence</p>
+    </div>
+  </div>
+</section>
+
+<section id="oracles">
+  <h2><svg class="lu" aria-hidden="true"><use href="#lu-search-check"/></svg>Oracles &amp; evidence — the flagship</h2>
+  <p>Most of the field treats a green check as a verdict. Four independent bodies of work — reached
+  from four different directions — converge on the same conclusion: <b>a verification result cannot
+  be binary, because the thing producing it cannot decide every case.</b> That convergence, not any
+  one tool, is why the vocabulary below is the spine every other job and both release decisions are
+  built on top of.</p>
+  <div class="wedgehead"><svg class="lu" aria-hidden="true"><use href="#lu-search-check"/></svg>A verdict cannot be binary — so it isn't one.</div>
+  <div class="wedgebody">
+    <div class="wedgegrid">
+      <div>
+        <h3>Four directions, one vocabulary</h3>
+<pre class="harnessblock"><span class="k">theory:</span>     <span class="s">an oracle "helps you decide," it does not "tell you"</span> <span class="c"># Kaner, 2012</span>
+<span class="k">standards:</span>  <span class="s">a formal three-valued split</span>              <span class="c"># W3C ACT: automatic/manual/semiAuto</span>
+<span class="k">tooling:</span>    <span class="s">55% of 105 rules can return "incomplete"</span>  <span class="c"># axe-core, the dominant a11y engine</span>
+<span class="k">assurance:</span>  <span class="s">uncertainty shall be stated; omission ≠ silence</span> <span class="c"># ISO/IEC 15026-2</span></pre>
+      </div>
+      <div class="wcol">
+        <h3>The four evidence states</h3>
+        <ul class="ladder">
+          <li class="good"><span class="t">observed</span><span class="d">directly witnessed under stated conditions — a human check, or a typed tool channel exercising the real system</span></li>
+          <li><span class="t">inferred</span><span class="d">not directly checked; derived from an <code>observed</code> result plus a stated similarity assumption</span></li>
+          <li class="warn"><span class="t">not_tested</span><span class="d">no evidence — must be labelled deliberate (a scoped, owned decision) or accidental (a gap needing an owner)</span></li>
+          <li class="bad"><span class="t">blocked</span><span class="d">verification was attempted and could not complete — distinct from <code>not_tested</code>: this was tried</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="sharprule"><b>The declared divergence:</b> ISO/IEC 15026-2 requires <i>quantified</i>
+    uncertainty; this skill ships an <i>ordinal</i> vocabulary instead and says so plainly — no
+    dossier built on it may claim standard conformance on the vocabulary alone. Three rules stay
+    non-negotiable:
+      <div class="cc"><span>never report a weaker class as a stronger one</span><span>never infer an untested surface from a neighbour</span><span>a component pass ≠ a composition pass</span></div>
+    </div>
+  </div>
+  <p style="margin-top:22px">Every reference generates the same row for any tool it meets — the
+  pattern is the deliverable, not any single table:</p>
+  <div class="tblwrap"><table>
+    <tr><th>Evidence produced</th><th>Establishes</th><th>Does <b>not</b> establish</th></tr>
+    <tr>
+      <td class="job">Green Lighthouse performance score</td>
+      <td class="prod">One simulated run under synthetic conditions, on that version's weighted metrics.</td>
+      <td class="canon">Anything about <b>INP</b> — <code>weight: 0</code>. TBT carries the heaviest weight (30), and its own source comment calls the coefficients <i>"semi-arbitrarily chosen."</i> A score is a compressed judgment with an author, not a measurement.</td>
+    </tr>
+    <tr>
+      <td class="job">Passing automated a11y scan</td>
+      <td class="prod">A bounded set of machine-detectable failure patterns, absent from one page state.</td>
+      <td class="canon">Full pages, complete processes, AT compatibility — the scanner says so itself: 55% of axe's rules can return <code>incomplete</code>. Automated coverage is never one figure: vendor self-report (Deque) 57%; independent measurement (WebAIM, W3C/WAI, GSA) 20–33%.</td>
+    </tr>
+    <tr>
+      <td class="job">Passing load test at target RPS</td>
+      <td class="prod">The harness sent load and got responses.</td>
+      <td class="canon">True tail latency, unless coordinated omission is corrected — a closed-loop generator sends <i>fewer</i> requests during a stall, so the worst latencies are exactly the missing samples.</td>
+    </tr>
+    <tr>
+      <td class="job">Green test-runner output</td>
+      <td class="prod">Whatever verdict that specific runner emits.</td>
+      <td class="canon">A shared meaning across runners — none exists. Playwright names the third state <code>flaky</code>; Cypress forces a policy choice; <b>Jest has no flaky concept and silently reports <code>passed</code>.</b></td>
+    </tr>
+  </table></div>
+</section>
+
+<section id="distinct">
+  <h2><svg class="lu" aria-hidden="true"><use href="#lu-scissors"/></svg>What makes this different</h2>
+  <p>Two stances set <b>quality</b> apart from the technique libraries: it <b>subtracts the folk
+  number</b> where the field cites a round threshold with no published rationale, and it treats
+  adversarial subjects and volatile facts as first-class, sourced concerns rather than settled
+  trivia.</p>
+  <div class="bandgrid">
+    <div class="band sub">
+      <h3><svg class="lu" aria-hidden="true"><use href="#lu-scissors"/></svg>Subtract the folk number</h3>
+      <p class="sub2">The field cites round numbers with no published rationale far more than it
+      admits to. Cite provenance or do not cite — per invariant 12.</p>
+      <ul class="subrules">
+        <li><svg class="lu" aria-hidden="true"><use href="#lu-gauge"/></svg><span><b>80% coverage is a Schelling point</b> <span class="d">— Sonar 80, nyc [80,95], JaCoCo 0.80 — nobody justifies 80 over 70 or 90; <i>Software Engineering at Google</i>'s own two published splits (80/15/5 vs. 70/20/10) disagree, one self-disclosed as "pulled out of a hat"</span></span></li>
+        <li><svg class="lu" aria-hidden="true"><use href="#lu-search-check"/></svg><span><b>the a11y coverage split</b> <span class="d">— never a single number: vendor self-report (Deque, who sells axe) 57%; independent measurement (WebAIM, W3C/WAI, GSA) 20–33%; the circulated 80.39% is unconfirmed</span></span></li>
+        <li><svg class="lu" aria-hidden="true"><use href="#lu-file-check"/></svg><span><b>ODC's "10x" claim</b> <span class="d">— the inventor's own unaudited figure; this skill keeps the classification discipline, not the number</span></span></li>
+        <li><svg class="lu" aria-hidden="true"><use href="#lu-scale"/></svg><span><b>no shape states a ratio</b> <span class="d">— neither Cohn's pyramid nor Dodds's trophy publishes a numeric split; the 80/15/5 and 70/20/10 figures in circulation are later accretions by other authors</span></span></li>
+      </ul>
+    </div>
+    <div class="band stale">
+      <h3><svg class="lu" aria-hidden="true"><use href="#lu-shield-alert"/></svg>Abuse cases &amp; the volatile-fact discipline</h3>
+      <p class="sub2">An instrument pointed at an adversarial subject measures the adversary's
+      response to the instrument, not the property you wanted — and every threshold, version, and
+      licence in this domain churns.</p>
+      <ul class="subrules">
+        <li><svg class="lu" aria-hidden="true"><use href="#lu-shield-alert"/></svg><span><b>jqwik's stdout injection</b> <span class="d">— a deliberate "Anti-AI Usage Clause," hidden from interactive terminals via ANSI erase codes while remaining in the bytes CI and agents read — the tooling attacks the pipeline</span></span></li>
+        <li><svg class="lu" aria-hidden="true"><use href="#lu-lock"/></svg><span><b>overlay vendors vs. WebAIM</b> <span class="d">— accused of manipulating pages to suppress error detection, plus a dropped SLAPP suit against a named practitioner — the system under test defeats the instrument</span></span></li>
+        <li><svg class="lu" aria-hidden="true"><use href="#lu-scale"/></svg><span><b>the licence-mismatch rate</b> <span class="d">— ~12% of a 24-repo sample had a clear LICENSE file while the API reported NOASSERTION; read every licence-like file at the root, one is a sample, not the terms</span></span></li>
+        <li><svg class="lu" aria-hidden="true"><use href="#lu-refresh-cw"/></svg><span><b>every volatile fact is date-stamped</b> <span class="d">— versions, thresholds, prices, licences carry a verification date and a re-verify pointer; an unstamped fact is a liability</span></span></li>
+      </ul>
+    </div>
+  </div>
 </section>
 
 <section id="laws">
-  <h2><svg class="lu" aria-hidden="true"><use href="#lu-shield-check"/></svg>The non-negotiable laws</h2>
-  <p>These govern everything in the references below — the load-bearing ones, condensed.</p>
+  <h2><svg class="lu" aria-hidden="true"><use href="#lu-shield-check"/></svg>The universal invariants</h2>
+  <p>These rules govern every route, whichever references it loads — the behavioral spine, condensed.</p>
   <ul class="rules">
-    <li><b><svg class="lu" aria-hidden="true"><use href="#lu-layers"/></svg>TODO law 1</b>TODO one to two sentences.</li>
-    <li><b><svg class="lu" aria-hidden="true"><use href="#lu-sliders-horizontal"/></svg>TODO law 2</b>TODO one to two sentences.</li>
-    <li><b><svg class="lu" aria-hidden="true"><use href="#lu-gauge"/></svg>TODO law 3</b>TODO one to two sentences, as a full-width capstone if it's the closing rule.</li>
+    <li><b><svg class="lu" aria-hidden="true"><use href="#lu-search-check"/></svg>Name the oracle</b>Every verdict rests on one. If you cannot name it, you are guessing.</li>
+    <li><b><svg class="lu" aria-hidden="true"><use href="#lu-shield-check"/></svg>A pass certifies only what was encoded</b>Never report "all checks passed" as "the software is fine."</li>
+    <li><b><svg class="lu" aria-hidden="true"><use href="#lu-list-checks"/></svg>State the evidence class</b><code>observed</code> / <code>inferred</code> / <code>not_tested</code> / <code>blocked</code> — never report a weaker class in the vocabulary of a stronger one.</li>
+    <li><b><svg class="lu" aria-hidden="true"><use href="#lu-arrow-left-right"/></svg>Evidence has a boundary</b>A component pass is not a product-workflow pass; never infer an untested surface from a tested one.</li>
+    <li><b><svg class="lu" aria-hidden="true"><use href="#lu-shield-alert"/></svg>Omission is permitted; silence is not</b>A stated, justified gap conforms. An unmentioned one does not.</li>
+    <li><b><svg class="lu" aria-hidden="true"><use href="#lu-scale"/></svg>Whatever is unrefuted is residual risk</b>Surfaced to the decision-maker with an owner and an expiry.</li>
+    <li><b><svg class="lu" aria-hidden="true"><use href="#lu-arrow-left-right"/></svg>Decide release and claim independently</b>A product may ship with a recorded exception without earning an unqualified conformance claim.</li>
+    <li><b><svg class="lu" aria-hidden="true"><use href="#lu-shield-alert"/></svg>Verification is refutation</b>Attempt to show harm is possible; grade the refutation method — method strength <i>is</i> assurance level.</li>
+    <li><b><svg class="lu" aria-hidden="true"><use href="#lu-file-check"/></svg>Runner output is untrusted</b>Take verdicts from typed channels — exit codes, JUnit XML, JSON — never scraped prose; strip ANSI first.</li>
+    <li><b><svg class="lu" aria-hidden="true"><use href="#lu-list-checks"/></svg>Coverage finds untested code, not test quality</b>No metric detects a fault of omission.</li>
+    <li><b><svg class="lu" aria-hidden="true"><use href="#lu-shield-alert"/></svg>Flake is an evidence-validity problem</b>Never retry-to-green; never delete a flake without triage.</li>
+    <li><b><svg class="lu" aria-hidden="true"><use href="#lu-scissors"/></svg>Subtract the folk number</b>Cite provenance or do not cite.</li>
+    <li><b><svg class="lu" aria-hidden="true"><use href="#lu-lock"/></svg>The verifier shares no source of truth with what it verifies</b>Audit the verifier itself — a layer that <i>can</i> pass without exercising the real path eventually will; no test counts as evidence until observed failing.</li>
+    <li><b><svg class="lu" aria-hidden="true"><use href="#lu-gauge"/></svg>Allocate the budget by ranked risk, and say where you stopped</b>Record which rank each verification effort served, and which stopping heuristic ended the pass.</li>
   </ul>
 </section>
 
-<section id="pick">
-  <h2><svg class="lu" aria-hidden="true"><use href="#lu-clipboard-list"/></svg>Pick by job</h2>
-  <p>The SKILL.md is a router — load only the reference your current job needs. A condensed cut of the full table:</p>
-  <div class="tblwrap"><table>
-    <tr><th>I need to…</th><th>Read</th></tr>
-    <tr><td>TODO job 1</td><td><code><a href="https://github.com/gabros20/quality-skill/blob/main/skills/quality/references/example.md">example.md</a></code></td></tr>
-    <tr><td>TODO job 2</td><td><code><a href="https://github.com/gabros20/quality-skill/blob/main/skills/quality/references/example.md">example.md</a></code></td></tr>
-  </table></div>
-  <p style="margin-top:12px">Full table: <a href="https://github.com/gabros20/quality-skill/blob/main/skills/quality/SKILL.md#route-before-acting">SKILL.md</a>.</p>
-  <div class="note"><b>Complementary, not duplicated:</b> TODO — name the adjacent skills this one hands off to instead of duplicating.</div>
+<section id="artifacts">
+  <h2><svg class="lu" aria-hidden="true"><use href="#lu-file-check"/></svg>What a pass produces</h2>
+  <p>quality's deliverable is the evidence dossier plus the decision record behind it, closed on a
+  release gate that was <b>graded, not asserted</b>. A full pass emits the fillable assets in
+  <a href="https://github.com/gabros20/quality-skill/tree/main/skills/quality/assets">assets/</a> plus
+  the machine-readable <code>handoff.yaml</code> companion when downstream work is expected. Each
+  records the decision and its evidence class, what was deliberately left unverified, and — for any
+  volatile fact — the date it was verified and how to re-verify it.</p>
+  <div class="vloop" aria-label="the quality core workflow loop">
+    <div class="vstep"><span class="n">phase 1</span><span class="t"><svg class="lu ok" aria-hidden="true"><use href="#lu-scale"/></svg>rank</span><span class="d">risk-ranked budget + what's deliberately unverified</span></div>
+    <div class="vstep"><span class="n">phase 2</span><span class="t"><svg class="lu ok" aria-hidden="true"><use href="#lu-search-check"/></svg>name</span><span class="d">the oracle, and what it does not establish</span></div>
+    <div class="vstep"><span class="n">phase 3</span><span class="t"><svg class="lu ok" aria-hidden="true"><use href="#lu-file-check"/></svg>classify</span><span class="d">ODC type/qualifier/trigger/impact, routed to the owner</span></div>
+    <div class="vstep"><span class="n">phase 4</span><span class="t"><svg class="lu ok" aria-hidden="true"><use href="#lu-shield-check"/></svg>dossier</span><span class="d">the evidence ledger + its adversarial read, one artifact</span></div>
+    <div class="vstep"><span class="n">phase 5</span><span class="t"><svg class="lu ok" aria-hidden="true"><use href="#lu-arrow-left-right"/></svg>decide</span><span class="d">ship &amp; claim, separately; residual risk owned + expired</span></div>
+  </div>
+  <div class="artgrid">
+    <div class="art">
+      <h3><svg class="lu" aria-hidden="true"><use href="#lu-git-fork"/></svg>handoff.yaml + volatile_facts</h3>
+      <span class="file">assets/handoff.yaml</span>
+      <p>The routing index carrying the evidence ledger, residual risk, and the ship/claim decisions — <b>never a copy of the dossier</b>, only <code>objective</code> is required.</p>
+    </div>
+    <div class="art">
+      <h3><svg class="lu" aria-hidden="true"><use href="#lu-shield-check"/></svg>Evidence dossier</h3>
+      <span class="file">assets/evidence-dossier.md</span>
+      <p>The assurance case: authority ledger, requirement-to-evidence matrix, "what we deliberately did not verify," and <b>its own adversarial read</b> — shipped as one artifact.</p>
+    </div>
+    <div class="art">
+      <h3><svg class="lu" aria-hidden="true"><use href="#lu-search-check"/></svg>Evidence worksheet</h3>
+      <span class="file">assets/evidence-worksheet.md</span>
+      <p>The "does not establish" row, fillable for any tool this skill meets — <b>the pattern, not a fixed table</b>.</p>
+    </div>
+    <div class="art">
+      <h3><svg class="lu" aria-hidden="true"><use href="#lu-scale"/></svg>Risk matrix + severity map</h3>
+      <span class="file">assets/risk-matrix.md · assets/severity-map.md</span>
+      <p>Impact×probability risk bands, and ODC-mapped severity (A0–A3 craft / P0–P3 functional) — <b>severity within one classification, not a second system</b>.</p>
+    </div>
+    <div class="art">
+      <h3><svg class="lu" aria-hidden="true"><use href="#lu-list-checks"/></svg>Release-gate checklist + flake policy</h3>
+      <span class="file">assets/release-gate-checklist.md · assets/flake-policy.md</span>
+      <p>Entry/exit criteria per risk band, and a flake quarantine with a forcing function — <b>never retry-to-green</b>.</p>
+    </div>
+    <div class="art">
+      <h3><svg class="lu" aria-hidden="true"><use href="#lu-layers"/></svg>Compatibility matrix</h3>
+      <span class="file">assets/compatibility-matrix.md</span>
+      <p>The device/browser/platform support matrix, with <b>the licence terms on the data it was built from</b> stated alongside it.</p>
+    </div>
+  </div>
 </section>
 
-<section id="refs">
-  <h2><svg class="lu" aria-hidden="true"><use href="#lu-files"/></svg>Reference map</h2>
-  <p>TODO: how many references, grouped by the stage/strategy they serve. Every one is copy-pasteable rather than abstract — the whole point of the router is that you never read all of them at once.</p>
-  <dl class="refmap">
-    <div class="refrow">
-      <dt class="reflabel"><svg class="lu" aria-hidden="true"><use href="#lu-sliders-horizontal"/></svg>TODO stage 1<span class="ct">1</span></dt>
-      <dd class="refchips"><span class="ref"><code>example.md</code></span></dd>
+<section id="handoff">
+  <h2><svg class="lu" aria-hidden="true"><use href="#lu-git-fork"/></svg>The handoff seams</h2>
+  <p>quality consumes upstream artifacts without silently overriding them — NFR budgets and a threat
+  model from <b>architecture</b>, acceptance criteria from <b>product</b>, construction-side test
+  results from the owning build skill — and, when downstream work is expected, emits a compact
+  <code>handoff.yaml</code> beside the evidence dossier: a routing <i>index</i> into it, never a copy.</p>
+  <div class="seam">
+    <div class="seambox">
+      <h3><svg class="lu" aria-hidden="true"><use href="#lu-file-check"/></svg>quality builds</h3>
+<pre class="seamyaml"><span class="k">skill</span>: <span class="v">quality</span>
+<span class="k">status</span>: <span class="v">complete</span>
+<span class="req">objective</span>: <span class="v">""</span>   <span style="color:var(--glyph)"># only required field</span>
+<span class="k">evidence</span>: <span class="v">[item, oracle, evidence_state,</span>
+  <span class="v">does_not_establish, source]</span>
+<span class="k">residual_risks</span>: <span class="v">[owner, expiry]</span>
+<span class="k">ship_decision</span> · <span class="k">claim_decision</span>: <span class="v">independent</span>
+<span class="k">volatile_facts</span>: <span class="v">[fact, value,</span>
+  <span class="v">as_of, reverify_at]</span></pre>
     </div>
-  </dl>
-  <p style="margin-top:16px">Browse the full set: <a href="https://github.com/gabros20/quality-skill/tree/main/skills/quality/references">skills/quality/references/</a>.</p>
+    <div class="seamarrows"><span>→</span><span>→</span></div>
+    <div class="downstream">
+      <div class="seambox mid">
+        <h3><svg class="lu" aria-hidden="true"><use href="#lu-git-branch"/></svg>frontend · backend · data · ai</h3>
+        <p>Routed, reproducible defects with ODC severity attached — quality fixes nothing; it hands a triaged finding back to the skill that owns the fix.</p>
+      </div>
+      <div class="seambox mid">
+        <h3><svg class="lu" aria-hidden="true"><use href="#lu-arrow-left-right"/></svg>operate</h3>
+        <p>The gate result (ship / ship-with-exception / block) and everything still residual risk, so it knows what it's inheriting rather than discovering it in production.</p>
+      </div>
+      <div class="seambox mid">
+        <h3><svg class="lu" aria-hidden="true"><use href="#lu-scale"/></svg>product · architecture</h3>
+        <p>The claim decision's exact scope, and any conflict between a supplied acceptance criterion or NFR budget and what verification actually found.</p>
+      </div>
+    </div>
+  </div>
+  <p class="seamnote"><svg class="lu" aria-hidden="true"><use href="#lu-shield-alert"/></svg><span><b>Three distinct consumers, not one.</b> Each is a consumer, not a co-author — quality ships the dossier, the routed defects, and the gate result; it does not fix the code, own the deploy, or design the acceptance criteria. Only <code>objective</code> is required; every other field may be empty. Never silently invoke a sibling skill; name it in <code>recommended_next</code>.</span></p>
 </section>
 
 <section id="start">
   <h2><svg class="lu" aria-hidden="true"><use href="#lu-file-input"/></svg>Start here</h2>
-  <p>Install once. It's a plain <code>SKILL.md</code> router — no flags, no config, no scripts —
-  so it activates on natural-language phrasing (TODO: a couple of real trigger examples) rather
-  than a fixed command.</p>
-  <div class="term"><span class="c"># skills.sh ecosystem</span>
-npx skills add gabros20/quality-skill
+  <p>Install once. It's a plain <code>SKILL.md</code> router — no flags, no config, no scripts — so it
+  activates on natural-language phrasing ("can we ship this," "is this test suite believable," "what's
+  our residual risk before release," "classify this defect and route it," "audit this a11y claim")
+  rather than a fixed command.</p>
+  <div class="term"><span class="c"># skills.sh ecosystem (installs globally to supported clients)</span>
+npx skills add gabros20/quality-skill -g -y
 
 <span class="c"># clone + installer (per-host targets)</span>
-git clone https://github.com/gabros20/quality-skill && cd quality-skill
-./install.sh codex   <span class="c"># or: claude | agents | cursor | antigravity | opencode | grok | hermes | all</span>
+git clone https://github.com/gabros20/quality-skill &amp;&amp; cd quality-skill
+./install.sh codex   <span class="c"># or: claude | cursor | antigravity | opencode | grok | hermes | agents | all</span>
 
-<span class="c"># use</span>
-<span class="p">/quality</span> TODO — a real, short invocation example
-<span class="p">/quality</span> TODO — a second real, short invocation example</div>
+<span class="c"># use — natural language, any host</span>
+<span class="p">/quality</span> we're about to ship checkout — what's the evidence, and what's still residual risk?
+<span class="p">/quality</span> grade this axe scan: what does the pass actually establish, and what doesn't it?
+<span class="p">/quality</span> is this flaky test a real defect or noise — triage it and say where it routes   <span class="c"># → defect-lifecycle.md</span></div>
   <p style="margin-top:14px">The same install runs on any <a href="https://agentskills.io">Agent&nbsp;Skills</a>
-  host. Codex installs to <code>${CODEX_HOME:-$HOME/.codex}/skills</code>; <code>agents</code>
-  remains a separate cross-agent installation target.</p>
+  host. Codex installs to <code>${CODEX_HOME:-$HOME/.codex}/skills</code> and triggers with
+  <code>$quality</code>; <code>agents</code> remains a separate cross-agent installation target.</p>
   <details class="disc">
     <summary>install targets by host</summary>
     <div>
       <div class="tblwrap"><table>
         <tr><th>host</th><th>install target</th><th>command</th></tr>
-        <tr><td class="dim">Claude Code</td><td><code>~/.claude/skills</code></td><td><code>./install.sh claude</code></td></tr>
-        <tr><td class="dim">Codex</td><td><code>${CODEX_HOME:-$HOME/.codex}/skills</code></td><td><code>./install.sh codex</code></td></tr>
-        <tr><td class="dim">Cross-agent path</td><td><code>~/.agents/skills</code></td><td><code>./install.sh agents</code></td></tr>
-        <tr><td class="dim">Cursor CLI</td><td><code>~/.cursor/skills</code></td><td><code>./install.sh cursor</code></td></tr>
-        <tr><td class="dim">Antigravity (IDE + agy)</td><td><code>~/.gemini/…/skills</code></td><td><code>./install.sh antigravity</code></td></tr>
-        <tr><td class="dim">opencode</td><td><code>~/.config/opencode/skills</code></td><td><code>./install.sh opencode</code></td></tr>
-        <tr><td class="dim">Grok Build</td><td><code>~/.grok/skills</code></td><td><code>./install.sh grok</code></td></tr>
-        <tr><td class="dim">Hermes</td><td><code>~/.hermes/skills</code></td><td><code>./install.sh hermes</code></td></tr>
+        <tr><td class="job">Claude Code</td><td><code>~/.claude/skills</code></td><td><code>./install.sh claude</code></td></tr>
+        <tr><td class="job">Codex</td><td><code>${CODEX_HOME:-$HOME/.codex}/skills</code></td><td><code>./install.sh codex</code></td></tr>
+        <tr><td class="job">Cross-agent path</td><td><code>~/.agents/skills</code></td><td><code>./install.sh agents</code></td></tr>
+        <tr><td class="job">Cursor CLI</td><td><code>~/.cursor/skills</code></td><td><code>./install.sh cursor</code></td></tr>
+        <tr><td class="job">Antigravity (IDE + agy)</td><td><code>~/.gemini/…/skills</code></td><td><code>./install.sh antigravity</code></td></tr>
+        <tr><td class="job">opencode</td><td><code>~/.config/opencode/skills</code></td><td><code>./install.sh opencode</code></td></tr>
+        <tr><td class="job">Grok Build</td><td><code>~/.grok/skills</code></td><td><code>./install.sh grok</code></td></tr>
+        <tr><td class="job">Hermes</td><td><code>~/.hermes/skills</code></td><td><code>./install.sh hermes</code></td></tr>
       </table></div>
-      <p style="margin-top:12px">Prefer <code>npx skills add gabros20/quality-skill</code> when you have Node — it maps supported clients itself.</p>
+      <p style="margin-top:12px">Prefer <code>npx skills add gabros20/quality-skill -g -y</code> when you have Node — it maps supported clients itself.</p>
     </div>
   </details>
   <details class="disc">
     <summary>what's in the repo</summary>
     <div>
-      <div class="files"><span class="hl">skills/quality/</span>          <span class="d">the skill: SKILL.md (router) + references/</span>
+      <div class="files"><span class="hl">skills/quality/</span>          <span class="d">the skill: SKILL.md (router) + 18 references/ + assets/</span>
 <span class="hl">docs/</span>                      <span class="d">installation · usage · recipes</span>
-<span class="hl">site/</span>                      <span class="d">optional guide — deploys to quality-skill.vercel.app</span>
+<span class="hl">site/</span>                      <span class="d">this guide — deploys to quality-skill.vercel.app</span>
 install.sh                 <span class="d">installer (claude | codex | cursor | antigravity | opencode | grok | hermes | agents | all)</span>
 README.md · CHANGELOG.md · LICENSE</div>
       <p>More docs: <a href="https://github.com/gabros20/quality-skill/blob/main/docs/installation.md">docs/installation.md</a> ·
@@ -356,11 +868,10 @@ README.md · CHANGELOG.md · LICENSE</div>
 </div>
 <script>
 (function () {
-  // Progressive enhancement over the static .arcline fallback above: swaps in the
-  // hero Remotion video (light/dark). On any load error it removes the
-  // slot and leaves the static arc line in place.
+  // Progressive enhancement over the static router fallback above: swaps in the hero Remotion
+  // video (light/dark). On any load error it removes the slot, leaving the static router in place.
   if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  if (innerWidth < 720) return; // the static line reads better on phones
+  if (innerWidth < 720) return; // the static router reads better on phones
   var wrap = document.getElementById("vidwrap");
   if (!wrap || !document.createElement("video").canPlayType) return;
   var mq = matchMedia("(prefers-color-scheme: dark)");
@@ -370,7 +881,7 @@ README.md · CHANGELOG.md · LICENSE</div>
   v.autoplay = true;
   v.playsInline = true;
   v.setAttribute("playsinline", "");
-  v.setAttribute("aria-label", "TODO: describe what the hero animation shows.");
+  v.setAttribute("aria-label", "The quality skill in motion: a claim of \"all tests passed, ready to ship\" is interrogated, four independent bodies of work — testing theory, the W3C's ACT rules, axe-core's own incomplete rate, and ISO/IEC 15026-2 — converge on one vocabulary, the green tick resolves into the four honest evidence states (observed, inferred, not_tested, blocked), the faceted router composes one primary job with at most one base surface plus the additive regulated overlay, a full pass produces the evidence dossier together with its adversarial read and the release/claim decisions made independently with residual risk owned and expired, and a handoff.yaml carrying volatile_facts routes triaged defects back to frontend, backend, data, and ai while quality itself fixes nothing.");
   v.addEventListener("loadeddata", function () { document.body.classList.add("has-vid"); });
   v.addEventListener("error", function () { wrap.remove(); });
   function apply() {

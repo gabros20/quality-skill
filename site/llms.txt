@@ -2,14 +2,21 @@
 
 > Independent verification — evidence, not assertion, before you ship. Installs as an agent skill.
 
-TODO — one paragraph: what problem this replaces, the workflow it runs (stages/strategies, in
-order), and what "read only what you need" the router gives you. Claude Code is the reference
-host; it's plain Agent Skills format (agentskills.io), so it installs on Codex, Cursor,
-Antigravity, opencode, Grok Build, and Hermes too.
+`quality` provides independent evidence that an assembled product meets its functional and
+non-functional expectations, and converts that evidence into two separate decisions: may we ship,
+and what may we claim. It writes no tests — `frontend`, `backend`, `data`, and `ai` already own
+construction-side testing. Its flagship move is naming the oracle behind any check and grading the
+result into one of four evidence states (`observed` / `inferred` / `not_tested` / `blocked`) rather
+than trusting a green verdict. `SKILL.md` is a faceted router: one primary job (of 11, e.g.
+`oracles-and-evidence` ⭐) composes with at most one base surface (of 5: web-app-and-site, service-api,
+mobile, data-pipeline, ai-system) plus an additive `surface-regulated` overlay when a conformance
+obligation applies — read only the two or three references the request needs, never the whole
+18-reference pack. Claude Code is the reference host; it's plain Agent Skills format
+(agentskills.io), so it installs on Codex, Cursor, Antigravity, opencode, Grok Build, and Hermes too.
 
 ## Install
 
-- npm/skills.sh: `npx skills add gabros20/quality-skill`
+- npm/skills.sh: `npx skills add gabros20/quality-skill -g -y`
 - Clone + installer (per-host targets: claude | codex | cursor | antigravity | opencode | grok | hermes | agents | all): `git clone https://github.com/gabros20/quality-skill && cd quality-skill && ./install.sh codex`
 - Manual copy: `cp -R skills/quality ~/.claude/skills/quality`
 
@@ -23,8 +30,25 @@ Antigravity, opencode, Grok Build, and Hermes too.
 
 ## Reference inventory (`skills/quality/references/`)
 
-- `example.md` — TODO: what job this reference answers.
+Jobs (11):
+- `verification-strategy-and-risk.md` — risk-ranked altitude allocation, stopping heuristics, "what we deliberately do not verify"
+- `oracles-and-evidence.md` ⭐ — **flagship.** naming the oracle; the four evidence states; the "what this evidence does not establish" table
+- `functional-verification.md` — journeys, cross-service verification, contract testing's limits
+- `accessibility-conformance.md` — conformance vs scan, the machine-testable boundary, VPAT/ACR
+- `performance-and-load-verification.md` — field vs lab, percentiles, coordinated omission
+- `security-and-privacy-verification.md` — assurance grades, severity precedence conflicts
+- `compatibility-and-support-matrix.md` — the matrix, its legitimate sources, and their licence terms
+- `ai-behavior-verification.md` — evals as a gate, judge validity, non-determinism, red-teaming
+- `suite-and-signal-health.md` — coverage semantics, mutation, flake as an evidence-validity problem
+- `defect-lifecycle.md` — ODC classification spine, reproducibility, triage routing
+- `release-gate-and-claims.md` — the evidence dossier + adversarial read, the release/claim split
+
+Surfaces (5 + 1 additive) and handoff:
+- `surface-web-app-and-site.md` (default) · `surface-service-api.md` · `surface-mobile.md` ·
+  `surface-data-pipeline.md` · `surface-ai-system.md`
+- `surface-regulated.md` — additive overlay: conformance claims, traceability, evidence retention, verifier independence
+- `handoff.md` — what this skill consumes and emits, and the `handoff.yaml` companion's shape
 
 ## Optional
 
-- [Visual guide](https://quality-skill.vercel.app): the workflow, boundaries, and reference map on one page.
+- [Visual guide](https://quality-skill.vercel.app): the router, the oracle/evidence flagship, and the full reference map on one page.

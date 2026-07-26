@@ -6,7 +6,10 @@ Install the `quality` runtime pack from the independently versioned
 ## Prerequisites
 
 - An Agent Skills-compatible client.
-- TODO: Add only real skill-specific tools, credentials, or runtime requirements.
+- No skill-specific credentials or tools are required. `quality` is tool-agnostic; it names which
+  class of tool a job needs (an accessibility scanner, a load-testing tool, a security scanner, a
+  mutation-testing runner) and recommends re-verifying current versions/thresholds at analysis time
+  (anti-staleness), but ships no keys and requires no fixed toolchain.
 
 ## Install with skills.sh
 

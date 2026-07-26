@@ -1,187 +1,162 @@
-# Skill repository template
+# quality — Quality Engineering
 
-Create one independently owned, versioned, and installable agent-skill repository. Runtime skill
-identifiers stay short (`frontend`); GitHub repositories and Codex plugin packages use the
-`<skill>-skill` suffix (`frontend-skill`).
+**Visual guide:** [quality-skill.vercel.app](https://quality-skill.vercel.app)
 
-The template keeps agent-loaded content under `skills/<skill>/` and keeps human documentation,
-evaluation fixtures, releases, and optional site assets outside the runtime package.
+Provide **independent evidence** that an assembled product meets its functional and non-functional
+expectations, and convert that evidence into **two separate decisions: may we ship, and what may we
+claim.** `quality` is the **Verify** stage of the [Digital Product Skills](https://github.com/gabros20)
+family, sitting after `frontend`/`backend`/`data`/`ai` (Build) and before `operate` (deploy, monitor,
+run incidents): an agent skill for judging what has already been built, not for building it.
 
-## Quick start
+**This skill writes no tests.** Construction-side testing already has four owners —
+`frontend`, `backend`, `data`, `ai` — and each keeps responsibility for the quality of its own work.
+`quality` owns the layer above the techniques: deciding what verification is warranted and at what
+altitude, deciding **what will deliberately go unverified**, producing evidence with its class named
+rather than a green tick, and turning that into a release decision with the residual risk written
+down, owned, and given an expiry. It reports; it does not remediate. The one-line positioning: it
+answers *"how do I know, and how would I know I was wrong?"* — and refuses to answer *"how do I test
+this?"*
 
-```bash
-gh repo create gabros20/<skill>-skill \
-  --template gabros20/skill-template \
-  --private \
-  --clone
-cd <skill>-skill
+**On the competitive landscape, plainly stated:** a good, neutral QA router already exists —
+`petrkindlmann/qa-skills` (MIT) — and it is not badly designed. It owns unit and E2E test authoring
+because it is a standalone pack with nowhere to hand construction-side testing to. For a solo
+developer with no sibling skills installed, that blended library may well be the better product. Our
+difference is structural, not a claim of superior design: we sit in a family that already builds, so
+we can refuse to write tests without leaving a hole. A competitor cannot copy that boundary without
+first becoming a family.
 
-# Runtime skill + README/docs/evals only
-scripts/init <skill> "<Skill Title>" "<25-64 character tagline>" \
-  "#336699" "#6699cc" 220
+## What it does
 
-# Keep the static documentation site
-scripts/init <skill> "<Skill Title>" "<tagline>" \
-  "#336699" "#6699cc" 220 --site
+A **faceted router**: pick one primary job × at most one base surface (the regulated overlay stacks
+additively on top).
 
-# Keep the site and Remotion video-authoring project
-scripts/init <skill> "<Skill Title>" "<tagline>" \
-  "#336699" "#6699cc" 220 --site --video
-```
+**Primary jobs** — verification strategy & risk · **oracles & evidence ⭐** · functional verification ·
+accessibility conformance · performance & load verification · security & privacy verification ·
+compatibility & support matrix · AI behavior verification · suite & signal health · defect lifecycle ·
+release gate & claims.
 
-Initialization is intentionally not a release. Replace the remaining `TODO` content, then work
-through [TEMPLATE-CHECKLIST.md](TEMPLATE-CHECKLIST.md). `scripts/check-sync` fails closed until the
-runtime pack, metadata, and evaluation fixtures are complete.
+**Surface overlays** — web app & site (default) · service API · mobile · data pipeline · AI/agentic
+system · **regulated** (additive). The base surface reshapes how every job applies for that system
+shape; `surface-regulated` stacks on top of whichever base surface applies rather than replacing it —
+add it only when conformance claims, audit evidence, or verifier-independence requirements are in
+play.
 
-## Repository contract
+**The differentiator: a four-way convergence.** Theory (Kaner's test oracle *helps you decide*, it
+does not *tell you*), standards (W3C ACT's `automatic`/`manual`/`semiAuto` EARL test-mode split),
+tooling (axe-core ships an `incomplete` class, returnable by 55% of its 105 documented rules), and a
+formal assurance standard (ISO/IEC 15026-2:2011) all require the same thing: **a verification result
+cannot be binary, because the thing producing it cannot decide every case.** All four map onto one
+vocabulary — `observed` / `inferred` / `not_tested` / `blocked` — and ISO/IEC 15026-2 §7.2(b) makes
+**"what we deliberately did not verify" a required section, not a courtesy: omission is permitted,
+silent omission is not.** The flagship, [oracles-and-evidence](skills/quality/references/oracles-and-evidence.md),
+carries this through-line: **name the oracle, grade the evidence, publish the gap — and subtract the
+folk number.**
 
-```text
-<skill>-skill/
-├── .codex-plugin/
-│   └── plugin.json
-├── skills/
-│   └── <skill>/
-│       ├── SKILL.md
-│       ├── agents/
-│       │   └── openai.yaml
-│       └── references/
-├── evals/
-│   ├── activation/
-│   ├── traversal/
-│   ├── output/
-│   └── compression-ablation/
-├── docs/
-├── scripts/
-├── AGENTS.md
-├── CLAUDE.md
-├── README.md
-├── CHANGELOG.md
-├── CONTRIBUTING.md
-└── LICENSE
-```
+The evidence dossier and its adversarial read are shipped as one feature, never two — the same
+literature that specifies assurance cases has spent twenty years documenting that they are routinely
+fallacious in practice. And several folk numbers are named and subtracted with receipts rather than
+repeated: the 80% coverage threshold has no published rationale (three tools converge on it as a
+Schelling point, not a derivation); neither Cohn's pyramid nor Dodds's trophy states a numeric ratio;
+automated accessibility detection is a contested range split vendor-vs-independent, never a single
+number.
 
-Add runtime `scripts/` and `assets/` only when the skill has a real consumer for them. README,
-changelog, contribution guidance, research, design records, and release tooling stay outside the
-runtime directory.
-
-## Runtime authoring standard
-
-`SKILL.md` is the activation-time router, not an encyclopedia. Use this order:
-
-1. Mission and ownership boundary.
-2. Conditional routes with direct Markdown links and expected contributions.
-3. Universal invariants.
-4. Short, artifact-driven workflow.
-5. Artifact contract.
-6. Evidence-based completion and handoff.
-
-Every reference begins with `Purpose`, `Read when`, `Skip when`, `Inputs`, and `Produces`. Keep
-references one level below `SKILL.md`; add an early `## Contents` when a reference exceeds 100
-lines. Prefer tested scripts for fragile or repeated mechanics.
-
-The runtime frontmatter contains only:
-
-```yaml
----
-name: <skill>
-description: <outcome, triggers, and close-neighbor exclusions>
----
-```
-
-Versions, repository URLs, licensing, and storefront metadata do not belong in runtime
-frontmatter.
-
-## Standalone and composition behavior
-
-Every generated skill must work when invoked alone. A domain skill may consume supplied upstream
-artifacts and recommend a next skill, but it must not silently invoke neighboring skills.
-Compatibility with a larger composition system is optional and must be backed by contract tests.
-
-## Evaluation layers
-
-Keep the four layers separate so a failure points to the correct fix:
-
-| Layer | Question |
-|---|---|
-| Activation | Should this skill trigger for this request? |
-| Traversal | Did it load the smallest sufficient reference set? |
-| Output | Did it satisfy the artifact and completion contracts? |
-| Compression | Did a shorter candidate preserve quality and safety? |
-
-`scripts/check-sync` validates fixture structure. Model-driven evaluation runners can be added per
-repository without changing the portable fixture contract.
-
-## Validation
+## Install
 
 ```bash
-scripts/check-sync
-scripts/count-skill-tokens
+npx skills add gabros20/quality-skill -g -y
 ```
 
-The baseline gate checks:
+Or use it in Codex with `$quality`.
 
-- Exactly one primary skill.
-- Frontmatter compatibility and description budget.
-- Direct, flat, self-describing references and long-file contents lists.
-- `agents/openai.yaml` and `.codex-plugin/plugin.json` alignment.
-- Runtime placeholders, broken paths, script executability, and eval fixtures.
-- README, `AGENTS.md`, `CLAUDE.md`, contribution, changelog, and license files.
-- Plugin version alignment with the latest released changelog entry.
-- Initializer safety with punctuation-heavy values.
-
-Specialized repositories may add domain-specific checks after the baseline gate; they must not
-replace it.
-
-Repository agents should read [AGENTS.md](AGENTS.md); Claude Code receives the same rules through
-the lightweight [CLAUDE.md](CLAUDE.md) pointer. Derived repositories must rewrite both files for
-their own ownership boundary and non-negotiable invariants.
-
-## Versioning and releases
-
-Release each repository independently. The canonical release version lives in:
-
-- `.codex-plugin/plugin.json`
-- The newest released `CHANGELOG.md` heading
-- Git tag `v<version>` and the matching GitHub Release
-
-Do not duplicate the version in `SKILL.md`. Research or design records are appropriate for material
-decisions, not mandatory ceremony for every patch.
-
-## Invocation and installation language
-
-Use `/skill` only as documentation shorthand. Client-facing examples must name the actual form:
-
-- Codex: `$skill`
-- Slash-command clients: `/skill`
-- Other hosts: `@skill`, a skill tool, or natural-language activation
-
-The generated installer keeps Codex and cross-agent paths separate:
+## Examples
 
 ```text
-codex  → ${CODEX_HOME:-$HOME/.codex}/skills
-agents → $HOME/.agents/skills
+$quality run a release go/no-go on this web app before we ship
+
+$quality can we claim this dashboard is WCAG 2.2 AA conformant, or only that we scanned it
+
+$quality our test suite is flaky and nobody trusts a red build anymore
+
+$quality independently verify this agent-built feature before it merges
+
+$quality we need audit-ready evidence for a regulated conformance claim on top of our web app
 ```
 
-## Optional publishing profiles
+## Route by job
 
-The README is every repository's primary GitHub storefront. `--site` keeps the static site and
-Vercel files; `--video` additionally keeps Remotion. Site and video work never block runtime skill
-correctness unless that repository explicitly makes them part of its release scope.
+| User intent | Reads | Contribution |
+|---|---|---|
+| How much verification does this warrant, and what do we skip? | [verification-strategy-and-risk](skills/quality/references/verification-strategy-and-risk.md) | Risk-ranked altitude allocation, the shape debate handled as contested, stopping heuristics, "what we deliberately do not verify" as a required output |
+| How do I know this result means what it appears to mean? ⭐ | [oracles-and-evidence](skills/quality/references/oracles-and-evidence.md) | **Flagship.** Naming the oracle; the four evidence states; the "what this evidence does not establish" table, generatable for any tool |
+| Does the assembled system actually work end to end? | [functional-verification](skills/quality/references/functional-verification.md) | Journeys, cross-service verification, contract testing's limits, evidence capture on failure, untrusted runner output |
+| Can we claim this is accessible? | [accessibility-conformance](skills/quality/references/accessibility-conformance.md) | Conformance vs scan, the machine-testable boundary, claim scope, VPAT/ACR |
+| Is it fast enough, and does the measurement support that? | [performance-and-load-verification](skills/quality/references/performance-and-load-verification.md) | Field vs lab, percentiles and populations, coordinated omission, scores as compressed judgments |
+| Is it secure and privacy-correct, independently of the controls we built? | [security-and-privacy-verification](skills/quality/references/security-and-privacy-verification.md) | Assurance grades, what a clean scan cannot decide, severity precedence conflicts, residual risk in machine-readable form |
+| Which browsers, devices and platforms are in scope? | [compatibility-and-support-matrix](skills/quality/references/compatibility-and-support-matrix.md) | Building the matrix, where its numbers may legitimately come from, and the licence terms on that data |
+| Has the model's behaviour been verified, not just evaluated by its builder? | [ai-behavior-verification](skills/quality/references/ai-behavior-verification.md) | Evals as a gate, judge validity, non-determinism, red-teaming, verifying agent-built work |
+| Can this test suite be believed at all? | [suite-and-signal-health](skills/quality/references/suite-and-signal-health.md) | Coverage semantics, mutation, flake as an evidence-validity problem, suite runtime budget |
+| What is this finding, how bad is it, and where does it go? | [defect-lifecycle](skills/quality/references/defect-lifecycle.md) | ODC classification spine, reproducibility, harm stated in user terms, triage routing |
+| May we ship, and what may we claim? | [release-gate-and-claims](skills/quality/references/release-gate-and-claims.md) | The evidence dossier with its adversarial read, the release/claim split, residual risk with owner and expiry |
 
-**Color-identity system.** Family sites share one chrome — the type system, layout grammar,
-light/dark theming, hero-terminal, and "Start here" shapes — while each skill owns a unique accent:
-the `<accent-light-hex> <accent-dark-hex> <oklch-hue>` triple passed to `scripts/init`, rendered
-into the site tokens and mirrored by the Remotion palette (`remotion/src/theme.ts`).
+**Surface overlay (add at most one base; the regulated overlay stacks additively):**
 
-**Designed per skill, not copied.** The site skeleton is a scaffold. [site/README.md](site/README.md)
-is the binding design brief: inventory the skill's mental model, reshape the sections to match it,
-build purpose-built components, and storyboard a Remotion hero for that skill. Reference build:
-[orchestrate-skill.vercel.app](https://orchestrate-skill.vercel.app).
+| System type | Reads | Reshapes |
+|---|---|---|
+| Web app, SaaS, marketing site, landing page (default) | [surface-web-app-and-site](skills/quality/references/surface-web-app-and-site.md) | The default surface for rendered-experience verification |
+| API or service | [surface-service-api](skills/quality/references/surface-service-api.md) | Verifying a service boundary rather than a rendered experience |
+| iOS or Android | [surface-mobile](skills/quality/references/surface-mobile.md) | Device matrices, store review as an external gate, platform accessibility APIs |
+| Data pipeline | [surface-data-pipeline](skills/quality/references/surface-data-pipeline.md) | Verifying declared contracts hold, or that tracking matches the plan |
+| LLM or agentic system | [surface-ai-system](skills/quality/references/surface-ai-system.md) | Model-driven behaviour is the thing under verification |
+| **Regulated ⭐ (additive)** | [surface-regulated](skills/quality/references/surface-regulated.md) | **Stacks on a base surface.** Conformance claims, traceability, evidence retention, verifier independence |
 
-**GitHub About area.** At release, set the repository description (family style, "Agent skill for
-… — …"), the canonical site alias as homepage, and topics (`agent-skills ai-agents claude
-claude-code` plus domain topics) with `gh repo edit` — see TEMPLATE-CHECKLIST §6.
+Plus [handoff](skills/quality/references/handoff.md) — the `handoff.yaml` companion (with
+`volatile_facts`) for downstream work, typically back to the owning build skill to remediate or to
+`operate` to deploy.
+
+## Outputs
+
+The evidence dossier with its adversarial read, a risk-ranked verification plan naming what is
+deliberately left unverified, findings with an ODC classification and a stated evidence class, a
+release decision and a separate claim decision each with residual risk owned and given an expiry, plus
+fillable worksheets and a `handoff.yaml` companion (carrying `volatile_facts`) that routes findings
+back to the owning skill or forward to `operate` — grounded in what each artifact names and
+date-stamped for re-verification, never a frozen template dump.
+
+## Reference and asset library
+
+18 references under `skills/quality/references/` (11 primary jobs, 5 base surfaces, 1 regulated
+additive overlay, 1 handoff contract) and 8 fillable assets under `skills/quality/assets/`:
+
+- **Assets:** `evidence-dossier.md` · `evidence-worksheet.md` · `risk-matrix.md` · `severity-map.md` ·
+  `flake-policy.md` · `compatibility-matrix.md` · `release-gate-checklist.md` · `handoff.yaml`
+
+## Digital Product lifecycle
+
+`quality` is the **Verify** stage: it consumes `frontend`/`backend`/`data`/`ai`'s built artifacts and
+`handoff.yaml` from Build, and `architecture`'s NFR budgets and threat model where they exist, then
+routes findings back to the owning skill (remediation is out of scope unless explicitly requested) or
+forward to `operate` when the release is cleared to deploy. It does not write tests, set NFR budgets,
+author acceptance criteria, or design experiments. It works standalone with no upstream artifact
+required, and never silently invokes a sibling skill.
+
+## Repository layout
+
+```text
+skills/quality/  runtime skill (SKILL.md + 18 references + 8 assets + agents/openai.yaml)
+evals/           activation · traversal · output · compression-ablation fixtures
+research/        5-channel research corpora + build-gate synthesis
+docs/            installation and usage
+.codex-plugin/   plugin manifest
+```
+
+## Documentation & releases
+
+- [docs/installation.md](docs/installation.md) · [docs/usage.md](docs/usage.md) ·
+  [docs/recipes.md](docs/recipes.md)
+- [CHANGELOG.md](CHANGELOG.md) — release history (current: v0.1.0)
+- [SOURCES.md](skills/quality/SOURCES.md) — source attribution and license posture
+- [CONTRIBUTING.md](CONTRIBUTING.md) — local validation (`scripts/lint-skill`, `scripts/check-sync`)
 
 ## License
 
-[MIT](LICENSE)
+MIT — see [LICENSE](LICENSE).

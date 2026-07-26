@@ -1,7 +1,7 @@
 {
   "name": "quality-skill",
-  "version": "1.0.0",
-  "description": "Independent verification — evidence, not assertion, before you ship",
+  "version": "0.1.0",
+  "description": "Independent evidence before you ship — not another test run",
   "author": {
     "name": "gabros20",
     "url": "https://github.com/gabros20"
@@ -9,17 +9,28 @@
   "homepage": "https://quality-skill.vercel.app",
   "repository": "https://github.com/gabros20/quality-skill",
   "license": "MIT",
-  "keywords": ["agent-skill", "quality"],
+  "keywords": [
+    "agent-skill",
+    "quality",
+    "qa",
+    "verification",
+    "release-gate",
+    "evidence",
+    "accessibility",
+    "risk-management",
+    "test-strategy",
+    "assurance"
+  ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Quality Engineering",
-    "shortDescription": "Independent verification — evidence, not assertion, before you ship",
-    "longDescription": "Independent verification — evidence, not assertion, before you ship",
+    "shortDescription": "Independent evidence before you ship — not another test run",
+    "longDescription": "Faceted-router skill for independent verification: 11 primary jobs (verification strategy and risk, oracles and evidence, functional verification, accessibility conformance, performance and load, security and privacy, compatibility matrices, AI behavior verification, suite and signal health, defect lifecycle, the release gate and claims) across 5 base surfaces (web app and site, service API, mobile, data pipeline, AI/agentic system) plus a regulated additive overlay. Writes no tests — that stays with frontend, backend, data, and ai. Names the oracle behind every verdict, grades evidence into observed/inferred/not_tested/blocked, ships the evidence dossier only together with its adversarial read, and separates the ship decision from the claim decision with residual risk owned and given an expiry.",
     "developerName": "gabros20",
-    "category": "Productivity",
+    "category": "Developer Tools",
     "capabilities": [],
     "defaultPrompt": [
-      "Use $quality to TODO: provide one short starter request."
+      "Use $quality to run a release go/no-go on our web app before we ship, with residual risk owned and dated."
     ],
     "brandColor": "#e11d48"
   }
