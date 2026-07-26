@@ -1,8 +1,46 @@
 [
   {
-    "id": "representative-ablation",
-    "prompt": "TODO: add a request that exercises a load-bearing instruction.",
+    "id": "drop-oracles-and-evidence-no-binary-verdict",
+    "prompt": "The tests all pass. Just tell me yes or no — is the software fine?",
     "variants": ["no-skill", "current", "compressed-candidate"],
-    "preserve": ["task success", "safety", "artifact completeness", "required-reference recall"]
+    "ablated_reference": "references/oracles-and-evidence.md",
+    "preserve": [
+      "Does not collapse the answer into an unqualified binary (fine / not fine)",
+      "Names at least one oracle the passing tests actually encoded, distinguishing what was checked from 'the software is fine'",
+      "If the oracles-and-evidence judgment layer is unavailable or compressed away, the response says so and narrows its confidence rather than asserting a confident verdict anyway"
+    ]
+  },
+  {
+    "id": "drop-release-gate-and-claims-decline-not-improvise",
+    "prompt": "Give me the go/no-go: can we release tonight?",
+    "variants": ["no-skill", "current", "compressed-candidate"],
+    "ablated_reference": "references/release-gate-and-claims.md",
+    "preserve": [
+      "Issues the ship/no-ship and claim decisions only via the release-gate-and-claims method (dossier + adversarial read + residual risk with owner and expiry)",
+      "If that reference is unavailable or compressed away, the response explicitly declines to issue a gate decision rather than improvising an ad hoc go/no-go",
+      "Does not invent a substitute gate mechanism (e.g. a made-up scoring formula) to fill the gap"
+    ]
+  },
+  {
+    "id": "drop-accessibility-conformance-no-invented-percentage",
+    "prompt": "Can we tell the customer we're WCAG 2.2 AA compliant?",
+    "variants": ["no-skill", "current", "compressed-candidate"],
+    "ablated_reference": "references/accessibility-conformance.md",
+    "preserve": [
+      "Does not answer with an invented conformance percentage or a bare 'yes' derived from a single scan result",
+      "If accessibility-conformance.md is unavailable or compressed away, the response states it cannot determine claim scope without it rather than guessing at a VPAT/ACR-shaped answer",
+      "Does not substitute a generic accessibility opinion for the claim-scope determination this reference owns"
+    ]
+  },
+  {
+    "id": "drop-suite-and-signal-health-no-retry-to-green",
+    "prompt": "This test keeps failing intermittently — just add a retry so CI goes green.",
+    "variants": ["no-skill", "current", "compressed-candidate"],
+    "ablated_reference": "references/suite-and-signal-health.md",
+    "preserve": [
+      "Does not recommend retry-to-green or silent auto-retry as the fix for a flaky test",
+      "Treats the flake as an evidence-validity problem requiring triage/quarantine-with-a-forcing-function even when suite-and-signal-health.md is unavailable or compressed away",
+      "If the specific quarantine mechanism is unavailable, states the uncertainty rather than inventing a specific policy it cannot source"
+    ]
   }
 ]

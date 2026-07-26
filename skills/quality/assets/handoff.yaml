@@ -1,0 +1,109 @@
+# quality → owning-skill handoff envelope
+# Fill every field for a real run; delete these comments once filled.
+# Only `objective` is required — every other field may be empty; a consumer must tolerate it
+# absent, never treat absence as a schema violation. See references/release-gate-and-claims.md
+# and references/handoff.md for field-by-field meaning.
+#
+# This file is a routing index, never a copy of the real dossier/evidence artifacts — it points
+# at evidence-dossier.md and the tool outputs it cites, it does not restate them.
+#
+# quality answers two SEPARATE questions. Never collapse them:
+#   - ship_decision   : may this go out the door, residual risk accepted by a named owner?
+#   - claim_decision  : what may we say we verified, to whom, and under what conditions?
+# A product may ship with a recorded exception without earning an unqualified conformance claim.
+
+handoff_version: 1
+skill: quality
+status: complete              # complete | partial | blocked
+
+objective: ""                  # one sentence: what was verified, for what product/surface, at what altitude
+                                 # e.g. "independent verification of checkout-and-payments surface (web-app)
+                                 # for the 2026-07 release: functional, a11y, perf, security"
+
+surface: ""                     # surface-web-app-and-site | surface-service-api | surface-mobile |
+                                 # surface-data-pipeline | surface-ai-system | +surface-regulated (overlay)
+
+inputs_used:
+  - path: ""                    # e.g. artifacts/architecture-nfr-budgets.md, artifacts/backend-handoff.yaml
+    type: ""                    # e.g. nfr-budget, threat-model, acceptance-criteria, contract-implementation
+    owner: ""                   # architecture | product | backend | frontend | ai | data
+
+# --- Evidence ledger --------------------------------------------------------
+# One row per item verified. Never report a weaker evidence class in the vocabulary of a stronger
+# one. See references/oracles-and-evidence.md for the four-state definition.
+evidence:
+  - item: ""                    # what was checked, named concretely — "checkout submit under 3G throttle",
+                                 # not "performance"
+    oracle: ""                  # the thing this verdict rests on — a spec clause, a budget, a scanner rule,
+                                 # a human judgment call. If you cannot name it, this row is not ready.
+    altitude: ""                # unit | integration | system | field — what level this evidence covers
+    evidence_state: ""           # observed | inferred | not_tested | blocked  — REQUIRED, exactly one
+    conditions_of_applicability: ""  # build/commit, browser/device/config, date — evidence may not be
+                                       # extended past what these conditions cover
+    does_not_establish: ""      # what this same result explicitly does NOT prove — pull from
+                                 # assets/evidence-worksheet.md if the tool has a pre-filled row
+    source: ""                  # run URL / report path / reviewer name — typed channel, not scraped prose
+
+# --- Residual risk -----------------------------------------------------------
+# Whatever is unrefuted is residual risk. Every row needs an owner and an expiry — an owner-less
+# or expiry-less risk is not recorded, it is hidden.
+residual_risks:
+  - risk: ""
+    band: ""                    # Critical | High | Medium | Low — from assets/risk-matrix.md
+    owner: ""                   # a named person or role, never "the team"
+    expiry: ""                  # a date or a triggering event ("next release", "2026-10-01")
+    accepted_by: ""              # who accepted this risk for ship purposes
+
+# --- Deliberately not verified -----------------------------------------------
+# Required section, not optional courtesy (ISO/IEC 15026-2 §7.2(b)): omission is permitted, silent
+# omission is not.
+not_verified:
+  - item: ""
+    reason: ""                  # below the risk line | out of declared adversary/scope | deferred to
+                                 # a sibling skill | no oracle exists yet
+    owner: ""                   # who should revisit this
+    revisit_by: ""
+
+# --- Defects routed to owning skills ------------------------------------------
+# quality triages and routes; it does not fix. See references/defect-lifecycle.md.
+defects:
+  - id: ""                      # ticket/issue id if one exists
+    summary: ""
+    severity: ""                # ODC-mapped: see assets/severity-map.md (A0-A3 craft / P0-P3 functional)
+    repro: ""                   # minimal repro, path to it, or "see evidence ledger row N"
+    routed_to: ""                # frontend | backend | ai | data | architecture | operate | product
+    status: ""                  # open | acknowledged | fixed-unverified | verified-fixed
+
+# --- The two decisions, made independently ------------------------------------
+ship_decision:
+  verdict: ""                   # ship | ship-with-exception | block
+  rationale: ""                 # cite the residual-risk rows and stopping heuristic that justify this
+  stopping_heuristic: ""        # which of Bolton's heuristics you actually stopped on — see
+                                 # references/verification-strategy-and-risk.md
+
+claim_decision:
+  may_claim: ""                 # the exact scoped claim — e.g. "WCAG 2.2 AA conformant for the
+                                 # authenticated checkout flow, Chrome/Safari current, as of <date>"
+  may_not_claim: ""              # explicitly what is NOT covered by the claim above — surfaces,
+                                 # browsers, user paths, conditions not tested
+  conformance_level: ""          # if applicable: WCAG level, ASVS L1/L2/L3, etc. — never claim a
+                                 # standard's name with no level
+
+# --- Volatile facts relied on --------------------------------------------------
+# This domain churns: every version, threshold, and licence used above needs a re-verify pointer.
+# Do not invent one; if it wasn't checked, leave reverify_at blank and flag it in not_verified.
+volatile_facts:
+  - fact: ""                    # e.g. "axe-core version pinned", "Lighthouse category weights",
+                                 # "OWASP ASVS version used", "caniuse-lite snapshot date",
+                                 # "80% coverage threshold — no published rationale, Schelling point only"
+    value: ""
+    as_of: ""                   # date this was checked
+    reverify_at: ""             # URL or doc to recheck against
+
+unresolved:
+  - owner: ""
+    question: ""
+
+recommended_next:
+  - skill: ""
+    reason: ""

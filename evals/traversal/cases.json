@@ -1,8 +1,87 @@
 [
   {
-    "id": "primary-route",
-    "prompt": "TODO: add a request that selects one reference.",
-    "expected_references": ["references/example.md"],
+    "id": "regulated-healthcare-web-app-stacks-not-replaces",
+    "prompt": "We're verifying a patient-portal web app before release — it's a regulated healthcare product.",
+    "expected_references": ["references/surface-web-app-and-site.md", "references/surface-regulated.md"],
+    "forbidden_references": [],
+    "must_include": [
+      "surface-web-app-and-site.md must still be read — surface-regulated.md is an additive overlay stacked on top of it, never a replacement for the base web-app-and-site surface"
+    ]
+  },
+  {
+    "id": "passing-tests-broken-feature-reaches-oracles",
+    "prompt": "All our tests pass in CI, but the feature is visibly broken in staging. What's going on?",
+    "expected_references": ["references/oracles-and-evidence.md"],
+    "forbidden_references": [],
+    "must_include": [
+      "Names the oracle the passing tests actually encoded and distinguishes it from the oracle a human just used to see the feature is broken"
+    ]
+  },
+  {
+    "id": "lighthouse-98-reaches-performance-inp-weight-zero",
+    "prompt": "Our Lighthouse score is 98. Are we fast?",
+    "expected_references": ["references/performance-and-load-verification.md"],
+    "forbidden_references": [],
+    "must_include": [
+      "Surfaces that Lighthouse's INP metric carries weight: 0 in the performance score, so a 98 is not evidence about INP",
+      "Notes the score is a compressed judgment (weighted, semi-arbitrarily-chosen coefficients), not a direct measurement"
+    ]
+  },
+  {
+    "id": "wcag-claim-reaches-accessibility-conformance-not-scan",
+    "prompt": "Can we claim WCAG 2.2 AA on the marketing site?",
+    "expected_references": ["references/accessibility-conformance.md"],
+    "forbidden_references": [],
+    "must_include": [
+      "Produces a claim-scope answer (what was tested, sampling method, exceptions, VPAT/ACR-shaped) rather than a single automated-scan pass/fail result"
+    ]
+  },
+  {
+    "id": "data-pipeline-verification-respects-data-seam",
+    "prompt": "We shipped a new transformation last week — get us independent verification the pipeline output is still correct before we tell finance the numbers are trustworthy.",
+    "expected_references": ["references/surface-data-pipeline.md"],
+    "forbidden_references": [],
+    "must_include": [
+      "Does not author or rewrite dbt/pipeline tests itself — construction-side pipeline testing stays owned by data; this reference covers independent verification, oracle-naming, and evidence classes on top of it"
+    ]
+  },
+  {
+    "id": "mobile-release-reaches-surface-mobile-and-gate",
+    "prompt": "We're about to submit the iOS app update to the App Store — is it verified enough to ship?",
+    "expected_references": ["references/surface-mobile.md", "references/release-gate-and-claims.md"],
+    "forbidden_references": []
+  },
+  {
+    "id": "clean-pentest-reaches-security-verification",
+    "prompt": "Our latest pen test came back clean. Are we secure?",
+    "expected_references": ["references/security-and-privacy-verification.md"],
+    "forbidden_references": [],
+    "must_include": [
+      "States that a clean scan is evidence bounded by the scanner's coverage and confidence model, not proof of the absence of vulnerabilities"
+    ]
+  },
+  {
+    "id": "red-ci-reruns-reaches-suite-and-signal-health",
+    "prompt": "Half our CI runs are red for no reason — people just rerun the job until it goes green.",
+    "expected_references": ["references/suite-and-signal-health.md"],
+    "forbidden_references": [],
+    "must_include": [
+      "Treats the flake as an evidence-validity problem and does not recommend retry-to-green"
+    ]
+  },
+  {
+    "id": "qa-bug-found-reaches-defect-lifecycle-and-routes-fix",
+    "prompt": "QA found a bug where two discount codes can be stacked at checkout. Log it.",
+    "expected_references": ["references/defect-lifecycle.md"],
+    "forbidden_references": [],
+    "must_include": [
+      "Routes the actual fix to the owning construction skill rather than patching the code itself"
+    ]
+  },
+  {
+    "id": "prompt-version-regression-reaches-ai-behavior-verification",
+    "prompt": "We shipped a new prompt version for the support bot — how do we know it didn't regress before we enable it for everyone?",
+    "expected_references": ["references/ai-behavior-verification.md", "references/surface-ai-system.md"],
     "forbidden_references": []
   }
 ]

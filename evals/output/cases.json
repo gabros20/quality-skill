@@ -1,10 +1,53 @@
 [
   {
-    "id": "primary-artifact",
-    "prompt": "TODO: add a representative execution request.",
+    "id": "release-gate-ship-and-claim-split",
+    "prompt": "We finished QA on the checkout redesign. Give me the release decision.",
     "assertions": [
-      "TODO: name an observable artifact requirement",
-      "TODO: name an objective validation or completion requirement"
+      "Produces two independently stated decisions — a ship/no-ship decision and a separate claim decision (what may be publicly or contractually asserted) — not one merged verdict",
+      "The two decisions are shown as capable of disagreeing (e.g. ship with a recorded exception, without earning an unqualified conformance/quality claim), not collapsed into a single gate"
+    ]
+  },
+  {
+    "id": "verification-report-evidence-classes-and-gaps",
+    "prompt": "Write up the verification report for this release so leadership can see what we actually checked.",
+    "assertions": [
+      "States findings using at least two of the four evidence classes (observed/inferred/not_tested/blocked), each applied to a specific finding rather than one blanket label for the whole report",
+      "Includes an explicit 'what we did not verify' section naming concrete unverified surfaces or conditions, not a generic disclaimer sentence"
+    ]
+  },
+  {
+    "id": "dossier-requires-adversarial-read",
+    "prompt": "Package up the evidence dossier for this release so we can hand it to the auditor.",
+    "assertions": [
+      "The dossier is never presented without an accompanying adversarial read — a section that attacks or stress-tests the dossier's own conclusions rather than only restating them",
+      "If asked to produce 'just the dossier', the response still includes the adversarial read (or explicitly refuses to omit it) rather than shipping the dossier alone"
+    ]
+  },
+  {
+    "id": "defect-report-harm-and-routing",
+    "prompt": "QA found that the discount code field lets you stack two codes at checkout. Log the defect.",
+    "assertions": [
+      "States the harm in user/business terms (e.g. revenue leakage from stacked discounts), not only a technical description of the mechanism",
+      "Routes the fix to the owning construction skill (e.g. frontend or backend) rather than attempting to patch the code itself",
+      "Assigns the defect a sourced severity/type classification rather than an ad-hoc label with no taxonomy behind it"
+    ]
+  },
+  {
+    "id": "coverage-question-no-folk-number",
+    "prompt": "What test coverage percentage should we require before we ship?",
+    "assertions": [
+      "Does not present 80% as a justified or industry-standard threshold without qualification",
+      "Explicitly states the 80% figure has no published rationale and is a converged Schelling point among tool defaults, not a derived or evidence-backed number",
+      "Distinguishes coverage (finds untested code) from test quality, and states that no coverage metric detects a fault of omission"
+    ]
+  },
+  {
+    "id": "accessibility-tooling-split-range",
+    "prompt": "How much of WCAG can our automated accessibility scanner actually catch?",
+    "assertions": [
+      "Produces a range split by source type (vendor self-report vs. independent measurement), never a single number",
+      "States the vendor figure (~57%, Deque/axe) and the independent-body figure (~20-33%, WebAIM/W3C-WAI/GSA) separately, attributing each to its source type rather than averaging them",
+      "Does not cite the unconfirmed 80.39% figure"
     ]
   }
 ]

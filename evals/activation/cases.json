@@ -1,12 +1,68 @@
 [
   {
-    "id": "positive-explicit",
-    "prompt": "Use $quality to TODO: add a realistic in-scope request.",
-    "should_trigger": true
+    "id": "positive-ship-readiness",
+    "prompt": "We're about to cut the release for Friday — is this ready to ship?",
+    "should_trigger": true,
+    "expected_route": "quality"
   },
   {
-    "id": "negative-near-miss",
-    "prompt": "TODO: add a realistic request owned by the closest neighboring skill.",
-    "should_trigger": false
+    "id": "positive-accessibility-audit",
+    "prompt": "Audit this app for accessibility before we tell the customer we're compliant.",
+    "should_trigger": true,
+    "expected_route": "quality"
+  },
+  {
+    "id": "positive-flaky-suite-trust",
+    "prompt": "Our test suite is flaky and nobody trusts it anymore — half the team just re-runs failures until they go green.",
+    "should_trigger": true,
+    "expected_route": "quality"
+  },
+  {
+    "id": "positive-agent-verification-claim",
+    "prompt": "How do I know the agent actually verified this feature works, instead of just saying it did?",
+    "should_trigger": true,
+    "expected_route": "quality"
+  },
+  {
+    "id": "negative-decline-to-frontend-unit-tests",
+    "prompt": "Write unit tests for this React component.",
+    "should_trigger": false,
+    "expected_route": "frontend"
+  },
+  {
+    "id": "negative-decline-to-data-dbt-tests",
+    "prompt": "Add dbt tests to this staging model.",
+    "should_trigger": false,
+    "expected_route": "data"
+  },
+  {
+    "id": "negative-decline-to-ai-eval-set",
+    "prompt": "Build an eval set for my RAG app so I can compare prompt versions.",
+    "should_trigger": false,
+    "expected_route": "ai"
+  },
+  {
+    "id": "negative-decline-to-operate-ci",
+    "prompt": "Set up the CI pipeline to run our test suite on every PR.",
+    "should_trigger": false,
+    "expected_route": "operate"
+  },
+  {
+    "id": "negative-decline-to-architecture-latency-budget",
+    "prompt": "What should our latency budget be for the checkout API?",
+    "should_trigger": false,
+    "expected_route": "architecture"
+  },
+  {
+    "id": "negative-decline-to-growth-ab-test",
+    "prompt": "Design an A/B test for the new pricing page — variants, hypothesis, rollout percentage.",
+    "should_trigger": false,
+    "expected_route": "growth"
+  },
+  {
+    "id": "negative-decline-to-owning-skill-diff-review",
+    "prompt": "Review this diff before I merge it.",
+    "should_trigger": false,
+    "expected_route": "owning skill (the skill that built the code under review, e.g. frontend/backend)"
   }
 ]
