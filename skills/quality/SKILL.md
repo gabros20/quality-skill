@@ -84,6 +84,7 @@ Emitting for downstream work → [handoff](references/handoff.md).
 | Design or read out an experiment | `growth` |
 | Fix what verification found | the owning skill, unless remediation is explicitly in scope |
 | Design intent, usability critique against that intent | `design` |
+| Design the verification approach for a workflow spanning vendors you cannot deploy to — no staging, the vendor's sandbox isn't the system | `automation`'s workflow-testing; the go/no-go on that workflow still belongs to `quality` |
 
 ## Universal invariants
 

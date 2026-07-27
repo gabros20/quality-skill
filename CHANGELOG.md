@@ -10,6 +10,12 @@ The release procedure synchronizes `.codex-plugin/plugin.json`, this changelog, 
 ### Added
 - Queue unreleased changes here.
 
+## [0.1.2] — 2026-07-27
+
+### Fixed
+- "Not this skill" table: added a row for cross-vendor workflow verification design, routing it to
+  `automation`'s `workflow-testing` while keeping the go/no-go on that workflow with `quality`.
+
 ## [0.1.1] — 2026-07-26
 
 ### Changed
@@ -48,4 +54,5 @@ The release procedure synchronizes `.codex-plugin/plugin.json`, this changelog, 
 - Independent Opus review completed same-day: 0 blockers, 8 S-major and 9 N-minor findings, all
   resolved before release (`.review/findings.md`).
 
+[0.1.2]: https://github.com/gabros20/quality-skill/releases/tag/v0.1.2
 [0.1.0]: https://github.com/gabros20/quality-skill/releases/tag/v0.1.0
