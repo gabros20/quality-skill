@@ -170,3 +170,11 @@ surface-ai-system · surface-regulated (additive) · handoff
 Assets — `handoff.yaml` (with `volatile_facts`) · `evidence-dossier.md` · `evidence-worksheet.md` ·
 `risk-matrix.md` · `severity-map.md` · `flake-policy.md` · `compatibility-matrix.md` ·
 `release-gate-checklist.md`
+
+## Artifact home
+
+Deliverables this skill produces default to `digital-product/quality/` at the working repository's
+root, with cross-skill state in `digital-product/LEDGER.md` — created on first use and committed
+with the repo. The `digital-product` composer skill owns this convention; solo use writes to the
+same place. Never write into `.orchestrate/` — that folder belongs to an orchestration run's
+execution state, not to this family's deliverables.
