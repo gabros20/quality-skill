@@ -2,6 +2,8 @@
 
 **Visual guide:** [quality-skill.vercel.app](https://quality-skill.vercel.app)
 
+**Family hub:** [digital-product-skill.vercel.app](https://digital-product-skill.vercel.app) — the 15-skill Digital Product family and its composer.
+
 Provide **independent evidence** that an assembled product meets its functional and non-functional
 expectations, and convert that evidence into **two separate decisions: may we ship, and what may we
 claim.** `quality` is the **Verify** stage of the [Digital Product Skills](https://github.com/gabros20)
