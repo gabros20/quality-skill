@@ -151,6 +151,18 @@ unrelated good work talk a P0 or an unfixed P1 down into something shippable. Th
 blunt: it does not weigh a P0 against how much else went well, because that weighing is exactly the
 rationalization the rule is designed to block.
 
+**Check the verdict record against its own findings, mechanically.** A GO that lists an unresolved P0
+or unfixed P1, an approve with open A0/A1 items, or a revise with an empty blocking list is a
+malformed record — reject it, do not reinterpret it. The usual cause is a scale that never says which
+severity blocks, which is how a GO gets issued beside a P1 that leaves a whole viewport's navigation
+unreachable.
+
+**Name the non-downgradable findings before review.** A reviewer left to weigh will rationalize an
+identity break as "an acceptable stand-in." For each job, list the findings that block whatever else
+is good — on a fidelity rebuild: a substituted brand or hero image, a text stand-in for a graphic
+logo, an interactive feature delivered as a static shell — and read the criteria's own allowances for
+loopholes: "replace a broken image" is not licence to replace a missing one.
+
 This rule composes with the round-convergence discipline owned by `release-gate-and-claims.md`: round
 one of a review may never be an unconditional sign-off, and from round two on, approve the moment
 blocking severities (A0/A1, P0, and any un-fixed P1) clear — round-over-round, only escalate, never
@@ -174,6 +186,12 @@ the handoff:
 
 An unclassified "bug" handed to an owning skill with no severity and no repro is not a triage — it is
 an unfiled complaint, and it will not survive contact with a backlog.
+
+**Cascades file as one chain.** When several findings share a root — a write left a required field
+empty, so a block would not publish, so the page 404s — link them to the root: severity follows the
+worst user-facing harm in the chain, routing follows the root. A finding in a third-party dependency
+goes upstream when it is reproducible, systemic, and actionable by that owner; otherwise it stays a
+local workaround with its residual risk recorded.
 
 ## Failure modes and handoff
 

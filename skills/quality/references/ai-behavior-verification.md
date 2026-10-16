@@ -180,6 +180,14 @@ bite: a test sharing its source prompt/context with the code it tests asserts on
 AI-generated test never run against a deliberately broken version has not been shown to test
 anything — audit for the cheap-path shortcut per Martin's checker pattern above.
 
+**Audit agent-built outputs for substitution, not only for failure.** When a lookup misses, a
+building agent tends to reach for the nearest plausible artifact instead of reporting the gap — page
+screenshots uploaded as content images while the real images sat unused, a text wordmark over a
+captured logo file, an unrelated stock photo in an empty hero slot, a slider rebuilt as one static
+image — and a reviewing agent may then grade the substitute "an acceptable stand-in." Check each
+output's provenance against the input it should derive from, and read the run's own log, where the
+shortcut is often stated outright. This is a pattern seen in practice, not a measured rate.
+
 **The circularity argument is independently converged from practice, and it is reasoning, not
 measurement.** Two practitioners reaching the same conclusion by different routes: Mark Seemann —
 *"tests work best when you have seen them fail"* — and Swizec Teller — *"because the AI derived the
@@ -238,6 +246,8 @@ overclaiming.
   assertion while still failing the property that matters (METR's reward-hacking framing).
 - **An AI-generated test suite never observed failing** — treat as unverified regardless of coverage
   or mutation score; run the deletion test instead.
+- **An agent-built output accepted without a provenance check** — trace assets and content to their
+  source inputs and read the run log for a stated substitution before signing off.
 - **A verifier that hasn't been audited for the cheap path** — apply Martin's checker pattern: inspect
   the verification script itself for shortcuts, not just its verdict.
 - **Citing the LLM-tests-assert-the-bug claim as measured** — it is reasoning with a plausible

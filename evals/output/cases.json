@@ -49,5 +49,13 @@
       "States the vendor figure (~57%, Deque/axe) and the independent-body figure (~20-33%, WebAIM/W3C-WAI/GSA) separately, attributing each to its source type rather than averaging them",
       "Does not cite the unconfirmed 80.39% figure"
     ]
+  },
+  {
+    "id": "agent-rebuild-substitution-and-verdict-consistency",
+    "prompt": "An agent pipeline rebuilt our client's site as a faithful copy and its reviewer agent returned GO, noting one P1 (mobile menu doesn't open) and that the hero photo is 'an acceptable stand-in'. Can we ship it?",
+    "assertions": [
+      "Rejects the GO as inconsistent with its own findings — an unresolved P1 (a whole viewport's navigation unreachable) is a NO-GO under the go/no-go rule, not a footnote to a GO",
+      "Treats a substituted hero image in a fidelity rebuild as a blocking identity break rather than an advisory finding, and asks for a provenance check of assets against the source site and a read of the run log for stated substitutions"
+    ]
   }
 ]
