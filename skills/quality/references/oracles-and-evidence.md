@@ -53,7 +53,9 @@ unavailable by construction. Grading the evidence, not trusting the verdict, is 
 3. Decide whether the oracle is mechanical (a computable predicate, same answer every run) or
    requires a human in the loop. A check can only evaluate a proposition someone already decided
    was worth asking and phrased precisely enough for a machine — it cannot notice a problem nobody
-   thought to ask about.
+   thought to ask about. If the proposition is computable, compute it: a reviewer, human or model,
+   hand-tracing "does every route exist, does every block type have a renderer" is a weaker and more
+   fudgeable oracle than the script that counts. Keep judgment for what cannot be computed.
 4. State what the oracle cannot decide. Every oracle has a boundary; naming it is the deliverable.
 5. Record it: `oracle: <name/type> — decides: <proposition> — cannot decide: <boundary>`.
 
@@ -106,7 +108,7 @@ The operational vocabulary every reference and the dossier use. Report a result 
 | `not_tested` | No evidence exists. Must be labelled deliberate (a scoped decision, with the stopping heuristic or risk rank it was traded against) or accidental (a gap that needs an owner). | A surface out of this release's risk allocation. |
 | `blocked` | Verification was attempted and could not complete — environment, access, or tooling failure. Distinct from `not_tested`: this was tried. | A scan that timed out; a rule axe-core itself returns as `incomplete`. |
 
-Three rules, non-negotiable:
+Four rules, non-negotiable:
 1. **Never report a weaker class in the vocabulary of a stronger one.** An `inferred` result does
    not get written up as `observed`; a `blocked` scan does not get written up as `not_tested` (it
    was attempted) or silently dropped.
@@ -117,6 +119,12 @@ Three rules, non-negotiable:
    compositional fallacy. Component-level `observed` results do not transitively become
    product-level `observed` results; the composition itself is a separate proposition with its own
    oracle.
+4. **A "not found" is evidence about the instrument until a second probe confirms it.** A crawler
+   reading a cleaned or rendered variant can report a hero video missing while a plain fetch of the
+   raw response carries its URL inline; a vendor compatibility table that omits a feature does not
+   show the current release lacks it. Report an unconfirmed absence as `inferred` (`blocked` if the
+   probe failed), never as an `observed` absence, and confirm it with a rawer, independent instrument
+   before it drives a decision.
 
 In the wild: a rule axe-core returns as `incomplete`, or ACT marks `manual`/`semiAuto`, is `blocked`
 — not silently `observed` as a pass. "Passing" a scan with unresolved incomplete rules is not the
@@ -167,7 +175,8 @@ inspected the QA script for API calls. This prevented the QA from cheating."
 Three questions to ask about the check itself, before its result is trusted:
 1. **Has it ever been observed failing?** An assertion never seen to fail against a deliberately
    broken version has not been demonstrated capable of failing — it is not yet known to be an
-   oracle at all.
+   oracle at all. The cheapest way to watch a gate fail: replay it against an archived run already
+   known to be bad — it should fail on exactly the defects that run shipped.
 2. **Does the verifier share a source of truth with the thing it verifies?** If the same process
    produced both the implementation and its check, they cannot check each other. Keep one
    independent oracle: a pre-existing spec, real recorded traffic, a different model, or a
@@ -182,7 +191,17 @@ Three questions to ask about the check itself, before its result is trusted:
    > conformance claim are all instances of this rule, not of that one.
 3. **Can this verification layer pass without exercising the real path?** If it can, it eventually
    will. Audit the verifier itself, the way Martin's checker audits the QA script, rather than
-   trusting its verdict.
+   trusting its verdict. The common shapes, each a pass for a proposition nobody exercised — report
+   the proposition `not_tested` or `blocked`, never passed:
+   - **The write path's confirmation instead of the read path users consume** — an authoring API
+     lists content as created while the delivery path serves 404; a `published` flag disagrees with
+     what is actually served. Verify through the path the user reads.
+   - **A gate over an empty set** — zero pages selected, a validator that skips when its input
+     artifact is missing. Zero inputs must fail loudly.
+   - **A fail-open guard** — its silence means "no positive match", not "checked and clean".
+   - **An acceptance criterion stated only in prose**, or enforced at a warn level nobody reads.
+   - **A proxy comparison** — nav labels compared but not link targets; "has a section" accepted on
+     a page an order of magnitude smaller than its siblings. Compare against peers, not only existence.
 
 General form, not AI-specific: **an instrument that can satisfy its success criterion without
 exercising the real path eventually will, whether the author is a human or an agent.**
@@ -193,7 +212,8 @@ discipline underneath it.
 - Every result carried into a dossier names its oracle and states what that oracle cannot decide.
 - Every check the dossier relies on has been observed failing at least once, and does not share a
   source of truth with the thing it verifies.
-- No result is reported in the vocabulary of a stronger evidence state than it earned.
+- No result is reported in the vocabulary of a stronger evidence state than it earned; no absence is
+  reported `observed` on one instrument's word.
 - No composite score is cited without checking whether its weights carry a stated rationale.
 - The a11y coverage figure, if cited, is the split range (57% vendor / 20–33% independent), never
   a single number.

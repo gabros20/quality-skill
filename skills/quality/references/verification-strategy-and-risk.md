@@ -77,6 +77,11 @@ is invisible to an auditor and cannot be defended when budget is cut. Minimum re
 An effort with no risk item behind it is either gold-plating a Low item or verifying something nobody
 ranked — both are findings worth surfacing in the dossier, not silently absorbing.
 
+**Sampling within a surface follows the same rank.** When only some of a site's pages or routes get
+verified, select by rank — home, conversion and navigation-linked pages, shallow before deep — never
+by sitemap or crawl order, which silently truncates whatever sorts last. Record the selection rule and
+who set it; everything not selected goes on the "deliberately not verified" list.
+
 ## The shape debate: contested, not resolved
 
 Pyramid (Cohn), trophy (Dodds), honeycomb (Spotify) disagree about where test *mass* should sit —
