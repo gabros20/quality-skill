@@ -143,6 +143,16 @@ the check that follows will exercise real conditions. Where readiness is checked
 alone, treat any run against that environment as resting on the weakest oracle in the chain —
 regardless of how strong the assertions layered on top of it are.
 
+**A substitute counts only for the properties it implements.** Stand-in backends, local emulators
+and test doubles are picked for convenience; check each against the property under test before
+trusting its pass. An S3-compatible store that does not implement conditional writes cannot be the
+create-if-absent oracle; a client anywhere in the chain that drops the conditional header turns the
+test into an unconditional write; a container with systemd as PID 1 does not reproduce a host's
+login-session policy. Pair each property with a control that must fail (a second create of the same
+key is refused), name which environment tier can exercise it, and record "unsupported here" as
+`not_tested` for the others. Where the real target rejects the mechanism outright, the rejection is
+the finding, not a failure to retry.
+
 ### 4. Evidence-capture doctrine: what must survive a failure
 **An unreproducible failure is a weaker evidence class than a reproducible one**, even when both are
 "failed." If nothing survives past the run — no trace, no video, no log — the only evidence left is
@@ -225,6 +235,8 @@ recognize it as such and continue. The structural rules it forces:
       run, and names what the contract test does not cover.
 - [ ] Environment-readiness checks are named (port-listening vs HTTP-status vs healthcheck), not
       assumed strong.
+- [ ] Every stand-in backend, emulator or test double is shown to implement the property it is
+      trusted for, with a control that must fail; unsupported tiers are recorded `not_tested`.
 - [ ] Every failure retained as evidence has the artifacts its capture policy promised (trace/video/
       log) — a failure with nothing attached is logged as a weaker evidence class, not silently
       upgraded.

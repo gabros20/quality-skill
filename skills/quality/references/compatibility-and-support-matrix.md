@@ -178,7 +178,11 @@ verified. Keep engine and browser identity distinct in every row: what was actua
 (engine + version, e.g. "WebKit 26.0 via Playwright") versus what a user experiences (the branded,
 vendor-shipped browser, which may embed a different engine build, different flags, or different
 OS-level compositor behavior). Where the two are known to diverge, name the automation engine
-explicitly rather than borrowing the consumer browser's name for it.
+explicitly rather than borrowing the consumer browser's name for it. The same holds below the
+browser: an x86 machine run through Rosetta on Apple silicon translates x86_64 binaries on an ARM host
+(docs.orbstack.dev/machines, checked 2026-10-17 — "OrbStack uses Rosetta to run Linux machines with
+Intel (x86_64/amd64) binaries"), which does not establish native x86_64 behaviour — record the architecture actually executed, and
+keep a native host in the matrix for any property that depends on it.
 
 ### 7. Dated review — the matrix goes stale silently
 Nothing about a compatibility matrix fails loudly when it goes out of date:
