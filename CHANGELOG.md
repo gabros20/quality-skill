@@ -8,7 +8,23 @@ The release procedure synchronizes `.codex-plugin/plugin.json`, this changelog, 
 ## [Unreleased]
 
 ### Added
-- Queue unreleased changes here.
+- **Rebuild and migration verification** (`surface-web-app-and-site.md`, router row): the source site
+  as the oracle, with the oracle keyed to the declared intent (fidelity vs redesign); computable parity
+  checks (routes/redirects, every kept link including nested menus and multi-segment paths, copy and
+  metadata, block-renderer coverage, asset provenance, widget behaviour, residue); status code and
+  rendered content as separate propositions; the probe's client as part of the oracle; screenshot
+  evidence validity; computed style as an oracle a green build is not.
+- **Oracles:** an unconfirmed "not found" is `inferred`, not an observed absence; compute what is
+  computable; replay a gate against a known-bad archived run to watch it fail; the common shapes of a
+  pass for a proposition nobody exercised (write-path confirmation, empty-set gates, fail-open guards,
+  prose-only criteria, proxy comparisons).
+- **Functional / compatibility:** a substitute counts only for the properties it implements, with a
+  control that must fail; an emulated architecture is not the native one.
+- **Strategy:** page/route sampling follows the risk rank, never crawl order.
+- **Defects:** verdict-record consistency check, non-downgradable findings named before review,
+  cascades filed as one chain, upstream-filing filter. **AI behaviour:** audit agent-built outputs for
+  substitution and read the run log.
+- One traversal and one output eval case.
 
 ## [0.1.2] — 2026-07-27
 
