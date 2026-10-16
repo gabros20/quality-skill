@@ -4,7 +4,8 @@ Purpose: Decide which jobs matter most, in what order, and with what oracles whe
 verification is a browser-rendered web application, SaaS product, marketing site, or landing page.
 
 Read when: the default surface applies — anything rendered in a browser, including marketing and
-landing pages, which are first-class here rather than an afterthought.
+landing pages, which are first-class here rather than an afterthought, and the rebuild, redesign or
+platform migration of an existing site.
 
 Inputs: the running application or site; performance budgets and threat model from `architecture`
 if they exist; the accessibility claim being contemplated, if any.
@@ -30,6 +31,9 @@ the claims characteristically overstated here.
 - [Job order](#job-order)
 - [Oracles available on this surface](#oracles-available-on-this-surface)
 - [Oracles not available on this surface](#oracles-not-available-on-this-surface)
+- [Rebuilds and migrations: the source site is the oracle](#rebuilds-and-migrations-the-source-site-is-the-oracle)
+- [Status, content, and the probe's client](#status-content-and-the-probes-client)
+- [Screenshot evidence has its own failure modes](#screenshot-evidence-has-its-own-failure-modes)
 - [Achievable evidence](#achievable-evidence)
 - [Characteristic overclaims](#characteristic-overclaims)
 
@@ -66,6 +70,9 @@ for a marketing surface; do not inherit a SaaS-app risk ranking and assume it tr
 ## Oracles available on this surface
 
 - Rendered DOM and computed accessibility tree — directly inspectable, not inferred.
+- Computed style (`getComputedStyle`) — whether a design token actually reached the element. A green
+  build is no oracle for this: a stylesheet optimizer can drop a whole token block on a parse error it
+  reports only as a soft warning, leaving layout intact and every font and size at its fallback.
 - Public production traffic, which unlocks field performance data (CrUX) unavailable pre-launch.
 - Cross-browser automation grids (Playwright projects, BrowserStack/Sauce-class services) for a real,
   if partial, rendering matrix.
@@ -84,6 +91,56 @@ for a marketing surface; do not inherit a SaaS-app risk ranking and assume it tr
 - **No production-truth for conversion rate at verification time.** Verification can show the path
   completes; it cannot show users take it, or take it at the rate the business needs — that is a
   `growth` question, not this skill's.
+
+## Rebuilds and migrations: the source site is the oracle
+
+When an existing site is rebuilt, redesigned, or moved to a new platform, the live source is the
+strongest oracle this surface ever gets — a complete, pre-existing statement of routes, copy, assets
+and behaviour that nobody on the build side authored. Run these checks inside job order 3.
+
+**The oracle follows the declared intent.** A faithful rebuild is judged against the source; a
+redesign holds some dimensions to it (copy, routes, brand) and deliberately changes others (look,
+layout). Fix per dimension which are held, and how strictly, before review starts: a taste rubric on a
+fidelity job flags correct reproduction as a defect, and a fidelity rubric on a redesign blocks the
+change that was ordered.
+
+| Parity check (computable against the source) | What fails silently without it |
+|---|---|
+| Every source route has a built route or a redirect | Dropped pages; lost inbound links after a URL change |
+| Every kept internal link resolves — **nested menu entries and multi-segment paths included** | Header/footer links to pages never built; a fix verified on a flat nav that misses mega-menus |
+| Copy and metadata, at the strictness the intent sets | Copy rewritten in a job that promised to keep it |
+| Every content-block type has a renderer | A block with no renderer renders nothing and raises no error |
+| Each brand and hero asset traces to a captured source asset | Stock photo in a missing hero slot; text wordmark for a graphic logo |
+| Interactive widgets (slider, carousel, accordion, tabs) still behave | An interactive feature rebuilt as a static shell |
+| Residue: sitemap/robots base URL, placeholder images, dev-only routes | A shipped sitemap pointing at a placeholder domain |
+
+**An identity break is never polish.** In a fidelity job, a substituted brand image, a text stand-in
+for a logo, or a static shell for an interactive feature blocks — name these non-downgradable before
+review (`defect-lifecycle.md`). A placeholder is a legitimate fallback when no asset exists; an
+*uncounted* placeholder is silent omission — report how many slots fell back.
+
+## Status, content, and the probe's client
+
+**Status code and rendered content are separate propositions; assert both.** A `200` can be a
+deployment-protection login page, a soft-404, or an error page served as success; a friendly
+not-found page can look identical to the intended page in a screenshot while returning `404`.
+"Every route returns 200" is evidence about status codes, not about pages.
+
+**The probe's client is part of the oracle.** A bare HTTP client runs no lazy-loading and can be
+refused (`403`) by bot or hotlink protection a real browser passes; a crawler's cleaned or headless
+view can be a degraded variant of what the raw response carries. Match the client to how users fetch,
+and log every fetch failure as `blocked` — a failure silently dropped from a link or asset check reads
+as a pass.
+
+## Screenshot evidence has its own failure modes
+
+A screenshot is evidence of the page only once it shows the settled state; until then a blank or
+duplicated region is a finding about the capture. Known artifacts: full-page capture under mobile
+emulation can mis-stitch into repeated content; a fast scroll-and-reset leaves scroll-triggered
+reveals unfired, so content sits at zero opacity while the DOM is correct; downscaled full-page shots
+hide section detail; a capture to an unresolvable path can write no file and raise no error. Confirm a
+visual defect in the DOM before filing it; capture after step-scrolling (or with reduced motion forced
+so reveals settle), per section at native resolution, at a desktop and a mobile viewport.
 
 ## Achievable evidence
 

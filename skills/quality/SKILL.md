@@ -62,7 +62,7 @@ invoke them automatically unless the user explicitly requested a composition wor
 
 | Surface | Read | When |
 |---|---|---|
-| Web app, SaaS, marketing site, landing page | [surface-web-app-and-site](references/surface-web-app-and-site.md) | Default |
+| Web app, SaaS, marketing site, landing page, site rebuild or migration | [surface-web-app-and-site](references/surface-web-app-and-site.md) | Default; on a rebuild the source site is the oracle |
 | API or service | [surface-service-api](references/surface-service-api.md) | Verifying a service boundary rather than a rendered experience |
 | iOS or Android | [surface-mobile](references/surface-mobile.md) | Device matrices, store review as an external gate, platform accessibility APIs |
 | Data pipeline | [surface-data-pipeline](references/surface-data-pipeline.md) | Verifying declared contracts hold, or that tracking matches the plan |

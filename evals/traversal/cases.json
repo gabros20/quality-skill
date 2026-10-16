@@ -115,5 +115,15 @@
       "Names at least one specific thing the passing contract test does not establish (e.g. semantic correctness of the response body, authorization enforcement per role/resource, behavior under real concurrent load, or backward compatibility across every live consumer version)",
       "Distinguishes 'the boundary is compatible' from 'the system works for every live consumer' rather than treating the green contract test alone as sufficient evidence to ship"
     ]
+  },
+  {
+    "id": "site-rebuild-reaches-web-surface-source-as-oracle",
+    "prompt": "We rebuilt an existing client marketing site on a new stack, keeping its copy and URLs. The build is green and every route returns 200. Can we hand it over?",
+    "expected_references": ["references/surface-web-app-and-site.md", "references/oracles-and-evidence.md"],
+    "forbidden_references": ["references/surface-service-api.md"],
+    "must_include": [
+      "Uses the source site as the oracle and names concrete parity checks against it (routes or redirects, every kept nav/footer link resolving including nested menu entries, copy/metadata parity, real source assets rather than substitutes, interactive widgets still behaving)",
+      "States that a 200 status and a green build do not establish that the pages render the intended content (a login wall, soft-404 or error page can return 200; design tokens can silently fail to apply), so rendered content is asserted separately"
+    ]
   }
 ]
