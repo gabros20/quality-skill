@@ -8,6 +8,11 @@ The release procedure synchronizes `.codex-plugin/plugin.json`, this changelog, 
 ## [Unreleased]
 
 ### Added
+- Queue unreleased changes here.
+
+## [0.2.0] — 2026-10-17
+
+### Added
 - **Rebuild and migration verification** (`surface-web-app-and-site.md`, router row): the source site
   as the oracle, with the oracle keyed to the declared intent (fidelity vs redesign); computable parity
   checks (routes/redirects, every kept link including nested menus and multi-segment paths, copy and
@@ -74,5 +79,6 @@ The release procedure synchronizes `.codex-plugin/plugin.json`, this changelog, 
 - Independent Opus review completed same-day: 0 blockers, 8 S-major and 9 N-minor findings, all
   resolved before release (`.review/findings.md`).
 
+[0.2.0]: https://github.com/gabros20/quality-skill/releases/tag/v0.2.0
 [0.1.2]: https://github.com/gabros20/quality-skill/releases/tag/v0.1.2
 [0.1.0]: https://github.com/gabros20/quality-skill/releases/tag/v0.1.0
