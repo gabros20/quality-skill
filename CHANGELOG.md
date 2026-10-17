@@ -8,6 +8,11 @@ The release procedure synchronizes `.codex-plugin/plugin.json`, this changelog, 
 ## [Unreleased]
 
 ### Added
+- Queue unreleased changes here.
+
+## [0.4.0] — 2026-10-17
+
+### Added
 - **Voice: evidence at the caller's ear** (`surface-ai-system.md`): a claim-by-claim table of what
   supports a voice agent's latency, task-completion, interruption-handling, and recognition claims and
   what does not extend to them — voice-to-voice latency at the ear (vendor figures are
@@ -102,6 +107,7 @@ The release procedure synchronizes `.codex-plugin/plugin.json`, this changelog, 
 - Independent Opus review completed same-day: 0 blockers, 8 S-major and 9 N-minor findings, all
   resolved before release (`.review/findings.md`).
 
+[0.4.0]: https://github.com/gabros20/quality-skill/releases/tag/v0.4.0
 [0.3.0]: https://github.com/gabros20/quality-skill/releases/tag/v0.3.0
 [0.2.0]: https://github.com/gabros20/quality-skill/releases/tag/v0.2.0
 [0.1.2]: https://github.com/gabros20/quality-skill/releases/tag/v0.1.2
