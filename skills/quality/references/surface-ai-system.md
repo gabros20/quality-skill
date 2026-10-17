@@ -5,13 +5,14 @@ from `ai`'s development-instrument role when the thing under verification is an 
 product feature.
 
 Read when: model-driven behaviour is the thing under verification, rather than the application
-surrounding it.
+surrounding it — or an agent that takes actions is about to be called production-ready or autonomous.
 
 Inputs: the AI feature and its model/prompt versions; `ai`'s eval set, treated here as an artifact
 under scrutiny rather than as authority; the declared adversary and defended-against maximum.
 
 Produces: a surface-specific job order, an evaluation-as-gate posture distinct from
-evaluation-as-instrument, a judge-validity assessment, and a red-team scope with its limits.
+evaluation-as-instrument, a judge-validity assessment, a red-team scope with its limits, and the
+recovery and side-effect drills an action-taking claim must carry.
 
 ## Skip when:
 
@@ -30,6 +31,7 @@ evaluation-as-instrument, a judge-validity assessment, and a red-team scope with
 - [Non-determinism](#non-determinism)
 - [Judge validity](#judge-validity)
 - [Red-teaming](#red-teaming)
+- [Recovery and side-effect evidence](#recovery-and-side-effect-evidence)
 
 ## Job order
 
@@ -88,3 +90,41 @@ of an attack nobody tried. State the adversary's declared maximum capability and
 attempted before reporting a clean red-team result — an unstated scope is the silent-omission failure
 the skill's invariants forbid elsewhere. Full technique, including eval-set leakage risk (an attack the
 model was trained or fine-tuned against is not evidence about a novel one), in `ai-behavior-verification.md`.
+
+## Recovery and side-effect evidence
+
+An agent that acts fails where no behavioural eval looks: a worker dies between a downstream success
+and the local receipt, an approval arrives twice, a deploy lands under a paused run. A
+**"production-ready" or "autonomous actions" claim is a claim about those conditions**, so a pass rate
+on answer quality cannot support it. Before either claim enters the dossier
+(`release-gate-and-claims.md` "The evidence dossier"), each drill below is a row in the
+requirement-to-evidence matrix with its evidence state. A drill not run is `not_tested`, and the claim
+narrows to the conditions the run drills cover, or is not made.
+
+This skill plans the drills and judges their evidence; it writes none of them. The owning Build pack
+writes and runs each one — `backend` for worker, delivery, revocation, cancellation and budget;
+`frontend` for reconnect; `data` for deletion propagation; `ai` for injection; `operate` runs the
+staging restore — and hands back the artifact.
+
+| Drill | Refutes the proposition that… | Oracle |
+|---|---|---|
+| Kill the worker before, during, and after a tool call, including after downstream success but before the local receipt | recovery never repeats or loses an effect | One external effect per logical operation, or an explicit unknown outcome sent to review |
+| Deliver the same start, webhook, and approval event twice | duplicates collapse | One logical effect and one charge |
+| Reconnect from another device during a run | replay is faithful | No duplicate or superseded final output |
+| Revoke a connector or tenant membership while a run waits | resume re-checks access | The now-forbidden action is blocked |
+| Cancel while specialists run | cancel stops future work | Future work stops, resources release, completed effects are recorded (cancel is not undo) |
+| Delete a user fact and a source document | deletion propagates | Absent from vectors, summaries, caches, artifacts, active contexts, and restored checkpoints; backups follow a declared deletion/replay policy |
+| Deploy a changed workflow, tool, or skill version with older runs paused | paused runs resume intentionally | They resume under the declared compatibility policy, and an approved action keeps its meaning |
+| Inject hostile instructions through a web page, tool description, skill, memory candidate, and document | content cannot become authority | No permission escalation, no cross-tenant access |
+| Exhaust a tenant budget and a provider quota | exhaustion degrades boundedly | Bounded retries, fair scheduling, a clear partial-result status |
+| Restore the database and object metadata in staging | recovery meets its targets | Measured recovery time and data loss against targets declared beforehand (`operate` `recoverability.md`) |
+
+Across the set, a pass is **one external effect, a correct receipt, and a recoverable user-visible
+run** — read from the target system's final state and its receipt, never from the agent's transcript
+saying it acted. A drill whose downstream effect nobody looked up is `inferred` at best, never
+`observed`. Evidence stays inside its conditions: a public single-turn benchmark says nothing about
+multi-step tool trajectories, a staging restore is not a production restore, and a drill run against
+last release's workflow versions says nothing about this one. The injection drill is red-teaming and
+inherits its limits (above); OWASP's AI Agent Security Cheat Sheet abuse-case matrix (approval bypass,
+memory poisoning, recursive tool abuse, multi-agent chaining; observed 2026-10-17) names classes to
+put in or out of its declared scope.

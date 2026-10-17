@@ -83,6 +83,10 @@ And Semgrep's rule registry was relicensed 2024-12-13: the engine remains LGPL-2
 - **OWASP** — WSTG 4.2 · **ASVS 5.0.0** (L1/L2/L3 verification levels) · Top 10:2025 ·
   **LLM Top 10:2025** — https://owasp.org/
 - **NIST AI RMF** (four functions, seven trustworthy-AI characteristics) · ISO/IEC 42001 · EU AI Act
+- **OWASP AI Agent Security Cheat Sheet** — the abuse-case test matrix (prompt override, tool misuse,
+  privilege escalation, memory poisoning, data exfiltration, recursive tool abuse, approval bypass,
+  multi-agent chaining) scoping the injection drill in `surface-ai-system.md`; observed 2026-10-17 —
+  https://cheatsheetseries.owasp.org/cheatsheets/AI_Agent_Security_Cheat_Sheet.html
 - **Core Web Vitals** — LCP 2.5s / INP 200ms / CLS 0.1 at the 75th percentile;
   field-over-lab primacy — https://web.dev/articles/vitals
 - **OpenVEX** `not_affected` justification enum — residual risk in machine-readable form

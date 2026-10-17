@@ -57,5 +57,15 @@
       "Rejects the GO as inconsistent with its own findings — an unresolved P1 (a whole viewport's navigation unreachable) is a NO-GO under the go/no-go rule, not a footnote to a GO",
       "Treats a substituted hero image in a fidelity rebuild as a blocking identity break rather than an advisory finding, and asks for a provenance check of assets against the source site and a read of the run log for stated substitutions"
     ]
+  },
+  {
+    "id": "autonomous-agent-claim-recovery-evidence",
+    "prompt": "Plan the verification we need before we tell customers our booking agent can act autonomously on their calendars and payments.",
+    "assertions": [
+      "Plans recovery and side-effect drills as required evidence for the autonomy claim, each with its proposition and oracle (one external effect, a correct receipt, a recoverable user-visible run)",
+      "Assigns writing and running each drill to the owning skill (backend, frontend, data, ai, operate) and writes no tests itself",
+      "Places each drill as a requirement-to-evidence row in the evidence dossier, with an untested drill recorded as not_tested and the claim narrowed accordingly",
+      "Keeps evidence inside its conditions: a staging restore is not a production restore, and the restore is measured against targets declared beforehand"
+    ]
   }
 ]
