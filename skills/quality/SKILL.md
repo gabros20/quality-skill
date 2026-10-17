@@ -66,7 +66,7 @@ invoke them automatically unless the user explicitly requested a composition wor
 | API or service | [surface-service-api](references/surface-service-api.md) | Verifying a service boundary rather than a rendered experience |
 | iOS or Android | [surface-mobile](references/surface-mobile.md) | Device matrices, store review as an external gate, platform accessibility APIs |
 | Data pipeline | [surface-data-pipeline](references/surface-data-pipeline.md) | Verifying declared contracts hold, or that tracking matches the plan |
-| LLM or agentic system | [surface-ai-system](references/surface-ai-system.md) | Model-driven behaviour is the thing under verification, or an action-taking agent is about to be called production-ready |
+| LLM or agentic system, including a voice agent | [surface-ai-system](references/surface-ai-system.md) | Model-driven behaviour is the thing under verification, an action-taking agent is about to be called production-ready, or a voice claim needs caller's-ear evidence |
 | **Regulated (additive overlay)** | [surface-regulated](references/surface-regulated.md) | **Stacks on a base surface.** Conformance claims, traceability, evidence retention, verifier independence |
 
 Emitting for downstream work → [handoff](references/handoff.md).

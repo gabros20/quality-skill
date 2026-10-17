@@ -140,5 +140,22 @@
       "States that an answer-quality pass rate does not support an autonomous-actions claim, and asks for recovery and side-effect drills (worker killed around a tool call, duplicate start/webhook/approval delivery, revocation while waiting, cancellation, paused runs across a deploy, injection, budget exhaustion, staging restore) as dossier rows with evidence states",
       "Treats any drill not run as not_tested and narrows or withholds the claim, and routes writing the drills to the owning build skills rather than writing them itself"
     ]
+  },
+  {
+    "id": "voice-agent-claim-caller-ear-evidence",
+    "prompt": "Our vendor says our phone voice agent responds in 500 ms and our text-mode evals pass at 92%. Can we tell customers it answers fast and resolves most calls?",
+    "expected_references": [
+      "references/surface-ai-system.md",
+      "references/release-gate-and-claims.md"
+    ],
+    "forbidden_references": [
+      "references/surface-mobile.md",
+      "references/accessibility-conformance.md"
+    ],
+    "must_include": [
+      "Treats the vendor latency figure as vendor-reported, never observed for this deployment, and requires voice-to-voice latency measured at the caller's ear at p50/p95/p99",
+      "Refuses to extend text-mode or clean-audio pass rates to calls, requiring task completion on audio with the deployment's noise, accents, language, and codec",
+      "Routes writing the voice evals to ai and lists unsimulated conditions under what was deliberately not verified"
+    ]
   }
 ]

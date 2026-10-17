@@ -67,5 +67,16 @@
       "Places each drill as a requirement-to-evidence row in the evidence dossier, with an untested drill recorded as not_tested and the claim narrowed accordingly",
       "Keeps evidence inside its conditions: a staging restore is not a production restore, and the restore is measured against targets declared beforehand"
     ]
+  },
+  {
+    "id": "voice-agent-interruption-and-judge-evidence",
+    "prompt": "We want to claim our voice agent handles interruptions naturally. Our testing platform's LLM judge rates 95% of simulated calls as good. Is that enough evidence?",
+    "assertions": [
+      "Splits interruption handling into two opposing rates from labelled calls (false yields vs swallowed interruptions) plus whether the reply after the interruption is correct, rather than one blended rate",
+      "Holds the judge's verdict at inferred until it is calibrated on a human-labelled sample of the product's own calls",
+      "Names the interest behind any platform comparison it cites and does not let it license a platform choice",
+      "States that a simulated caller covers only the simulated conditions and lists the rest as not verified",
+      "Dates the passing run to the speech-provider configuration it ran against"
+    ]
   }
 ]

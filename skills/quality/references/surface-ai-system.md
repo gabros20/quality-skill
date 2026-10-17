@@ -5,14 +5,16 @@ from `ai`'s development-instrument role when the thing under verification is an 
 product feature.
 
 Read when: model-driven behaviour is the thing under verification, rather than the application
-surrounding it — or an agent that takes actions is about to be called production-ready or autonomous.
+surrounding it — or an agent that takes actions is about to be called production-ready or autonomous,
+or a voice agent's latency, task completion, or interruption handling is about to be claimed.
 
 Inputs: the AI feature and its model/prompt versions; `ai`'s eval set, treated here as an artifact
 under scrutiny rather than as authority; the declared adversary and defended-against maximum.
 
 Produces: a surface-specific job order, an evaluation-as-gate posture distinct from
 evaluation-as-instrument, a judge-validity assessment, a red-team scope with its limits, and the
-recovery and side-effect drills an action-taking claim must carry.
+recovery and side-effect drills an action-taking claim must carry, and the caller's-ear evidence a
+voice claim needs.
 
 ## Skip when:
 
@@ -32,6 +34,7 @@ recovery and side-effect drills an action-taking claim must carry.
 - [Judge validity](#judge-validity)
 - [Red-teaming](#red-teaming)
 - [Recovery and side-effect evidence](#recovery-and-side-effect-evidence)
+- [Voice: evidence at the caller's ear](#voice-evidence-at-the-callers-ear)
 
 ## Job order
 
@@ -127,3 +130,27 @@ restore, and a drill run against last release's workflow versions says nothing a
 injection drill is red-teaming and inherits its limits (above); OWASP's AI Agent Security Cheat Sheet
 abuse-case matrix (approval bypass, memory poisoning, recursive tool abuse, multi-agent chaining;
 observed 2026-10-17) names classes to put in or out of its declared scope.
+
+## Voice: evidence at the caller's ear
+
+A voice agent's claims — it responds fast, finishes the task, handles being interrupted — are claims
+about what a caller hears, so evidence gathered anywhere else stays inside its own conditions
+(`oracles-and-evidence.md` "The "what this evidence does not establish" table"). `ai` writes and
+runs the voice evals (`surface-voice.md` "Voice evals at the caller's ear"); this skill judges whether
+they support the claim.
+
+| Claim | Supported by | Does not extend from |
+|---|---|---|
+| Latency | Voice-to-voice at the ear (end of caller speech → first agent audio heard), p50/p95/p99 over enough turns that a few outliers do not set p95, on the deployed transport | Summed stage medians; a vendor's latency figure — vendor-reported provenance, never `observed` for this deployment |
+| Task completion | Pass rate against the target system's final state, on audio with the deployment's noise, accents, language, and codec | Text-mode runs or clean-audio simulation: on τ-Voice, voice agents reach 31–51% pass@1 on clean audio and 26–38% with noise and accents, against 85% for a text agent — 30–45% of text capability (PMLR v306, ICML 2026; observed 2026-10-17) |
+| Interruption handling | Labelled calls scored as two opposing rates — false yields (stopped for a backchannel or noise) and swallowed interruptions (talked over a real one) — plus whether the reply after the interruption is right | One blended "interruption rate", or timing alone: on EchoChain no real-time voice model passes more than 50% of post-interruption state updates (arXiv 2604.16456; observed 2026-10-17) |
+| Recognition | Task-relevant error rate on the product's own calls, in its language and codec | English or wideband public benchmarks |
+
+A simulated caller is evidence only for the conditions it simulates; each unsimulated one (an accent,
+line noise, a language, the telephony codec) is a line in "What we deliberately did not verify". A
+judge that scores calls stays `inferred` until calibrated on a human-labelled sample of the product's
+own calls (Judge validity, above). The one human-validated comparison of voice-testing platforms
+(21,600 pairwise judgments) found 0.92 against 0.73 evaluation F1, with the top platform's staff among
+the authors (arXiv 2511.04133; observed 2026-10-17) — interest named, it licenses no platform choice.
+Speech providers change defaults under a deployed agent with no deploy, so a passing audio run is
+dated to the provider configuration it ran against.
