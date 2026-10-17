@@ -14,7 +14,8 @@ The release procedure synchronizes `.codex-plugin/plugin.json`, this changelog, 
   vendor-reported, never `observed` here), task completion on audio with the deployment's noise,
   accents, language, and codec (τ-Voice, PMLR v306), false yields vs swallowed interruptions plus
   post-interruption correctness (EchoChain, arXiv 2604.16456), recognition on the product's own
-  calls. Simulated callers cover only simulated conditions; call judges stay `inferred` until
+  calls, containment trends against the product's own baseline (no neutral industry baseline).
+  Simulated callers cover only simulated conditions; call judges stay `inferred` until
   calibrated on the product's own calls (arXiv 2511.04133, interest named); audio runs dated to the
   provider configuration. `ai` writes the evals (`surface-voice.md`). Router row, Read-when/Produces,
   traversal and output evals.
