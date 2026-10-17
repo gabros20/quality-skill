@@ -7,6 +7,11 @@ The release procedure synchronizes `.codex-plugin/plugin.json`, this changelog, 
 
 ## [Unreleased]
 
+### Added
+- Queue unreleased changes here.
+
+## [0.4.1] — 2026-10-17
+
 ### Fixed
 - `evals/traversal` `site-rebuild-reaches-web-surface-source-as-oracle`: expects only
   `surface-web-app-and-site` (where the source-as-oracle checks live); a hand-over question can
@@ -109,6 +114,7 @@ The release procedure synchronizes `.codex-plugin/plugin.json`, this changelog, 
 - Independent Opus review completed same-day: 0 blockers, 8 S-major and 9 N-minor findings, all
   resolved before release (`.review/findings.md`).
 
+[0.4.1]: https://github.com/gabros20/quality-skill/releases/tag/v0.4.1
 [0.4.0]: https://github.com/gabros20/quality-skill/releases/tag/v0.4.0
 [0.3.0]: https://github.com/gabros20/quality-skill/releases/tag/v0.3.0
 [0.2.0]: https://github.com/gabros20/quality-skill/releases/tag/v0.2.0
