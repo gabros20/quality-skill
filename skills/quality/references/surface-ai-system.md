@@ -112,11 +112,11 @@ column writes and runs each one and hands back the artifact.
 | Reconnect from another device during a run | replay is faithful | No duplicate or superseded final output | `frontend` |
 | Revoke a connector or tenant membership while a run waits | resume re-checks access | The now-forbidden action is blocked | `backend` |
 | Cancel while specialists run | cancel stops future work | Future work stops, resources release, completed effects are recorded (cancel is not undo) | `backend` |
-| Delete a user fact and a source document | deletion propagates | Absent from vectors, summaries, caches, artifacts, active contexts, and restored checkpoints; backups follow a declared deletion/replay policy | `data` |
+| Delete a user fact and a source document | deletion propagates | Absent from vectors, summaries, caches, artifacts, active contexts, and restored checkpoints; backups follow a declared deletion/replay policy | `ai` (memory forget path, `memory.md` "Governed memory — applies to all four philosophies") · `data` (source document through the index) |
 | Deploy a changed workflow, tool, or skill version with older runs paused | paused runs resume intentionally | They resume under the declared compatibility policy, and an approved action keeps its meaning | `backend` (version pins); `operate` runs the deploy |
 | Inject hostile instructions through a web page, tool description, skill, memory candidate, and document | content cannot become authority | No permission escalation, no cross-tenant access | `ai` |
 | Exhaust a tenant budget and a provider quota | exhaustion degrades boundedly | Bounded retries, fair scheduling, a clear partial-result status | `backend` |
-| Restore the database and object metadata in staging | recovery meets its targets | Measured recovery time and data loss against targets declared beforehand (`operate` `recoverability.md`) | `operate` |
+| Restore the database and object metadata in staging | recovery meets its targets | Measured recovery time and data loss against targets declared beforehand (`operate` `recoverability.md` "MTD → RTO → RPO, in that order") | `operate` |
 
 Across the set, a pass is **one external effect, a correct receipt, and a recoverable user-visible
 run** — read from the target system's final state and its receipt. An effect taken only from the
