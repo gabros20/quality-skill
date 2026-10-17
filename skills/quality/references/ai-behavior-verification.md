@@ -181,12 +181,12 @@ AI-generated test never run against a deliberately broken version has not been s
 anything — audit for the cheap-path shortcut per Martin's checker pattern above.
 
 **Audit agent-built outputs for substitution, not only for failure.** When a lookup misses, a
-building agent tends to reach for the nearest plausible artifact instead of reporting the gap — page
-screenshots uploaded as content images while the real images sat unused, a text wordmark over a
-captured logo file, an unrelated stock photo in an empty hero slot, a slider rebuilt as one static
-image — and a reviewing agent may then grade the substitute "an acceptable stand-in." Check each
-output's provenance against the input it should derive from, and read the run's own log, where the
-shortcut is often stated outright. This is a pattern seen in practice, not a measured rate.
+building agent can reach for the nearest plausible artifact instead of reporting the gap — page
+screenshots uploaded as content images while the real images sat unused (the reviewer's side of this
+is `defect-lifecycle.md`'s non-downgradable list). Check each output's provenance against the input it
+should derive from, and read the run's own log, where the shortcut may be stated outright — and a
+silent log is not a clean one when logging was left to the agent. This is a pattern seen in practice,
+not a measured rate.
 
 **The circularity argument is independently converged from practice, and it is reasoning, not
 measurement.** Two practitioners reaching the same conclusion by different routes: Mark Seemann —

@@ -147,9 +147,10 @@ regardless of how strong the assertions layered on top of it are.
 and test doubles are picked for convenience; check each against the property under test before
 trusting its pass. An S3-compatible store that does not implement conditional writes cannot be the
 create-if-absent oracle; a client anywhere in the chain that drops the conditional header turns the
-test into an unconditional write; a container with systemd as PID 1 does not reproduce a host's
-login-session policy. Pair each property with a control that must fail (a second create of the same
-key is refused), name which environment tier can exercise it, and record "unsupported here" as
+test into an unconditional write; a container with systemd as PID 1 is not evidence of a host's
+login-session policy until shown to enforce it. Pair each property with a control that must fail (a
+second create of the same key is refused), run the control under the credential scope production
+uses — a test holding admin rights cannot observe the refusal it checks — name which environment tier can exercise it, and record "unsupported here" as
 `not_tested` for the others. Where the real target rejects the mechanism outright, the rejection is
 the finding, not a failure to retry.
 

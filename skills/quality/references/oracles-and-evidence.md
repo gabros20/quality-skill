@@ -176,7 +176,8 @@ Three questions to ask about the check itself, before its result is trusted:
 1. **Has it ever been observed failing?** An assertion never seen to fail against a deliberately
    broken version has not been demonstrated capable of failing — it is not yet known to be an
    oracle at all. The cheapest way to watch a gate fail: replay it against an archived run already
-   known to be bad — it should fail on exactly the defects that run shipped.
+   known to be bad — it should fail on each known defect inside its scope; a known defect it passes
+   is a gap in the gate.
 2. **Does the verifier share a source of truth with the thing it verifies?** If the same process
    produced both the implementation and its check, they cannot check each other. Keep one
    independent oracle: a pre-existing spec, real recorded traffic, a different model, or a

@@ -73,6 +73,11 @@ for a marketing surface; do not inherit a SaaS-app risk ranking and assume it tr
 - Computed style (`getComputedStyle`) — whether a design token actually reached the element. A green
   build is no oracle for this: a stylesheet optimizer can drop a whole token block on a parse error it
   reports only as a soft warning, leaving layout intact and every font and size at its fallback.
+  Likewise a contrast check over design-token pairs establishes the contrast of the declared pairs, not
+  what renders — text over images, overridden or fallback styles, opacity and state variants; when the
+  token block above was dropped, a token-level contrast check still passes. Rendered contrast is a
+  DOM/computed-style proposition (`accessibility-conformance.md`). *Reasoning from the check's
+  construction, not a measured result.*
 - Public production traffic, which unlocks field performance data (CrUX) unavailable pre-launch.
 - Cross-browser automation grids (Playwright projects, BrowserStack/Sauce-class services) for a real,
   if partial, rendering matrix.
@@ -114,9 +119,8 @@ change that was ordered.
 | Interactive widgets (slider, carousel, accordion, tabs) still behave | An interactive feature rebuilt as a static shell |
 | Residue: sitemap/robots base URL, placeholder images, dev-only routes | A shipped sitemap pointing at a placeholder domain |
 
-**An identity break is never polish.** In a fidelity job, a substituted brand image, a text stand-in
-for a logo, or a static shell for an interactive feature blocks — name these non-downgradable before
-review (`defect-lifecycle.md`). A placeholder is a legitimate fallback when no asset exists; an
+**An identity break is never polish.** In a fidelity job a failure on the asset-provenance or widget
+row blocks; name these non-downgradable before review (`defect-lifecycle.md`). A placeholder is a legitimate fallback when no asset exists; an
 *uncounted* placeholder is silent omission — report how many slots fell back.
 
 ## Status, content, and the probe's client
@@ -127,8 +131,8 @@ not-found page can look identical to the intended page in a screenshot while ret
 "Every route returns 200" is evidence about status codes, not about pages.
 
 **The probe's client is part of the oracle.** A bare HTTP client runs no lazy-loading and can be
-refused (`403`) by bot or hotlink protection a real browser passes; a crawler's cleaned or headless
-view can be a degraded variant of what the raw response carries. Match the client to how users fetch,
+refused (`403`) by bot or hotlink protection a real browser passes, and a crawler's cleaned view can
+miss what the raw response carries (`oracles-and-evidence.md` §3 rule 4). Match the client to how users fetch,
 and log every fetch failure as `blocked` — a failure silently dropped from a link or asset check reads
 as a pass.
 
@@ -138,7 +142,8 @@ A screenshot is evidence of the page only once it shows the settled state; until
 duplicated region is a finding about the capture. Known artifacts: full-page capture under mobile
 emulation can mis-stitch into repeated content; a fast scroll-and-reset leaves scroll-triggered
 reveals unfired, so content sits at zero opacity while the DOM is correct; downscaled full-page shots
-hide section detail; a capture to an unresolvable path can write no file and raise no error. Confirm a
+hide section detail; third-party embeds (maps, video iframes) can render black or blank headless; a
+capture to an unresolvable path can write no file and raise no error. Confirm a
 visual defect in the DOM before filing it; capture after step-scrolling (or with reduced motion forced
 so reveals settle), per section at native resolution, at a desktop and a mobile viewport.
 

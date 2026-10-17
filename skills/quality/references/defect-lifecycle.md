@@ -153,14 +153,13 @@ rationalization the rule is designed to block.
 
 **Check the verdict record against its own findings, mechanically.** A GO that lists an unresolved P0
 or unfixed P1, an approve with open A0/A1 items, or a revise with an empty blocking list is a
-malformed record — reject it, do not reinterpret it. The usual cause is a scale that never says which
+malformed record — reject it, do not reinterpret it. One cause is a scale that never says which
 severity blocks, which is how a GO gets issued beside a P1 that leaves a whole viewport's navigation
 unreachable.
 
-**Name the non-downgradable findings before review.** A reviewer left to weigh will rationalize an
+**Name the non-downgradable findings before review.** A reviewer left to weigh can rationalize an
 identity break as "an acceptable stand-in." For each job, list the findings that block whatever else
-is good — on a fidelity rebuild: a substituted brand or hero image, a text stand-in for a graphic
-logo, an interactive feature delivered as a static shell — and read the criteria's own allowances for
+is good — on a fidelity rebuild, the identity breaks in `surface-web-app-and-site.md` — and read the criteria's own allowances for
 loopholes: "replace a broken image" is not licence to replace a missing one.
 
 This rule composes with the round-convergence discipline owned by `release-gate-and-claims.md`: round
