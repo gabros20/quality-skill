@@ -73,11 +73,10 @@ for a marketing surface; do not inherit a SaaS-app risk ranking and assume it tr
 - Computed style (`getComputedStyle`) — whether a design token actually reached the element. A green
   build is no oracle for this: a stylesheet optimizer can drop a whole token block on a parse error it
   reports only as a soft warning, leaving layout intact and every font and size at its fallback.
-  Likewise a contrast check over design-token pairs establishes the contrast of the declared pairs, not
-  what renders — text over images, overridden or fallback styles, opacity and state variants; when the
-  token block above was dropped, a token-level contrast check still passes. Rendered contrast is a
-  DOM/computed-style proposition (`accessibility-conformance.md`). *Reasoning from the check's
-  construction, not a measured result.*
+  Likewise a contrast check over design-token pairs establishes the declared pairs, not what renders
+  — text over images, fallback styles, opacity and state variants; with the token block dropped it
+  still passes. Rendered contrast is a computed-style proposition (`accessibility-conformance.md`);
+  this is reasoning from the check's construction, not a measurement.
 - Public production traffic, which unlocks field performance data (CrUX) unavailable pre-launch.
 - Cross-browser automation grids (Playwright projects, BrowserStack/Sauce-class services) for a real,
   if partial, rendering matrix.
@@ -99,53 +98,53 @@ for a marketing surface; do not inherit a SaaS-app risk ranking and assume it tr
 
 ## Rebuilds and migrations: the source site is the oracle
 
-When an existing site is rebuilt, redesigned, or moved to a new platform, the live source is the
-strongest oracle this surface ever gets — a complete, pre-existing statement of routes, copy, assets
-and behaviour that nobody on the build side authored. Run these checks inside job order 3.
+When an existing site is rebuilt, redesigned, or re-platformed, the live source is the strongest
+oracle this surface gets — a pre-existing statement of routes, copy, assets and behaviour that nobody
+on the build side authored. Run these checks in job order 3.
 
 **The oracle follows the declared intent.** A faithful rebuild is judged against the source; a
-redesign holds some dimensions to it (copy, routes, brand) and deliberately changes others (look,
-layout). Fix per dimension which are held, and how strictly, before review starts: a taste rubric on a
-fidelity job flags correct reproduction as a defect, and a fidelity rubric on a redesign blocks the
-change that was ordered.
+redesign holds some dimensions to it (copy, routes, brand) and changes others (look, layout). Fix
+per dimension which are held, and how strictly, before review: a taste rubric on a fidelity job
+flags correct reproduction, and a fidelity rubric on a redesign blocks the ordered change.
 
 | Parity check (computable against the source) | What fails silently without it |
 |---|---|
 | Every source route has a built route or a redirect | Dropped pages; lost inbound links after a URL change |
-| Every kept internal link resolves — **nested menu entries and multi-segment paths included** | Header/footer links to pages never built; a fix verified on a flat nav that misses mega-menus |
+| Every kept internal link resolves — **nested menu entries and multi-segment paths included** | Links to pages never built; a fix verified only on a flat nav |
 | Copy and metadata, at the strictness the intent sets | Copy rewritten in a job that promised to keep it |
 | Every content-block type has a renderer | A block with no renderer renders nothing and raises no error |
-| Each brand and hero asset traces to a captured source asset | Stock photo in a missing hero slot; text wordmark for a graphic logo |
-| Interactive widgets (slider, carousel, accordion, tabs) still behave | An interactive feature rebuilt as a static shell |
-| Residue: sitemap/robots base URL, placeholder images, dev-only routes | A shipped sitemap pointing at a placeholder domain |
+| Each brand and hero asset traces to a captured source asset | Stock photo in an empty hero slot; text wordmark for a logo |
+| Interactive widgets (slider, carousel, tabs) still behave | An interactive feature rebuilt as a static shell |
+| Residue: sitemap/robots base URL, placeholder images, dev-only routes | A sitemap on a placeholder domain |
 
 **An identity break is never polish.** In a fidelity job a failure on the asset-provenance or widget
-row blocks; name these non-downgradable before review (`defect-lifecycle.md`). A placeholder is a legitimate fallback when no asset exists; an
-*uncounted* placeholder is silent omission — report how many slots fell back.
+row blocks; name these non-downgradable before review (`defect-lifecycle.md`). A placeholder is a
+legitimate fallback when no asset exists; an *uncounted* placeholder is silent omission — report how
+many slots fell back.
 
 ## Status, content, and the probe's client
 
 **Status code and rendered content are separate propositions; assert both.** A `200` can be a
 deployment-protection login page, a soft-404, or an error page served as success; a friendly
 not-found page can look identical to the intended page in a screenshot while returning `404`.
-"Every route returns 200" is evidence about status codes, not about pages.
+"Every route returns 200" is evidence about status codes, not pages.
 
 **The probe's client is part of the oracle.** A bare HTTP client runs no lazy-loading and can be
 refused (`403`) by bot or hotlink protection a real browser passes, and a crawler's cleaned view can
-miss what the raw response carries (`oracles-and-evidence.md` §3 rule 4). Match the client to how users fetch,
-and log every fetch failure as `blocked` — a failure silently dropped from a link or asset check reads
-as a pass.
+miss what the raw response carries (`oracles-and-evidence.md` §3 rule 4). Match the client to how
+users fetch, and log every fetch failure as `blocked` — one silently dropped from a link or asset
+check reads as a pass.
 
 ## Screenshot evidence has its own failure modes
 
 A screenshot is evidence of the page only once it shows the settled state; until then a blank or
-duplicated region is a finding about the capture. Known artifacts: full-page capture under mobile
-emulation can mis-stitch into repeated content; a fast scroll-and-reset leaves scroll-triggered
-reveals unfired, so content sits at zero opacity while the DOM is correct; downscaled full-page shots
-hide section detail; third-party embeds (maps, video iframes) can render black or blank headless; a
-capture to an unresolvable path can write no file and raise no error. Confirm a
-visual defect in the DOM before filing it; capture after step-scrolling (or with reduced motion forced
-so reveals settle), per section at native resolution, at a desktop and a mobile viewport.
+duplicated region is a capture finding. Known artifacts: full-page capture under mobile emulation
+can mis-stitch into repeated content; a fast scroll-and-reset leaves scroll-triggered reveals
+unfired, at zero opacity while the DOM is correct; downscaled shots hide section detail; third-party
+embeds (maps, video iframes) can render black headless; a capture to an unresolvable path can write
+no file and no error. Confirm a visual defect in the DOM before filing it; capture after
+step-scrolling (or with reduced motion forced), per section at native resolution, desktop and
+mobile.
 
 ## Achievable evidence
 
