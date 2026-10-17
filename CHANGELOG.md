@@ -25,6 +25,10 @@ The release procedure synchronizes `.codex-plugin/plugin.json`, this changelog, 
   cascades filed as one chain, upstream-filing filter. **AI behaviour:** audit agent-built outputs for
   substitution and read the run log.
 - One traversal and one output eval case.
+- **Cross-pack alignment with `design` and `frontend` on rebuilds:** a disclosed, owner-approved
+  generated fill in a non-brand, non-hero decorative slot is a declared gap, not a substitution; a
+  placeholder route is a declared gap, and one without `noindex` or listed in the sitemap is a soft-404
+  defect; "fidelity" cross-names frontend's "faithful rebuild" and design's "reproduce".
 
 ## [0.1.2] — 2026-07-27
 
