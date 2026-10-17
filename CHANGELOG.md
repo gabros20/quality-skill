@@ -7,8 +7,10 @@ The release procedure synchronizes `.codex-plugin/plugin.json`, this changelog, 
 
 ## [Unreleased]
 
-### Added
-- Queue unreleased changes here.
+### Fixed
+- `evals/traversal` `site-rebuild-reaches-web-surface-source-as-oracle`: expects only
+  `surface-web-app-and-site` (where the source-as-oracle checks live); a hand-over question can
+  legitimately pick `release-gate-and-claims` or `oracles-and-evidence` as its job.
 
 ## [0.4.0] — 2026-10-17
 

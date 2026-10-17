@@ -119,7 +119,7 @@
   {
     "id": "site-rebuild-reaches-web-surface-source-as-oracle",
     "prompt": "We rebuilt an existing client marketing site on a new stack, keeping its copy and URLs. The build is green and every route returns 200. Can we hand it over?",
-    "expected_references": ["references/surface-web-app-and-site.md", "references/oracles-and-evidence.md"],
+    "expected_references": ["references/surface-web-app-and-site.md"],
     "forbidden_references": ["references/surface-service-api.md"],
     "must_include": [
       "Uses the source site as the oracle and names concrete parity checks against it (routes or redirects, every kept nav/footer link resolving including nested menu entries, copy/metadata parity, real source assets rather than substitutes, interactive widgets still behaving)",
