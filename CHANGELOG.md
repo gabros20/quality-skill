@@ -12,7 +12,7 @@ The release procedure synchronizes `.codex-plugin/plugin.json`, this changelog, 
   supports a voice agent's latency, task-completion, interruption-handling, and recognition claims and
   what does not extend to them — voice-to-voice latency at the ear (vendor figures are
   vendor-reported, never `observed` here), task completion on audio with the deployment's noise,
-  accents, language, and codec (τ-Voice, PMLR v306), false yields vs swallowed interruptions plus
+  accents, language, and codec (τ-Voice figures in `ai` `surface-voice.md`), false yields vs swallowed interruptions plus
   post-interruption correctness (EchoChain, arXiv 2604.16456), recognition on the product's own
   calls, containment trends against the product's own baseline (no neutral industry baseline).
   Simulated callers cover only simulated conditions; call judges stay `inferred` until

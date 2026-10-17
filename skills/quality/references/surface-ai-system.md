@@ -141,7 +141,7 @@ they support the claim.
 | Claim | Supported by | Does not extend from |
 |---|---|---|
 | Latency | Voice-to-voice at the ear (caller speech end → first agent audio heard), p50/p95/p99 over enough turns that outliers do not set p95, on the deployed transport | Summed stage medians; a vendor's figure — vendor-reported, never `observed` here |
-| Task completion | Pass rate against the target system's final state, on audio with the deployment's noise, accents, language, and codec | Text-mode runs or clean-audio simulation: on τ-Voice, voice agents keep 30–45% of text pass@1, lower again with noise and accents (PMLR v306; observed 2026-10-17) |
+| Task completion | Pass rate against the target system's final state, on audio with the deployment's noise, accents, language, and codec | Text-mode runs or clean-audio simulation: on τ-Voice a text pass does not predict a voice pass (figures: `ai` `surface-voice.md` "Voice evals at the caller's ear") |
 | Interruption handling | Labelled calls scored as two opposing rates — false yields (stopped for a backchannel or noise) and swallowed interruptions (talked over a real one) — plus whether the reply after it is right | One blended rate, or timing alone: on EchoChain no real-time voice model passes over 50% of post-interruption state updates (arXiv 2604.16456; observed 2026-10-17) |
 | Recognition | Task-relevant error rate on the product's own calls, in its language and codec | English or wideband public benchmarks |
 | Containment or transfer rate | A trend on the product's own calls, against its own baseline | An "industry average" — vendor-published, with no neutral public baseline found (2026-10-17) |
