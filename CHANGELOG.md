@@ -13,8 +13,9 @@ The release procedure synchronizes `.codex-plugin/plugin.json`, this changelog, 
   killed around a tool call, duplicate start/webhook/approval, reconnect from another device,
   revocation while waiting, cancellation during fan-out, deletion propagation, paused runs across a
   deploy, injection through every content channel, budget and quota exhaustion, staging restore),
-  each with the proposition it refutes and its oracle; a drill not run is `not_tested` and narrows
-  the claim. This skill plans and judges; the owning Build pack writes each drill. Router row and
+  each with the proposition it refutes, its oracle, and its owning pack; a drill not run is
+  `not_tested` (`blocked` if attempted), is listed under "What we deliberately did not verify", and
+  narrows the claim. This skill plans and judges; the owning Build pack writes each drill. Router row and
   OWASP AI Agent Security Cheat Sheet source entry; one traversal and one output eval.
 
 ## [0.2.0] — 2026-10-17

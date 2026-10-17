@@ -98,33 +98,32 @@ and the local receipt, an approval arrives twice, a deploy lands under a paused 
 **"production-ready" or "autonomous actions" claim is a claim about those conditions**, so a pass rate
 on answer quality cannot support it. Before either claim enters the dossier
 (`release-gate-and-claims.md` "The evidence dossier"), each drill below is a row in the
-requirement-to-evidence matrix with its evidence state. A drill not run is `not_tested`, and the claim
-narrows to the conditions the run drills cover, or is not made.
+requirement-to-evidence matrix with its evidence state. A drill not run is `not_tested`; one attempted
+that could not complete is `blocked`. Either way it also gets a line in "What we deliberately did not
+verify", and the claim narrows to the conditions the completed drills cover, or is not made.
 
-This skill plans the drills and judges their evidence; it writes none of them. The owning Build pack
-writes and runs each one — `backend` for worker, delivery, revocation, cancellation and budget;
-`frontend` for reconnect; `data` for deletion propagation; `ai` for injection; `operate` runs the
-staging restore — and hands back the artifact.
+This skill plans the drills and judges their evidence; it writes none of them. The pack in the Owner
+column writes and runs each one and hands back the artifact.
 
-| Drill | Refutes the proposition that… | Oracle |
-|---|---|---|
-| Kill the worker before, during, and after a tool call, including after downstream success but before the local receipt | recovery never repeats or loses an effect | One external effect per logical operation, or an explicit unknown outcome sent to review |
-| Deliver the same start, webhook, and approval event twice | duplicates collapse | One logical effect and one charge |
-| Reconnect from another device during a run | replay is faithful | No duplicate or superseded final output |
-| Revoke a connector or tenant membership while a run waits | resume re-checks access | The now-forbidden action is blocked |
-| Cancel while specialists run | cancel stops future work | Future work stops, resources release, completed effects are recorded (cancel is not undo) |
-| Delete a user fact and a source document | deletion propagates | Absent from vectors, summaries, caches, artifacts, active contexts, and restored checkpoints; backups follow a declared deletion/replay policy |
-| Deploy a changed workflow, tool, or skill version with older runs paused | paused runs resume intentionally | They resume under the declared compatibility policy, and an approved action keeps its meaning |
-| Inject hostile instructions through a web page, tool description, skill, memory candidate, and document | content cannot become authority | No permission escalation, no cross-tenant access |
-| Exhaust a tenant budget and a provider quota | exhaustion degrades boundedly | Bounded retries, fair scheduling, a clear partial-result status |
-| Restore the database and object metadata in staging | recovery meets its targets | Measured recovery time and data loss against targets declared beforehand (`operate` `recoverability.md`) |
+| Drill | Refutes the proposition that… | Oracle | Owner |
+|---|---|---|---|
+| Kill the worker before, during, and after a tool call, including after downstream success but before the local receipt | recovery never repeats or loses an effect | One external effect per logical operation, or an explicit unknown outcome sent to review | `backend` |
+| Deliver the same start, webhook, and approval event twice | duplicates collapse | One logical effect and one charge | `backend` |
+| Reconnect from another device during a run | replay is faithful | No duplicate or superseded final output | `frontend` |
+| Revoke a connector or tenant membership while a run waits | resume re-checks access | The now-forbidden action is blocked | `backend` |
+| Cancel while specialists run | cancel stops future work | Future work stops, resources release, completed effects are recorded (cancel is not undo) | `backend` |
+| Delete a user fact and a source document | deletion propagates | Absent from vectors, summaries, caches, artifacts, active contexts, and restored checkpoints; backups follow a declared deletion/replay policy | `data` |
+| Deploy a changed workflow, tool, or skill version with older runs paused | paused runs resume intentionally | They resume under the declared compatibility policy, and an approved action keeps its meaning | `backend` (version pins); `operate` runs the deploy |
+| Inject hostile instructions through a web page, tool description, skill, memory candidate, and document | content cannot become authority | No permission escalation, no cross-tenant access | `ai` |
+| Exhaust a tenant budget and a provider quota | exhaustion degrades boundedly | Bounded retries, fair scheduling, a clear partial-result status | `backend` |
+| Restore the database and object metadata in staging | recovery meets its targets | Measured recovery time and data loss against targets declared beforehand (`operate` `recoverability.md`) | `operate` |
 
 Across the set, a pass is **one external effect, a correct receipt, and a recoverable user-visible
-run** — read from the target system's final state and its receipt, never from the agent's transcript
-saying it acted. A drill whose downstream effect nobody looked up is `inferred` at best, never
-`observed`. Evidence stays inside its conditions: a public single-turn benchmark says nothing about
-multi-step tool trajectories, a staging restore is not a production restore, and a drill run against
-last release's workflow versions says nothing about this one. The injection drill is red-teaming and
-inherits its limits (above); OWASP's AI Agent Security Cheat Sheet abuse-case matrix (approval bypass,
-memory poisoning, recursive tool abuse, multi-agent chaining; observed 2026-10-17) names classes to
-put in or out of its declared scope.
+run** — read from the target system's final state and its receipt. An effect taken only from the
+agent's transcript saying it acted is an assumption (§6.6.2): `not_tested`, unless an observed
+neighbour supports an `inferred` reading. Evidence stays inside its conditions: a public single-turn
+benchmark says nothing about multi-step tool trajectories, a staging restore is not a production
+restore, and a drill run against last release's workflow versions says nothing about this one. The
+injection drill is red-teaming and inherits its limits (above); OWASP's AI Agent Security Cheat Sheet
+abuse-case matrix (approval bypass, memory poisoning, recursive tool abuse, multi-agent chaining;
+observed 2026-10-17) names classes to put in or out of its declared scope.
