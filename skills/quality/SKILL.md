@@ -49,7 +49,7 @@ Before producing anything the user will have to live with:
    answers that would change it most.
 6. **Write it down.** Answers and assumptions go to the LEDGER's Context block.
 
-This pack's questions:
+This pack's questions (a pool — ask the top four that step 1 left open):
 1. What is being released, to whom, and when?
 2. What must not break — the failure that would hurt most? (Recommended: sign-in, payments and lost
    data first.)
