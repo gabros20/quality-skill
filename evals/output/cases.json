@@ -78,5 +78,15 @@
       "States that a simulated caller covers only the simulated conditions and lists the rest as not verified",
       "Dates the passing run to the speech-provider configuration it ran against"
     ]
+  },
+  {
+    "id": "standalone-context-check",
+    "prompt": "We're launching our app next week. Can you check it's ready?",
+    "assertions": [
+      "Before judging anything it reads the repo, CI results and any digital-product/LEDGER.md Context, and asks nothing those already answer (existing tests, pipelines).",
+      "It asks at most four questions in one round (for example what ships to whom, what must not break, what will be claimed about it, who decides go or no-go), each with a recommended answer — or, if it cannot ask, proceeds and opens the verdict with the assumptions that would change it most.",
+      "It ranks verification effort by the risks named or assumed, states what will deliberately go unverified, and writes no tests itself.",
+      "Answers and assumptions are recorded in the LEDGER's Context block, each assumption with its basis and cost to reverse."
+    ]
   }
 ]

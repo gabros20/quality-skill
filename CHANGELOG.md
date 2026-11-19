@@ -8,7 +8,12 @@ The release procedure synchronizes `.codex-plugin/plugin.json`, this changelog, 
 ## [Unreleased]
 
 ### Added
-- Queue unreleased changes here.
+- SKILL.md **Standalone context check** (before routing): the family's common core (look first,
+  size it, ask at most four owner-only questions with recommended answers, decide as the expert,
+  never block, record in the LEDGER) and five quality questions (what ships to whom and when, what
+  must not break, existing evidence, what will be claimed, who decides and who needs proof); answers
+  rank the risks in `verification-strategy-and-risk.md` "Risk ranking and budget allocation". Output
+  eval `standalone-context-check`.
 
 ## [0.4.1] — 2026-10-17
 

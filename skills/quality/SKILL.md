@@ -33,6 +33,35 @@ Operate independently when invoked alone. When compatible upstream artifacts are
 without silently overriding established decisions. Recommend adjacent skills when useful; do not
 invoke them automatically unless the user explicitly requested a composition workflow.
 
+## Standalone context check
+
+Before producing anything the user will have to live with:
+1. **Look first.** Read `digital-product/LEDGER.md` (Context), `digital-product/<pack>/`, upstream
+   artifacts, the repo and this conversation. A fact found is never asked; a fact recorded is never
+   re-asked.
+2. **Size it.** Reversible and small → proceed, stating assumptions. New, costly or hard to undo →
+   check.
+3. **Ask only what the owner alone knows**, in their words: one round, at most four, highest
+   leverage first, each with a recommended answer ("ok" accepts all). Two rounds at most.
+4. **No or thin answers → decide as the expert.** Record each assumption with its basis and cost to
+   reverse; prefer the reversible option; show the cheapest proof early.
+5. **No way to ask → never block.** Proceed, and open the artifact with the assumptions and the
+   answers that would change it most.
+6. **Write it down.** Answers and assumptions go to the LEDGER's Context block.
+
+This pack's questions:
+1. What is being released, to whom, and when?
+2. What must not break — the failure that would hurt most? (Recommended: sign-in, payments and lost
+   data first.)
+3. What tests, checks or other evidence already exist? (Read the repo and CI first.)
+4. What will you claim about it — accessible, secure, fast, compliant with a standard?
+   (Recommended: claim nothing that has not been verified.)
+5. Who decides go or no-go, and does anyone outside the team need proof — a customer, an auditor?
+   (Recommended: you decide; the evidence is written down either way.)
+
+These answers rank the risks in [Verification strategy](references/verification-strategy-and-risk.md)
+"Risk ranking and budget allocation".
+
 ## Route before acting
 
 1. Identify the **primary job** and the **base surface**. Read one of each.
