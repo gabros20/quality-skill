@@ -8,6 +8,11 @@ The release procedure synchronizes `.codex-plugin/plugin.json`, this changelog, 
 ## [Unreleased]
 
 ### Added
+- Queue unreleased changes here.
+
+## [0.5.0] — 2026-11-19
+
+### Added
 - SKILL.md **Standalone context check** (before routing): the family's common core (look first,
   size it, ask at most four owner-only questions with recommended answers, decide as the expert,
   never block, record in the LEDGER) and five quality questions (what ships to whom and when, what
@@ -119,6 +124,7 @@ The release procedure synchronizes `.codex-plugin/plugin.json`, this changelog, 
 - Independent Opus review completed same-day: 0 blockers, 8 S-major and 9 N-minor findings, all
   resolved before release (`.review/findings.md`).
 
+[0.5.0]: https://github.com/gabros20/quality-skill/releases/tag/v0.5.0
 [0.4.1]: https://github.com/gabros20/quality-skill/releases/tag/v0.4.1
 [0.4.0]: https://github.com/gabros20/quality-skill/releases/tag/v0.4.0
 [0.3.0]: https://github.com/gabros20/quality-skill/releases/tag/v0.3.0
